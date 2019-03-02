@@ -4,7 +4,12 @@ const {User} = require('../../Models');
 const sequelize = require('../../sequelize');
 const {inputValidation,
        isUserRegistered,
-       hashPassword} = require('../../middleware/user_middleware');
+       hashPassword,
+       loginValidation,
+       findUser,
+       checkPassword,
+       provideAccess} = require('../../middleware/user_middleware');
+
 sequelize.sync();
 
 router.get('/', (req,res) => {
@@ -23,7 +28,7 @@ router.get('/', (req,res) => {
 
 router.get('/:id', (req,res) => {
      const {id} = req.body;
-     Users.findByAll(id)
+     Users.findById(id)
           .then( user => {
              if(user) {
                 res.status(200).json(user)
@@ -55,7 +60,12 @@ router.post('/register',
 
 });
 
-router.post('/login', (req,res) => {
+router.post('/login',
+       loginValidation,
+       findUser,
+       checkPassword,
+       provideAccess,
+       (req,res) => {
 
 });
 
