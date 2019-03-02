@@ -8,11 +8,32 @@ const {inputValidation,
 sequelize.sync();
 
 router.get('/', (req,res) => {
-   
+   User.findAll()
+       .then( allUsers => {
+         if(allUsers) {
+            res.status(200).json(allUsers)
+         } else {
+            res.status(404).json({msg:`We cannot get you all the users`})
+         }
+    })
+    .catch(err => {
+           res.status(500).json({msg:`Something went wrong`})
+    })
 });
 
 router.get('/:id', (req,res) => {
-    
+     const {id} = req.body;
+     Users.findByAll(id)
+          .then( user => {
+             if(user) {
+                res.status(200).json(user)
+             } else {
+                res.status(404).json({msg:`Unable to get the user with id ${id}`});
+             }
+          })
+          .catch(err => {
+               res.status(500).json({msg:`Something went wrong`});
+          })
 });
 
 router.post('/register', 
