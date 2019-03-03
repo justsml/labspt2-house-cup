@@ -103,6 +103,7 @@ function checkPassword(req,res,next) {
 
 function provideAccess(req,res,next) {
      res.send('successful login');
+     //still need to implement using passport.js
 }
 
 module.exports = {
