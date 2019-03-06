@@ -1,18 +1,13 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 class PublicPage extends React.Component {
-    constructor(props) {
-        super(props);
-        // this.state = {
-        //     houseList: [],
-        // }
-    }
 
     render() {
         return (
             <div className='public-page'>
                 <NavLink to='/admin'><span className='sign-in'><u>Sign In</u></span></NavLink>
+                <sideMenu />
                 <div className='house-list'>
                     {this.props.houseList.map((eachHouse) => {
                         return (

@@ -1,33 +1,123 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: 'BigJohnPRO-Bold';
+  src: local('BigJohnPRO-Bold'), url('./font/BigJohnPRO-Bold.otf') format('opentype');
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+  font-family: 'BigJohnPRO-Regular';
+  src: local('BigJohnPRO-Regular'), url('./font/BigJohnPRO-Regular.otf') format('opentype');
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+html {
+  background-color: #f9f7f6;
+}
+.admin-main-page {
+  display: flex;
+}
+.admin-main-page .side-menu {
+  background-color: #DA2E05;
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  align-items: center;
+  color: white;
+}
+.admin-main-page .side-menu h1 {
+  font-family: 'BigJohnPRO-Bold';
+  font-size: 1.6rem;
+  padding: 10px;
+}
+.admin-main-page .side-menu h2 {
+  font-family: 'BigJohnPRO-Regular';
+}
+.landing-page {
+  width: 1200px;
+  margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+.landing-page .landing-img {
+  width: 300px;
+}
+.landing-page .login-box {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.landing-page .login-box .title {
+  font-family: 'BigJohnPRO-Bold';
+  font-size: 3rem;
+  margin: 0;
+  padding: 10px 0;
+  margin-bottom: 50px;
+  color: #E2592D;
+}
+.landing-page .login-box .loginInput {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.landing-page .login-box .loginInput input {
+  color: black;
+  height: 36px;
+  width: 260px;
+  margin: 5px 0;
+  background-color: #fafafa;
+  border: none;
+  border: 1px solid #efefef;
+  padding: 0 10px;
+  font-size: 0.7rem;
+  border-radius: 3px;
+}
+.landing-page .login-box .button {
+  height: 36px;
+  width: 280px;
+  border: 0;
+  border-radius: 3px;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+.landing-page .login-box .button:hover {
+  opacity: 0.8;
+}
+.landing-page .login-box .login-button {
+  color: white;
+  background-color: #ECA00D;
+}
+.landing-page .login-box .signup-button {
+  color: white;
+  background-color: #DA2E05;
+  border: solid 1px #efefef;
+}
+.landing-page .signup-page {
+  padding-top: 50px;
+}
+.landing-page .signup-page .or-container {
+  width: 320px;
+  margin: 20px 0 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.landing-page .signup-page .or-container .line {
+  background-color: #999;
+  height: 1px;
+  width: 130px;
+}
+.landing-page .signup-page #or {
+  font-weight: 600;
+  color: #999;
+}
+.landing-page .signup-page .signup-button-2 {
+  color: white;
+  background-color: #ECA00D;
+  border: solid 1px #efefef;
+}
+.landing-page .signup-page .google-button {
+  background-color: #DB4437;
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.landing-page .signup-page .facebook-button {
+  background-color: #3C5A99;
+  color: white;
 }

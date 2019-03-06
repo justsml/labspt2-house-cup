@@ -1,5 +1,6 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
+import SideMenu from './sideMenu';
 
 class AdminMainPage extends React.Component {
     constructor(props) {
@@ -11,19 +12,19 @@ class AdminMainPage extends React.Component {
 
     incrementChangeUp = e => {
         this.setState((prevState) => {
-            return {incrementTicker: prevState.incrementTicker + 1}
+            return { incrementTicker: prevState.incrementTicker + 1 }
         })
     };
     incrementChangeDown = e => {
         this.setState((prevState) => {
-            return {incrementTicker: prevState.incrementTicker - 1}
+            return { incrementTicker: prevState.incrementTicker - 1 }
         })
     };
 
     render() {
         return (
             <div className='admin-main-page'>
-                <NavLink to='/'><span className='sign-out'><u>Sign Out</u></span></NavLink>
+                <SideMenu />
                 <div className='house-list'>
                     {this.props.houseList.map((eachHouse) => {
                         return (
