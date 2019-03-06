@@ -27,6 +27,7 @@ html {
 }
 .admin-main-page .side-menu h2 {
   font-family: 'BigJohnPRO-Regular';
+  width: 100%;
 }
 .landing-page {
   width: 1200px;
