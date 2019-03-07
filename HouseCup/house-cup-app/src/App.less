@@ -1,0 +1,200 @@
+//import fonts
+@font-face {
+    font-family: 'BigJohnPRO-Bold';
+    src: local('BigJohnPRO-Bold'), url('./font/BigJohnPRO-Bold.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'BigJohnPRO-Regular';
+    src: local('BigJohnPRO-Regular'), url('./font/BigJohnPRO-Regular.otf') format('opentype');
+}
+
+//all theme colors
+@theme-color-white: #F1EFEA;
+@theme-color-tomato: #DA2E05;
+@theme-color-green: #025211;
+@theme-color-blue: #094DA8;
+@theme-color-yellow: #ECA00D;
+@theme-color-lime: #69980D;
+@theme-color-oranage: #E2592D;
+@theme-color-beige: #D0CAAD;
+@background-color: #f9f7f6;
+//starting css
+html {
+    background-color: @background-color;
+}
+
+.admin-main-page {
+    display: flex;
+    .side-menu {
+        background-color: @theme-color-tomato;
+        display: flex;
+        flex-direction: column;
+        width: 20%;
+        align-items: center;
+        color: white;
+        h1 {
+            font-family: 'BigJohnPRO-Bold';
+            font-size: 1.6rem;
+            padding: 10px;
+        }
+        a {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            &:hover {
+                // background-color: 0.8;
+                background-color: @theme-color-white;
+                h2 {
+                    color: @theme-color-oranage;
+                }
+            }
+        }
+        h2 {
+            font-family: 'BigJohnPRO-Regular'; // width: 100%;
+        }
+    }
+    .housecard-container {
+        font-family: 'Lato';
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center; // flex-flow: column wrap;
+        .housecard {
+            background-color: transparent;
+            width: 300px;
+            height: 200px;
+            border: 1px solid #f1f1f1;
+            perspective: 1000px;
+            background-color: @theme-color-beige;
+            .housecard-inner {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                transition: transform 0.8s;
+                transform-style: preserve-3d;
+                .housecard-front,
+                .housecard-back {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    backface-visibility: hidden;
+                }
+                .housecard-front {
+                    .point-total {
+                        font-size: 4rem;
+                        text-shadow: longshadow(darken(@theme-color-blue, 15%), @theme-color-blue, 100, 0.8);
+                    }
+                }
+                .housecard-back {
+                    transform: rotateY(180deg);
+                }
+            }
+        }
+        .flip {
+            .housecard-inner {
+                transform: rotateY(180deg);
+            }
+        }
+    }
+}
+
+.landing-page {
+    width: 1200px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .landing-img {
+        width: 300px;
+    }
+    .login-box {
+        width: 500px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .title {
+            font-family: 'BigJohnPRO-Bold';
+            font-size: 3rem;
+            margin: 0;
+            padding: 10px 0;
+            margin-bottom: 50px;
+            color: @theme-color-oranage;
+        }
+        .loginInput {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            input {
+                color: black;
+                height: 36px;
+                width: 260px;
+                margin: 5px 0;
+                background-color: #fafafa;
+                border: none;
+                border: 1px solid #efefef;
+                padding: 0 10px;
+                font-size: 0.7rem;
+                border-radius: 3px;
+            }
+        }
+        .button {
+            height: 36px;
+            width: 280px;
+            border: 0;
+            border-radius: 3px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            &:hover {
+                // background-color: @theme-color-oranage;
+                // color: white;
+                opacity: 0.8;
+            }
+        }
+        .login-button {
+            color: white;
+            background-color: @theme-color-yellow;
+        }
+        .signup-button {
+            color: white;
+            background-color: @theme-color-tomato;
+            border: solid 1px #efefef;
+        }
+    }
+    .signup-page {
+        padding-top: 50px;
+        .or-container {
+            .line {
+                background-color: #999;
+                height: 1px;
+                width: 130px;
+            }
+            width: 320px;
+            margin: 20px 0 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        #or {
+            font-weight: 600;
+            color: #999;
+        }
+        .signup-button-2 {
+            color: white;
+            background-color: @theme-color-yellow;
+            border: solid 1px #efefef;
+        }
+        .google-button {
+            background-color: #DB4437;
+            color: white; // &:hover {
+            //     background-color: #DB4437;
+            //     opacity: 0.8;
+            // }
+        }
+        .facebook-button {
+            background-color: #3C5A99;
+            color: white;
+        }
+    }
+}
