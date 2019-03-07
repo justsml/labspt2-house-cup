@@ -3,41 +3,35 @@ import './App.css';
 
 import {Route} from 'react-router-dom';
 
-//publicPage imports:
+//publicPage import(s):
 import PublicPage from './sub-components/publicPage';
-import scorboardTestData from './mock data/scoreboard';
+import scoreboardTestData from './mock data/scoreboard';
 
-//Admin import:
+//Admin import(s):
 import AdminMainPage from './sub-components/adminMainPage';
+
+//Billings import(s):
+import BillingPage from './sub-components/billingPage';
+
+//Settings import(s):
+import SettingsPage from './sub-components/settingsPage';
 
 
 class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      testData: scorboardTestData, 
+      testData: scoreboardTestData,
     }
-  }
-
-  confirmAddPoints = e => {
-    console.log(e.target.parentNode.children[1].children[0].innerHTML);
-    const houseTotals = this.state.testData.map(total => {
-      return total.pointTotal
-    })
-    console.log(this.state.testData[0].pointTotal);
-    console.log(houseTotals);
   }
 
   render() {
     return (
       <div className="App">
         <Route exact path = '/' render={ (props) => <PublicPage {...props} houseList={this.state.testData}/> }/>
-        <Route exact path = '/admin' render={(props) => <AdminMainPage {...props} houseList={this.state.testData} confirmAddPoints={this.confirmAddPoints}/> }/>
-        {/* {this.state.testData.map(eachObject => {
-          return (
-            <div>{eachObject.pointTotal}</div>
-          )
-        })} */}
+        <Route exact path = '/admin' render={(props) => <AdminMainPage {...props} houseList={this.state.testData}/> }/>
+        <Route exact path = '/admin/billing' render={(props) => <BillingPage {...props} premiumPrice={'$19.99'}/>}/>
+        <Route exact path = '/admin/settings' render={(props) => <SettingsPage/>}/>
       </div>
     );
   }
