@@ -1,15 +1,42 @@
-GET http://localhost:5000/api/users HTTP/1.1
+GET http://localhost:5000/users/ HTTP/1.1
 
 ###
 
-POST http://localhost:5000/api/register HTTP/1.1
+POST http://localhost:5000/users/register HTTP/1.1
 Content-Type: application/json
 
 {
-  "firstName": "venkat",
-  "lastName": "venkat",
-  "email": "venkat@aol.com",
+  "firstName": "ash",
+  "lastName": "s",
+  "email": "ash@aol.com",
   "password": "12345"
 }
 
 ###
+
+POST http://localhost:5000/users/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "ash@aol.com",
+  "password": "12345"
+}
+
+###
+
+GET http://localhost:5000/schools HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzaEBhb2wuY29tIiwiaWF0IjoxNTUxOTI4Mzc4LCJleHAiOjE1NTE5MzE5NzgsImp0aSI6ImU4Yjg1MmEwLTQwODYtMTFlOS1iYjgxLTFmNWU1MjBhNTQ0YyJ9.bKF-SftrY3gVwLLj0KGfVbLg9f9Sks2_WCEZR1xb9YU
+
+###
+POST http://localhost:5000/schools HTTP/1.1
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzaEBhb2wuY29tIiwiaWF0IjoxNTUxOTI4Mzc4LCJleHAiOjE1NTE5MzE5NzgsImp0aSI6ImU4Yjg1MmEwLTQwODYtMTFlOS1iYjgxLTFmNWU1MjBhNTQ0YyJ9.bKF-SftrY3gVwLLj0KGfVbLg9f9Sks2_WCEZR1xb9YU
+
+{
+  "name": "School2",
+  "city": "Middle Earth"
+}
+
+###
+
+#eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZlbmthdEBhb2wuY29tIiwiaWF0IjoxNTUxOTI2OTUxLCJleHAiOjE1NTE5MzA1NTEsImp0aSI6Ijk2MzQzYzkwLTQwODMtMTFlOS04MzBhLTIxYjI1Y2JhNTM5MyJ9.gndkUhxSc_eupks143OxTsxoxk8vZvzwuf9QRFuZw6s
