@@ -58,19 +58,19 @@ class AdminMainPage extends React.Component {
                                     <div className='housecard-front'>
                                         {/* <span><h5 className='house-number'>{eachHouse.number}</h5></span> */}
                                         <h2 className='house-name'>{eachHouse.name}</h2>
-                                        <h3 className='point-total'>{eachHouse.pointTotal}</h3>
+                                        <h3 className='point-total'>{this.state[eachHouse.name + eachHouse.pointTotal] || eachHouse.pointTotal}</h3>
                                     </div>
                                     <div className='housecard-back'>
                                         <div className='point-increment-area'>
-                                            <button className='add-points-button' onClick={this.props.confirmAddPoints}>+</button>
+                                            <button className='add-points-button' name={eachHouse.name + eachHouse.pointTotal} onClick={this.confirmAddPoints}>+</button>
                                             <div className='add/minus-increment'>
-                                                <span className='increment-number'>{this.state.incrementTicker}</span>
+                                                <span className='increment-number'>{this.state[eachHouse.name] || 0}</span>
                                                 <div className='increment-number-ticker'>
-                                                    <button className='up-ticker' onClick={this.incrementChangeUp}>↑</button>
-                                                    <button className='down-ticker' onClick={this.incrementChangeDown}>↓</button>
+                                                    <button className='up-ticker' name={eachHouse.name} onClick={this.incrementChangeUp}>↑</button>
+                                                    <button className='down-ticker' name={eachHouse.name} onClick={this.incrementChangeDown}>↓</button>
                                                 </div>
                                             </div>
-                                            <button className='minus-points-button' onClick={this.props.confirmMinusPoints}>-</button>
+                                            <button className='minus-points-button' name={eachHouse.name + eachHouse.pointTotal} onClick={this.confirmMinusPoints}>-</button>
                                         </div>
                                     </div>
                                 </div>
@@ -82,5 +82,24 @@ class AdminMainPage extends React.Component {
         )
     }
 }
+
+
+{/* <div className='house-list'>
+                    {this.props.houseList.map((eachHouse) => {
+                        return (
+                            <div className='each-house' key={eachHouse.number}>
+                                <span><h5 className='house-number'>{eachHouse.number}</h5></span>
+                                <h2 className='house-name'>{eachHouse.name}</h2>
+                                <h3 className='point-total'>{this.state[eachHouse.name + eachHouse.pointTotal] || eachHouse.pointTotal}</h3>
+                                <div className='point-increment-area'>
+                                    <button className='add-points-button' name={eachHouse.name + eachHouse.pointTotal} onClick={this.confirmAddPoints}>+</button>
+                                    <div className='add/minus-increment'>
+                                        <span className='increment-number' >{this.state[eachHouse.name] || 0}</span>
+                                        <div className='increment-number-ticker'>
+                                            <button className='up-ticker' name={eachHouse.name} onClick={this.incrementChangeUp}>↑</button>
+                                            <button className='down-ticker' name={eachHouse.name} onClick={this.incrementChangeDown}>↓</button>
+                                        </div>
+                                    </div>
+                                    <button className='minus-points-button' name={eachHouse.name + eachHouse.pointTotal} onClick={this.confirmMinusPoints}>-</button> */}
 
 export default AdminMainPage;
