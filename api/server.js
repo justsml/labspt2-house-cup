@@ -1,50 +1,37 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const cors = require('cors');
+const logger = require('morgan');
 const helmet = require('helmet');
-const { User } = require('../Models');
+const { User, School } = require('../Models');
 const sequelize = require('../sequelize');
 
+School.belongsTo(User, {
+  foreignKey: 'userId',
+});
+
+User.hasMany(School, {
+  foreignKey: 'userId',
+});
+
 sequelize.sync();
-async function createDummyUser(count) {
-  if (!count) return;
-  await User.create({ name: 'User' + count });
-  createDummyUser(count - 1);
-}
-
-// createDummyUser(10);
-async function getAllUsers() {
-  const users = await User.findAll();
-  return users;
-}
-
-async function createUser(user) {
-  const newUser = await User.create(user);
-
-  return newUser;
-}
-
+const userRouter = require('../controllers/routes/user_routes');
+const schoolsRouter = require('../controllers/routes/schools');
 const server = express();
 
+server.use(bodyParser.json());
+server.use(bodyParser.urlencoded({ extended: true }));
 server.use(helmet());
+server.use(logger('tiny'));
 server.use(cors());
-server.use(express.json());
+
+server.use('/users', userRouter);
+server.use('/schools', schoolsRouter);
 
 server.get('/', (req, res) => {
   res.send(`Server is up and running now.`);
 });
 
-server.get('/api/users', async (req, res) => {
-  const users = await getAllUsers();
-
-  res.json(users);
-});
-
-server.post('/api/users', async (req, res) => {
-  const newUser = await createUser(req.body);
-
-  res.json(newUser);
-});
-
 module.exports = {
   server,
-};
+}
