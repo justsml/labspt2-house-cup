@@ -44,7 +44,7 @@ class LandingPage extends React.Component {
                             onChange={this.handleInput}
                         />
                     </form>
-                    <NavLink to='/admin'>
+                    <NavLink to='/dashboard'>
                     <button onClick={this.handleSubmit} className="button login-button">Log in</button>
                     </NavLink>
                     <NavLink to='/signup'>

@@ -1,49 +1,34 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const cors = require('cors');
+const logger = require('morgan');
 const helmet = require('helmet');
 const { User } = require('../Models');
 const sequelize = require('../sequelize');
 
-sequelize.sync();
-async function createDummyUser(count) {
-  if (!count) return;
-  await User.create({ name: 'User' + count });
-  createDummyUser(count - 1);
-}
+const userRouter = require('../controllers/routes/user_routes');
+// const {User} = require('../Models');
+// const sequelize = require('../sequelize');
 
-// createDummyUser(10);
-async function getAllUsers() {
-  const users = await User.findAll();
-  return users;
-}
+// sequelize.sync();
 
-async function createUser(user) {
-  const newUser = await User.create(user);
+// async function createDummyUser() {
+//   await User.create({ firstName: 'Ashwin' , lastName: 'Sundaran', email: 'ashwin@yahoo.com', password: 'abcde'})
+// }
+// createDummyUser();
+const server = express();
 
-  return newUser;
-}
+server.use(bodyParser.json());
+server.use(bodyParser.urlencoded({extended:true}));
+server.use(helmet());
+server.use(logger('tiny'));
+server.use(cors());
 
-// createDummyUser(10);
 
-async function getAllUsers() {
-  const users = await User.findAll();
-  return users;
-}
+server.use('/users', userRouter);
 
 server.get('/', (req, res) => {
   res.send(`Server is up and running now.`);
-});
-
-server.get('/api/users', async (req, res) => {
-  const users = await getAllUsers();
-
-  res.json(users);
-});
-
-server.post('/api/users', async (req, res) => {
-  const newUser = await createUser(req.body);
-
-  res.json(newUser);
 });
 
 module.exports = {
