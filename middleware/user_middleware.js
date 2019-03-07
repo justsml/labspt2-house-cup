@@ -1,5 +1,6 @@
 const {User} = require('../Models')
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs');
+const {generateToken} = require('../auth/jwt');
 
 function inputValidation(req,res,next) {
     const {firstName,lastName,email,password} = req.body;
@@ -102,7 +103,10 @@ function checkPassword(req,res,next) {
 }
 
 function provideAccess(req,res,next) {
-     res.send('successful login');
+     const {email} = req.body;
+     const token = generateToken(email);
+     if(!token) res.status(400).json({msg: `Access Denied`});
+     res.status(200).json({token:token});
      //still need to implement using passport.js
 }
 
