@@ -21,7 +21,7 @@ function inputValidation(req,res,next) {
     }
 
     if(missingFields.length) {
-          res.status(400).send(`The following fields are missing: ${missingFields.join(', ')}`);
+          res.status(400).json(`The following fields are missing: ${missingFields.join(', ')}`);
     } else {
       next();
     }

@@ -31,18 +31,6 @@ server.get('/', (req, res) => {
   res.send(`Server is up and running now.`);
 });
 
-server.get('/api/users', async (req, res) => {
-  const users = await getAllUsers();
-
-  res.json(users);
-});
-
-server.post('/api/users', async (req, res) => {
-  const newUser = await createUser(req.body);
-
-  res.json(newUser);
-});
-
 module.exports = {
   server,
 };
