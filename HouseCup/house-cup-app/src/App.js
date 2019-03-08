@@ -36,9 +36,12 @@ class App extends Component {
         <Route exact path = '/' render={ (props) => <PublicPage {...props} houseList={this.state.testData}/> }/>
         <Route exact path='/welcome' render={(props) => <LandingPage {...props} />} />
         <Route exact path='/signup' render={(props) => <SignupPage {...props} houseList={this.state.testData} confirmAddPoints={this.confirmAddPoints} />} />
+<<<<<<< HEAD
+=======
         <Route exact path = '/admin' render={(props) => <AdminMainPage {...props} houseList={this.state.testData}/> }/>
         <Route exact path = '/admin/billing' render={(props) => <BillingPage {...props} premiumPrice={'$19.99'}/>}/>
         <Route exact path = '/admin/settings' render={(props) => <SettingsPage/>}/>
+>>>>>>> 8b8c4446183269bd1e05bc421e60ae658a76f85b
       </div>
     );
   }
