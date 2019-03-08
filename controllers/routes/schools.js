@@ -25,7 +25,12 @@ router.get("/", protectEndPoint, async function(req, res) {
         }
       ]
     });
-    return res.json(schools);
+    return res.json({
+      status: true,
+      data: {
+        schools
+      }
+    });
   } catch (err) {
     console.log(err);
     next({ ...err, code: 500 });
@@ -35,7 +40,12 @@ router.get("/", protectEndPoint, async function(req, res) {
 router.get("/:id", protectEndPoint, async function(req, res) {
   try {
     const school = await School.findById(req.params.id);
-    res.json(school);
+    res.json({
+      status: true,
+      data: {
+        school
+      }
+    });
   } catch (err) {
     console.log(err);
     next({ ...err, code: 500 });
@@ -53,7 +63,12 @@ router.post("/", protectEndPoint, async function(req, res) {
       ...req.body,
       userId: user.id
     });
-    res.status(201).json(newSchool);
+    res.status(201).json({
+      status: true,
+      data: {
+        newSchool
+      }
+    });
   } catch (err) {
     console.log(err);
     next({ ...err, code: 500 });

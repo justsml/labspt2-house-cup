@@ -19,7 +19,12 @@ router.get("/", (req, res, next) => {
   })
     .then(allUsers => {
       if (allUsers) {
-        res.status(200).json(allUsers);
+        res.status(200).json({
+          status: true,
+          data: {
+            allUsers
+          }
+        });
       } else {
         next({ code: 404 });
       }
@@ -35,7 +40,12 @@ router.get("/:id", (req, res) => {
   Users.findById(id)
     .then(user => {
       if (user) {
-        res.status(200).json(user);
+        res.status(200).json({
+          status: true,
+          data: {
+            user
+          }
+        });
       } else {
         next({ code: 404 });
       }
