@@ -1,3 +1,33 @@
+html {
+    font-size: 62.5%;
+    /* Now 10px = 1rem! */
+}
+
+//remove button styling
+button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+button:hover,
+button:focus {
+    background: #0053ba;
+}
+
+button:focus {
+    outline: 1px solid #fff;
+    outline-offset: -4px;
+}
+
+button:active {
+    transform: scale(0.99);
+}
+
 //import fonts
 @font-face {
     font-family: 'BigJohnPRO-Bold';
@@ -13,11 +43,12 @@
 @theme-color-white: #F1EFEA;
 @theme-color-tomato: #DA2E05;
 @theme-color-green: #025211;
-@theme-color-blue: #094DA8;
+@theme-color-blue: #5271c2;
 @theme-color-yellow: #ECA00D;
 @theme-color-lime: #69980D;
 @theme-color-oranage: #E2592D;
 @theme-color-beige: #D0CAAD;
+@theme-color-navy: #094DA8;
 @background-color: #f9f7f6;
 //starting css
 html {
@@ -27,7 +58,7 @@ html {
 .admin-main-page {
     display: flex;
     .side-menu {
-        background-color: @theme-color-tomato;
+        background-color: @theme-color-oranage;
         display: flex;
         flex-direction: column;
         width: 20%;
@@ -35,13 +66,14 @@ html {
         color: white;
         h1 {
             font-family: 'BigJohnPRO-Bold';
-            font-size: 1.6rem;
+            font-size: 2.8rem;
             padding: 10px;
         }
         a {
             width: 100%;
             display: flex;
             justify-content: center;
+            transition-duration: 0.2s;
             &:hover {
                 // background-color: 0.8;
                 background-color: @theme-color-white;
@@ -52,43 +84,149 @@ html {
         }
         h2 {
             font-family: 'BigJohnPRO-Regular'; // width: 100%;
+            font-size: 2.4rem;
         }
     }
     .housecard-container {
         font-family: 'Lato';
+        width: 100%;
         min-height: 100vh;
         display: flex;
-        align-items: center;
-        justify-content: center; // flex-flow: column wrap;
+        align-items: flex-start;
+        margin-top: 80px;
+        justify-content: space-evenly;
         .housecard {
+            cursor: pointer;
             background-color: transparent;
-            width: 300px;
-            height: 200px;
-            border: 1px solid #f1f1f1;
+            width: 260px;
+            height: 360px;
             perspective: 1000px;
-            background-color: @theme-color-beige;
+            
             .housecard-inner {
                 position: relative;
-                width: 100%;
-                height: 100%;
+                width: 250px;
+                height: 350px;
                 text-align: center;
                 transition: transform 0.8s;
                 transform-style: preserve-3d;
                 .housecard-front,
                 .housecard-back {
+                    color: white;
                     position: absolute;
                     width: 100%;
                     height: 100%;
                     backface-visibility: hidden;
+                    border-radius: 8px;
+                    box-shadow: 10px 10px 15px rgba(@theme-color-beige);
+                }
+                .point-total {
+                    font-size: 8rem;
+                    margin: auto;
+                    padding-top: 80px;
+                    padding-bottom: 20px;
+                    height: 80px;
+                    width: 120px;
+                    text-align: center;
+                    overflow: hidden;
+                    mix-blend-mode: hard-light;
+                    /*here flat shadow*/
+                    text-shadow: 10px 10px 15px rgba(90, 90, 90, 1), 0 -2px 1px #fff;
+                }
+                .points-txt {
+                    font-size: 2.8rem;
                 }
                 .housecard-front {
-                    .point-total {
-                        font-size: 4rem;
-                        text-shadow: longshadow(darken(@theme-color-blue, 15%), @theme-color-blue, 100, 0.8);
+                    z-index: 2;
+                    .house-name {
+                        font-size: 3rem;
+                        height: 40px;
+                        margin-top: 40px;
+                        margin-bottom: 0;
                     }
+                }
+                #housecard-front-1 {
+                    background-color: @theme-color-tomato
+                }
+                #housecard-front-2 {
+                    background-color: @theme-color-navy
+                }
+                #housecard-front-3 {
+                    background-color: @theme-color-green
+                }
+                #housecard-front-4 {
+                    background-color: @theme-color-yellow
                 }
                 .housecard-back {
                     transform: rotateY(180deg);
+                    background-color: @theme-color-blue;
+                    cursor: initial;
+                    .point-increment-area {
+                        height: 130px;
+                        display: flex;
+                        flex-direction: column;
+                        .choose {
+                            text-align: left;
+                            padding-left: 19px;
+                            font-size: 1.6rem;
+                            height: 20px;
+                            margin-top: 10px;
+                            margin-bottom: 6px; // font-weight: 400;
+                        }
+                        .increment-number-container {
+                            .row-1,
+                            .row-2 {
+                                margin-bottom: 8px;
+                                width: 100%;
+                                display: flex;
+                                justify-content: space-evenly;
+                                .increment-number {
+                                    cursor: pointer;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    font-size: 1.5rem;
+                                    width: 25px;
+                                    height: 35px;
+                                    border: 1px solid @theme-color-white;
+                                    border-radius: 2px;
+                                    transition-duration: 0.2s;
+                                    &:hover {
+                                        background-color: white;
+                                        color: @theme-color-blue;
+                                    }
+                                }
+                                .active-number {
+                                    background-color: white;
+                                    color: @theme-color-blue;
+                                }
+                            }
+                        }
+                        .points-button-container {
+                            display: flex;
+                            justify-content: space-between;
+                            .points-button {
+                                margin: 0 19px;
+                                background-color: @theme-color-white;
+                                color: @theme-color-blue;
+                                font-size: 1.5rem;
+                                border-radius: 2px;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                width: 73px;
+                                height: 28px;
+                                font-weight: 600;
+                                transition-duration: 0.1s;
+                                &:hover {
+                                    background-color: white;
+                                }
+                            }
+                        }
+                    }
+                    .point-total {
+                        padding-top: 30px;
+                        cursor: default;
+                    }
                 }
             }
         }
@@ -116,7 +254,7 @@ html {
         align-items: center;
         .title {
             font-family: 'BigJohnPRO-Bold';
-            font-size: 3rem;
+            font-size: 4rem;
             margin: 0;
             padding: 10px 0;
             margin-bottom: 50px;
@@ -135,7 +273,7 @@ html {
                 border: none;
                 border: 1px solid #efefef;
                 padding: 0 10px;
-                font-size: 0.7rem;
+                font-size: 1.2rem;
                 border-radius: 3px;
             }
         }
@@ -144,12 +282,14 @@ html {
             width: 280px;
             border: 0;
             border-radius: 3px;
-            font-size: 0.9rem;
+            font-size: 1.4rem;
             margin-top: 10px;
+            opacity: 0.8;
+            transition-duration: 0.2s;
             &:hover {
                 // background-color: @theme-color-oranage;
                 // color: white;
-                opacity: 0.8;
+                opacity: 1;
             }
         }
         .login-button {
@@ -179,6 +319,7 @@ html {
         #or {
             font-weight: 600;
             color: #999;
+            font-size: 1.4rem;
         }
         .signup-button-2 {
             color: white;
