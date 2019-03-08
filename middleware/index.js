@@ -25,7 +25,7 @@ module.exports = {
       case 403:
         res.status(403).json({
           status: false,
-          error_code: "unauthorized",
+          error_code: "forbidden",
           msg: "your authorization header is invalid."
         });
         break;
