@@ -200,7 +200,8 @@ html {
   width: 73px;
   height: 28px;
   font-weight: 600;
-  transition-duration: 0.1s;
+  z-index: 1;
+  transition-duration: 0.2s;
 }
 .admin-main-page .housecard-container .housecard .housecard-inner .housecard-back .point-increment-area .points-button-container .points-button:hover {
   background-color: white;

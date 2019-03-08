@@ -6,13 +6,18 @@ import { Route } from 'react-router-dom';
 //landingPage imports:
 import LandingPage from './sub-components/landingPage'
 
-//publicPage imports:
+//publicPage import(s):
 import PublicPage from './sub-components/publicPage';
-import scorboardTestData from './mock data/scoreboard';
+import scoreboardTestData from './mock data/scoreboard';
 
-//Admin import:
+//Admin import(s):
 import AdminMainPage from './sub-components/adminMainPage';
 
+//Billings import(s):
+import BillingPage from './sub-components/billingPage';
+
+//Settings import(s):
+import SettingsPage from './sub-components/settingsPage';
 //SignupPage import
 import SignupPage from './sub-components/signupPage';
 
@@ -21,26 +26,22 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      testData: scorboardTestData,
+      testData: scoreboardTestData,
     }
-  }
-
-  confirmAddPoints = e => {
-    console.log(e.target.parentNode.children[1].children[0].innerHTML);
-    const houseTotals = this.state.testData.map(total => {
-      return total.pointTotal
-    })
-    console.log(this.state.testData[0].pointTotal);
-    console.log(houseTotals);
   }
 
   render() {
     return (
       <div className="App">
-        <Route exact path='/' render={(props) => <PublicPage {...props} houseList={this.state.testData} />} />
+        <Route exact path = '/' render={ (props) => <PublicPage {...props} houseList={this.state.testData}/> }/>
         <Route exact path='/welcome' render={(props) => <LandingPage {...props} />} />
-        <Route exact path='/admin' render={(props) => <AdminMainPage {...props} houseList={this.state.testData} confirmAddPoints={this.confirmAddPoints} />} />
         <Route exact path='/signup' render={(props) => <SignupPage {...props} houseList={this.state.testData} confirmAddPoints={this.confirmAddPoints} />} />
+<<<<<<< HEAD
+=======
+        <Route exact path = '/admin' render={(props) => <AdminMainPage {...props} houseList={this.state.testData}/> }/>
+        <Route exact path = '/admin/billing' render={(props) => <BillingPage {...props} premiumPrice={'$19.99'}/>}/>
+        <Route exact path = '/admin/settings' render={(props) => <SettingsPage/>}/>
+>>>>>>> 8b8c4446183269bd1e05bc421e60ae658a76f85b
       </div>
     );
   }

@@ -2,7 +2,11 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 class PublicPage extends React.Component {
-
+    constructor(props) {
+        super(props);
+        this.state = {
+        }
+    }
     render() {
         return (
             <div className='public-page'>
@@ -11,7 +15,7 @@ class PublicPage extends React.Component {
                 <div className='house-list'>
                     {this.props.houseList.map((eachHouse) => {
                         return (
-                            <div className='each-house' key={eachHouse.id}>
+                            <div className='each-house' key={eachHouse.number}>
                                 <span><h5 className='house-number'>{eachHouse.number}</h5></span>
                                 <h2 className='house-name'>{eachHouse.name}</h2>
                                 <h3 className='point-total'>{eachHouse.pointTotal}</h3>
