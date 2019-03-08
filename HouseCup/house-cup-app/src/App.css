@@ -1,3 +1,27 @@
+html {
+  font-size: 62.5%;
+  /* Now 10px = 1rem! */
+}
+button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+button:hover,
+button:focus {
+  background: #0053ba;
+}
+button:focus {
+  outline: 1px solid #fff;
+  outline-offset: -4px;
+}
+button:active {
+  transform: scale(0.99);
+}
 @font-face {
   font-family: 'BigJohnPRO-Bold';
   src: local('BigJohnPRO-Bold'), url('./font/BigJohnPRO-Bold.otf') format('opentype');
@@ -13,7 +37,7 @@ html {
   display: flex;
 }
 .admin-main-page .side-menu {
-  background-color: #DA2E05;
+  background-color: #E2592D;
   display: flex;
   flex-direction: column;
   width: 20%;
@@ -22,13 +46,14 @@ html {
 }
 .admin-main-page .side-menu h1 {
   font-family: 'BigJohnPRO-Bold';
-  font-size: 1.6rem;
+  font-size: 2.8rem;
   padding: 10px;
 }
 .admin-main-page .side-menu a {
   width: 100%;
   display: flex;
   justify-content: center;
+  transition-duration: 0.2s;
 }
 .admin-main-page .side-menu a:hover {
   background-color: #F1EFEA;
@@ -38,43 +63,152 @@ html {
 }
 .admin-main-page .side-menu h2 {
   font-family: 'BigJohnPRO-Regular';
+  font-size: 2.4rem;
 }
 .admin-main-page .housecard-container {
   font-family: 'Lato';
+  width: 100%;
   min-height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  margin-top: 80px;
+  justify-content: space-evenly;
 }
 .admin-main-page .housecard-container .housecard {
+  cursor: pointer;
   background-color: transparent;
-  width: 300px;
-  height: 200px;
-  border: 1px solid #f1f1f1;
+  width: 260px;
+  height: 360px;
   perspective: 1000px;
-  background-color: #D0CAAD;
 }
 .admin-main-page .housecard-container .housecard .housecard-inner {
   position: relative;
-  width: 100%;
-  height: 100%;
+  width: 250px;
+  height: 350px;
   text-align: center;
   transition: transform 0.8s;
   transform-style: preserve-3d;
 }
 .admin-main-page .housecard-container .housecard .housecard-inner .housecard-front,
 .admin-main-page .housecard-container .housecard .housecard-inner .housecard-back {
+  color: white;
   position: absolute;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
+  border-radius: 8px;
+  box-shadow: 10px 10px 15px #d0caad;
 }
-.admin-main-page .housecard-container .housecard .housecard-inner .housecard-front .point-total {
-  font-size: 4rem;
-  text-shadow: longshadow(#052c5f, #094DA8, 100, 0.8);
+.admin-main-page .housecard-container .housecard .housecard-inner .point-total {
+  font-size: 8rem;
+  margin: auto;
+  padding-top: 80px;
+  padding-bottom: 20px;
+  height: 80px;
+  width: 120px;
+  text-align: center;
+  overflow: hidden;
+  mix-blend-mode: hard-light;
+  /*here flat shadow*/
+  text-shadow: 10px 10px 15px #5a5a5a, 0 -2px 1px #fff;
+}
+.admin-main-page .housecard-container .housecard .housecard-inner .points-txt {
+  font-size: 2.8rem;
+}
+.admin-main-page .housecard-container .housecard .housecard-inner .housecard-front {
+  z-index: 2;
+}
+.admin-main-page .housecard-container .housecard .housecard-inner .housecard-front .house-name {
+  font-size: 3rem;
+  height: 40px;
+  margin-top: 40px;
+  margin-bottom: 0;
+}
+.admin-main-page .housecard-container .housecard .housecard-inner #housecard-front-1 {
+  background-color: #DA2E05;
+}
+.admin-main-page .housecard-container .housecard .housecard-inner #housecard-front-2 {
+  background-color: #094DA8;
+}
+.admin-main-page .housecard-container .housecard .housecard-inner #housecard-front-3 {
+  background-color: #025211;
+}
+.admin-main-page .housecard-container .housecard .housecard-inner #housecard-front-4 {
+  background-color: #ECA00D;
 }
 .admin-main-page .housecard-container .housecard .housecard-inner .housecard-back {
   transform: rotateY(180deg);
+  background-color: #5271c2;
+  cursor: initial;
+}
+.admin-main-page .housecard-container .housecard .housecard-inner .housecard-back .point-increment-area {
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+}
+.admin-main-page .housecard-container .housecard .housecard-inner .housecard-back .point-increment-area .choose {
+  text-align: left;
+  padding-left: 19px;
+  font-size: 1.6rem;
+  height: 20px;
+  margin-top: 10px;
+  margin-bottom: 6px;
+}
+.admin-main-page .housecard-container .housecard .housecard-inner .housecard-back .point-increment-area .increment-number-container .row-1,
+.admin-main-page .housecard-container .housecard .housecard-inner .housecard-back .point-increment-area .increment-number-container .row-2 {
+  margin-bottom: 8px;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.admin-main-page .housecard-container .housecard .housecard-inner .housecard-back .point-increment-area .increment-number-container .row-1 .increment-number,
+.admin-main-page .housecard-container .housecard .housecard-inner .housecard-back .point-increment-area .increment-number-container .row-2 .increment-number {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  width: 25px;
+  height: 35px;
+  border: 1px solid #F1EFEA;
+  border-radius: 2px;
+  transition-duration: 0.2s;
+}
+.admin-main-page .housecard-container .housecard .housecard-inner .housecard-back .point-increment-area .increment-number-container .row-1 .increment-number:hover,
+.admin-main-page .housecard-container .housecard .housecard-inner .housecard-back .point-increment-area .increment-number-container .row-2 .increment-number:hover {
+  background-color: white;
+  color: #5271c2;
+}
+.admin-main-page .housecard-container .housecard .housecard-inner .housecard-back .point-increment-area .increment-number-container .row-1 .active-number,
+.admin-main-page .housecard-container .housecard .housecard-inner .housecard-back .point-increment-area .increment-number-container .row-2 .active-number {
+  background-color: white;
+  color: #5271c2;
+}
+.admin-main-page .housecard-container .housecard .housecard-inner .housecard-back .point-increment-area .points-button-container {
+  display: flex;
+  justify-content: space-between;
+}
+.admin-main-page .housecard-container .housecard .housecard-inner .housecard-back .point-increment-area .points-button-container .points-button {
+  margin: 0 19px;
+  background-color: #F1EFEA;
+  color: #5271c2;
+  font-size: 1.5rem;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 73px;
+  height: 28px;
+  font-weight: 600;
+  z-index: 1;
+  transition-duration: 0.2s;
+}
+.admin-main-page .housecard-container .housecard .housecard-inner .housecard-back .point-increment-area .points-button-container .points-button:hover {
+  background-color: white;
+}
+.admin-main-page .housecard-container .housecard .housecard-inner .housecard-back .point-total {
+  padding-top: 30px;
+  cursor: default;
 }
 .admin-main-page .housecard-container .flip .housecard-inner {
   transform: rotateY(180deg);
@@ -97,7 +231,7 @@ html {
 }
 .landing-page .login-box .title {
   font-family: 'BigJohnPRO-Bold';
-  font-size: 3rem;
+  font-size: 4rem;
   margin: 0;
   padding: 10px 0;
   margin-bottom: 50px;
@@ -117,7 +251,7 @@ html {
   border: none;
   border: 1px solid #efefef;
   padding: 0 10px;
-  font-size: 0.7rem;
+  font-size: 1.2rem;
   border-radius: 3px;
 }
 .landing-page .login-box .button {
@@ -125,11 +259,13 @@ html {
   width: 280px;
   border: 0;
   border-radius: 3px;
-  font-size: 0.9rem;
+  font-size: 1.4rem;
   margin-top: 10px;
+  opacity: 0.8;
+  transition-duration: 0.2s;
 }
 .landing-page .login-box .button:hover {
-  opacity: 0.8;
+  opacity: 1;
 }
 .landing-page .login-box .login-button {
   color: white;
@@ -158,6 +294,7 @@ html {
 .landing-page .signup-page #or {
   font-weight: 600;
   color: #999;
+  font-size: 1.4rem;
 }
 .landing-page .signup-page .signup-button-2 {
   color: white;

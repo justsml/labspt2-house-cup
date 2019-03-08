@@ -33,9 +33,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Route exact path = '/' render={ (props) => <PublicPage {...props} houseList={this.state.testData}/> }/>
         <Route exact path='/welcome' render={(props) => <LandingPage {...props} />} />
-        <Route exact path='/signup' render={(props) => <SignupPage {...props} houseList={this.state.testData} />} />
+        <Route exact path='/' render={(props) => <SignupPage {...props} houseList={this.state.testData} />} />
+        <Route exact path = '/public' render={ (props) => <PublicPage {...props} houseList={this.state.testData}/> }/>
         <Route exact path = '/admin' render={(props) => <AdminMainPage {...props} houseList={this.state.testData}/> }/>
         <Route exact path = '/admin/billing' render={(props) => <BillingPage {...props} premiumPrice={'$19.99'}/>}/>
         <Route exact path = '/admin/settings' render={(props) => <SettingsPage/>}/>
