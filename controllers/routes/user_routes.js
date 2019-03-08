@@ -1,7 +1,7 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const { User, School } = require('../../Models');
-const sequelize = require('../../sequelize');
+const { User, School } = require("../../Models");
+const sequelize = require("../../sequelize");
 const {
   inputValidation,
   isUserRegistered,
@@ -9,44 +9,44 @@ const {
   loginValidation,
   findUser,
   checkPassword,
-  provideAccess,
-} = require('../../middleware/user_middleware');
+  provideAccess
+} = require("../../middleware/user_middleware");
 
-router.get('/', (req, res) => {
+router.get("/", (req, res, next) => {
   User.findAll({
     include: [School],
-    attributes: ['firstName', 'lastName', 'email'],
+    attributes: ["firstName", "lastName", "email"]
   })
     .then(allUsers => {
       if (allUsers) {
         res.status(200).json(allUsers);
       } else {
-        res.status(404).json({ msg: `We cannot get you all the users` });
+        next({ code: 404 });
       }
     })
     .catch(err => {
       console.log(err);
-      res.status(500).json({ msg: `Something went wrong` });
+      next({ ...err, code: 500 });
     });
 });
 
-router.get('/:id', (req, res) => {
+router.get("/:id", (req, res) => {
   const { id } = req.body;
   Users.findById(id)
     .then(user => {
       if (user) {
         res.status(200).json(user);
       } else {
-        res.status(404).json({ msg: `Unable to get the user with id ${id}` });
+        next({ code: 404 });
       }
     })
     .catch(err => {
-      res.status(500).json({ msg: `Something went wrong` });
+      next({ ...err, code: 500 });
     });
 });
 
 router.post(
-  '/register',
+  "/register",
   inputValidation,
   isUserRegistered,
   hashPassword,
@@ -57,17 +57,22 @@ router.post(
     User.create(newUser)
       .then(user => {
         user.password = undefined;
-        res.status(201).json(user);
+        res.status(201).json({
+          status: true,
+          data: {
+            user
+          }
+        });
       })
       .catch(err => {
         console.log(err);
-        res.status(500).json({ msg: `Something went wrong` });
+        next({ ...err, code: 500 });
       });
   }
 );
 
 router.post(
-  '/login',
+  "/login",
   loginValidation,
   findUser,
   checkPassword,
