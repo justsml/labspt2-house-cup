@@ -16,11 +16,11 @@ class sideMenu extends React.Component {
                     <h2>Schools</h2>
                 </NavLink>
 
-                <NavLink to="/billings" activeClassName="activeMenu" style={{ textDecoration: "none", color: "inherit" }}>
+                <NavLink to="/admin/billing" activeClassName="activeMenu" style={{ textDecoration: "none", color: "inherit" }}>
                     <h2>Billings</h2>
                 </NavLink>
 
-                <NavLink to="/settings" activeClassName="activeMenu" style={{ textDecoration: "none", color: "inherit" }}>
+                <NavLink to="/admin/settings" activeClassName="activeMenu" style={{ textDecoration: "none", color: "inherit" }}>
                     <h2>Settings</h2>
                 </NavLink>
 
