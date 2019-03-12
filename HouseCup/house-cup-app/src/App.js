@@ -21,6 +21,9 @@ import SettingsPage from './sub-components/settingsPage';
 //SignupPage import
 import SignupPage from './sub-components/signupPage';
 
+//adminAnalyticsPage
+import AdminAnalyticsPage from './sub-components/analytics/AdminAnalyticsPage';
+
 
 class App extends Component {
   constructor(props) {
@@ -34,11 +37,12 @@ class App extends Component {
     return (
       <div className="App">
         <Route exact path='/welcome' render={(props) => <LandingPage {...props} />} />
-        <Route exact path='/' render={(props) => <SignupPage {...props} houseList={this.state.testData} />} />
-        <Route exact path = '/public' render={ (props) => <PublicPage {...props} houseList={this.state.testData}/> }/>
+        <Route exact path='/signup' render={(props) => <SignupPage {...props} houseList={this.state.testData} confirmAddPoints={this.confirmAddPoints} />} />
         <Route exact path = '/admin' render={(props) => <AdminMainPage {...props} houseList={this.state.testData}/> }/>
         <Route exact path = '/admin/billing' render={(props) => <BillingPage {...props} premiumPrice={'$19.99'}/>}/>
         <Route exact path = '/admin/settings' render={(props) => <SettingsPage/>}/>
+        <Route exact path = '/analytics' render={(props) => <AdminAnalyticsPage  />}/>
+
       </div>
     );
   }
