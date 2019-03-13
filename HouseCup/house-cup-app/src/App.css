@@ -33,10 +33,7 @@ button:active {
 html {
   background-color: #f9f7f6;
 }
-.admin-main-page {
-  display: flex;
-}
-.admin-main-page .side-menu {
+.side-menu {
   background-color: #E2592D;
   display: flex;
   flex-direction: column;
@@ -44,26 +41,29 @@ html {
   align-items: center;
   color: white;
 }
-.admin-main-page .side-menu h1 {
+.side-menu h1 {
   font-family: 'BigJohnPRO-Bold';
   font-size: 2.8rem;
   padding: 10px;
 }
-.admin-main-page .side-menu a {
+.side-menu a {
   width: 100%;
   display: flex;
   justify-content: center;
   transition-duration: 0.2s;
 }
-.admin-main-page .side-menu a:hover {
+.side-menu a:hover {
   background-color: #F1EFEA;
 }
-.admin-main-page .side-menu a:hover h2 {
+.side-menu a:hover h2 {
   color: #E2592D;
 }
-.admin-main-page .side-menu h2 {
+.side-menu h2 {
   font-family: 'BigJohnPRO-Regular';
   font-size: 2.4rem;
+}
+.admin-main-page {
+  display: flex;
 }
 .admin-main-page .housecard-container {
   font-family: 'Lato';
@@ -105,7 +105,7 @@ html {
   padding-top: 80px;
   padding-bottom: 20px;
   height: 80px;
-  width: 120px;
+  width: 100%;
   text-align: center;
   overflow: hidden;
   mix-blend-mode: hard-light;
@@ -209,6 +209,7 @@ html {
 .admin-main-page .housecard-container .housecard .housecard-inner .housecard-back .point-total {
   padding-top: 30px;
   cursor: default;
+  width: 100%;
 }
 .admin-main-page .housecard-container .flip .housecard-inner {
   transform: rotateY(180deg);

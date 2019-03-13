@@ -55,38 +55,37 @@ html {
     background-color: @background-color;
 }
 
-.admin-main-page {
+.side-menu {
+    background-color: @theme-color-oranage;
     display: flex;
-    .side-menu {
-        background-color: @theme-color-oranage;
+    flex-direction: column;
+    width: 20%;
+    align-items: center;
+    color: white;
+    h1 {
+        font-family: 'BigJohnPRO-Bold';
+        font-size: 2.8rem;
+        padding: 10px;
+    }
+    a {
+        width: 100%;
         display: flex;
-        flex-direction: column;
-        width: 20%;
-        align-items: center;
-        color: white;
-        h1 {
-            font-family: 'BigJohnPRO-Bold';
-            font-size: 2.8rem;
-            padding: 10px;
-        }
-        a {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            transition-duration: 0.2s;
-            &:hover {
-                // background-color: 0.8;
-                background-color: @theme-color-white;
-                h2 {
-                    color: @theme-color-oranage;
-                }
+        justify-content: center;
+        transition-duration: 0.2s;
+        &:hover {
+            background-color: @theme-color-white;
+            h2 {
+                color: @theme-color-oranage;
             }
         }
-        h2 {
-            font-family: 'BigJohnPRO-Regular'; // width: 100%;
-            font-size: 2.4rem;
-        }
     }
+    h2 {
+        font-family: 'BigJohnPRO-Regular'; // width: 100%;
+        font-size: 2.4rem;
+    }
+}
+.admin-main-page {
+    display: flex;
     .housecard-container {
         font-family: 'Lato';
         width: 100%;
@@ -125,7 +124,7 @@ html {
                     padding-top: 80px;
                     padding-bottom: 20px;
                     height: 80px;
-                    width: 120px;
+                    width: 100%;
                     text-align: center;
                     overflow: hidden;
                     mix-blend-mode: hard-light;
@@ -227,6 +226,7 @@ html {
                     .point-total {
                         padding-top: 30px;
                         cursor: default;
+                        width: 100%;
                     }
                 }
             }

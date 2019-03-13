@@ -25,7 +25,6 @@ class SignupPage extends React.Component {
         return (
             <div className='landing-page'>
                 <div className='signup-page'>
-                    {/* <img src={LandingImg} alt="loginImg" className="landing-img" /> */}
                     <div className="login-box">
                         <p className="title">House Cup Tracker</p>
                         <form onSubmit={this.handleSubmit} className="loginInput">
