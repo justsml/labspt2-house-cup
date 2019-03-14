@@ -23,6 +23,9 @@ import SettingsPage from './sub-components/settingsPage';
 import SignupPage from './sub-components/signupPage';
 import SchoolsPage from './sub-components/schoolsPage';
 
+//adminAnalyticsPage
+import AdminAnalyticsPage from './sub-components/analytics/AdminAnalyticsPage';
+
 
 class App extends Component {
   constructor(props) {
@@ -35,13 +38,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Route exact path='/' render={(props) => <PublicPage {...props} houseList={this.state.testData} />} />
         <Route exact path='/welcome' render={(props) => <LandingPage {...props} />} />
-        <Route exact path='/signup' render={(props) => <SignupPage {...props} houseList={this.state.testData} />} />
-        <Route exact path='/admin/' render={(props) => <AdminMainPage {...props} houseList={this.state.testData} />} />
-        <Route exact path='/schools/' render={(props) => <SchoolsPage {...props} houseList={this.state.testData} />} />
-        <Route exact path='/admin/billing' render={(props) => <BillingPage {...props} premiumPrice={'$19.99'} />} />
-        <Route exact path='/admin/settings' render={(props) => <SettingsPage />} />
+        <Route exact path='/signup' render={(props) => <SignupPage {...props} houseList={this.state.testData} confirmAddPoints={this.confirmAddPoints} />} />
+        <Route exact path = '/admin' render={(props) => <AdminMainPage {...props} houseList={this.state.testData}/> }/>
+        <Route exact path = '/admin/billing' render={(props) => <BillingPage {...props} premiumPrice={'$19.99'}/>}/>
+        <Route exact path = '/admin/settings' render={(props) => <SettingsPage/>}/>
+        <Route exact path = '/analytics' render={(props) => <AdminAnalyticsPage  />}/>
+
       </div>
     );
   }

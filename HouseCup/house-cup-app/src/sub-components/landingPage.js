@@ -23,7 +23,7 @@ class LandingPage extends React.Component {
         this.setState({
             [e.target.name]: e.target.value
         });
-    };
+    }; 
 
     handleSubmit = e => {
         localStorage.setItem('username', this.state.username)

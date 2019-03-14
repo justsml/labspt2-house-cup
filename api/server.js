@@ -7,12 +7,34 @@ const { User, School } = require("../Models");
 const sequelize = require("../sequelize");
 
 School.belongsTo(User, {
-  foreignKey: "userId"
+  foreignKey: 'userId'
 });
+
+// school.getUser()
+
+// OR
 
 User.hasMany(School, {
   foreignKey: "userId"
 });
+
+// user.getSchools()
+// user.createSchool()
+
+/*
+  source.methodName(target, options)
+
+  belongsTo
+    it adds a foreignKey in the source model
+
+  hasOne
+    it adds a foreignKey to the target model
+
+  hasMany
+    it adds a foreignKey to the target model
+
+  belongsToMany
+*/
 
 sequelize.sync();
 const userRouter = require("../controllers/routes/user_routes");
