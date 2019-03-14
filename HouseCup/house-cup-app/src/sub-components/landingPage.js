@@ -33,34 +33,36 @@ class LandingPage extends React.Component {
     render() {
         return (
             <div className='landing-page'>
-                <header>
+                <header className='landing-page-header'>
                     <div className="house-cup-title">House Cup Tracker</div>
                     <div className='button-container'>
-                        <NavLink to='/dashboard'>
-                            <button onClick={this.handleSubmit} className="button login-button">Log in</button>
-                        </NavLink>
-                        <NavLink to='/signup'>
+                        <NavLink to='/signup' style={{ textDecoration: "none", color: "inherit" }}>
                             <button onClick={this.handleSubmit} className="button signup-button">Sign up</button>
+                        </NavLink>
+                        <NavLink to='/dashboard' style={{ textDecoration: "none", color: "inherit" }}>
+                            <button onClick={this.handleSubmit} className="button login-button">Log in</button>
                         </NavLink>
                     </div>
                 </header>
-                <div className='landing-page-block-1'>
-                    <h2 className="jumbo-1">FOR YOUR SCHOOL</h2>
-                    <h1 className="jumbo-title">LET THE HOUSE CUP BEGIN</h1>
+                <div className='landing-page-block landing-page-block-1'>
+                    <div className='jumbo-container'>
+                        <h2 className="jumbo-1">FOR YOUR SCHOOL</h2>
+                        <h1 className="jumbo-title">LET THE HOUSE CUP BEGIN</h1>
+                    </div>
                     <img src={LandingImg} alt="loginImg" className="landing-img" />
                 </div>
-                <div className='landing-page-block-2'>
-                    <div className='feature-1'>
+                <div className='landing-page-block landing-page-block-2'>
+                    <div className='feature-1 feature'>
                         <span>View your house scoreboard anytime, anywhere</span>
                     </div>
-                    <div className='feature-2'>
+                    <div className='feature-2 feature'>
                         <span>Coordinate with all the teachers</span>
                     </div>
-                    <div className='feature-3'>
+                    <div className='feature-3 feature'>
                         <span>Visual analysis at your fingertip</span>
                     </div>
                 </div>
-                <div className='landing-page-block-3'>
+                <div className='landing-page-block landing-page-block-3'>
                     <h2>Check out the top-tier schools we work with</h2>
                     <div className='schools-list'>
                         {this.state.schoolsList.map((school) => {
@@ -70,7 +72,7 @@ class LandingPage extends React.Component {
                         })}
                     </div>
                 </div>
-                <div className='landing-page-block-3'>
+                <div className='landing-page-block landing-page-block-4'>
                     <div className='review-text'>
                         <h2>review review review</h2>
                     </div>
