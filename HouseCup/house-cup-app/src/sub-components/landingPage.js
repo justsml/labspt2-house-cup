@@ -2,12 +2,16 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 import LandingImg from '../images/realestate.png'
 
+
+
+
 class LandingPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             username: "",
             password: "",
+                
         };
     }
 
@@ -22,7 +26,10 @@ class LandingPage extends React.Component {
         window.location.reload();
     }
 
+    
+
     render() {
+        console.log(this.props)
         return (
             <div className='landing-page'>
                 <img src={LandingImg} alt="loginImg" className="landing-img" />
@@ -45,12 +52,15 @@ class LandingPage extends React.Component {
                         />
                     </form>
                     <NavLink to='/dashboard'>
-                    <button onClick={this.handleSubmit} className="button login-button">Log in</button>
+                    <button onClick={this.handleSubmit}
+                            className="button login-button"
+                           >Log in</button>
                     </NavLink>
                     <NavLink to='/signup'>
                     <button onClick={this.handleSubmit} className="button signup-button">Sign up</button>
                     </NavLink>
-                </div>
+                    <button onClick={this.props.auth.login}>Auth Login</button>
+>                </div>
             </div>
         )
     }

@@ -24,19 +24,24 @@ import SignupPage from './sub-components/signupPage';
 //adminAnalyticsPage
 import AdminAnalyticsPage from './sub-components/analytics/AdminAnalyticsPage';
 
+//Auth0.js
+import Auth from './Auth';
+const auth = new Auth();
+
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       testData: scoreboardTestData,
+      auth
     }
   }
 
   render() {
     return (
       <div className="App">
-        <Route exact path='/welcome' render={(props) => <LandingPage {...props} />} />
+        <Route exact path='/' render={(props) => <LandingPage {...props} auth={this.state.auth}/>} />
         <Route exact path='/signup' render={(props) => <SignupPage {...props} houseList={this.state.testData} confirmAddPoints={this.confirmAddPoints} />} />
         <Route exact path = '/admin' render={(props) => <AdminMainPage {...props} houseList={this.state.testData}/> }/>
         <Route exact path = '/admin/billing' render={(props) => <BillingPage {...props} premiumPrice={'$19.99'}/>}/>
