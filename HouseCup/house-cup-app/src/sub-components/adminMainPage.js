@@ -6,11 +6,8 @@ class AdminMainPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-<<<<<<< HEAD
             incrementTicker: 0,
             houseList: []
-=======
->>>>>>> 8b8c4446183269bd1e05bc421e60ae658a76f85b
         }
     }
     componentDidMount() {
@@ -30,7 +27,6 @@ class AdminMainPage extends React.Component {
         })
     }
 
-<<<<<<< HEAD
     addPoint = id => {
         let newPointTotal = this.state.houseList[id - 1].pointTotal + this.state.incrementTicker;
         this.setState((prevState) => {
@@ -48,19 +44,6 @@ class AdminMainPage extends React.Component {
         var elements = document.getElementsByClassName(`active-number`);
         elements[0].classList.toggle('active-number');
         this.forceUpdate();
-=======
-    incrementChangeUp = e => {
-        const specificHouse = e.target.name;
-        const previousValue = e.target.parentNode.parentNode.children[0].innerHTML;
-        this.setState({[specificHouse]: +previousValue + +1});
-    };
-    incrementChangeDown = e => {
-        const specificHouse = e.target.name;
-        const previousValue = e.target.parentNode.parentNode.children[0].innerHTML;
-        console.log(specificHouse);
-        console.log(previousValue);
-        this.setState({[specificHouse]: +previousValue - +1});
->>>>>>> 8b8c4446183269bd1e05bc421e60ae658a76f85b
     };
     confirmAddPoints = e => {
         var valueAdded = e.target.parentNode.children[1].children[0].innerHTML;
@@ -105,7 +88,6 @@ class AdminMainPage extends React.Component {
 
                                     >
                                         <h2 className='house-name'>{eachHouse.name}</h2>
-<<<<<<< HEAD
                                         <h3 className='point-total'>{eachHouse.pointTotal}</h3>
                                         <h2 className='points-txt'>Points</h2>
                                     </div>
@@ -145,21 +127,6 @@ class AdminMainPage extends React.Component {
                                                 {eachHouse.pointTotal}
                                             </h3>
                                             <h2 className='points-txt'>Points</h2>
-=======
-                                        <h3 className='point-total'>{this.state[eachHouse.name + eachHouse.pointTotal] || eachHouse.pointTotal}</h3>
-                                    </div>
-                                    <div className='housecard-back'>
-                                        <div className='point-increment-area'>
-                                            <button className='add-points-button' name={eachHouse.name + eachHouse.pointTotal} onClick={this.confirmAddPoints}>+</button>
-                                            <div className='add/minus-increment'>
-                                                <span className='increment-number'>{this.state[eachHouse.name] || 0}</span>
-                                                <div className='increment-number-ticker'>
-                                                    <button className='up-ticker' name={eachHouse.name} onClick={this.incrementChangeUp}>↑</button>
-                                                    <button className='down-ticker' name={eachHouse.name} onClick={this.incrementChangeDown}>↓</button>
-                                                </div>
-                                            </div>
-                                            <button className='minus-points-button' name={eachHouse.name + eachHouse.pointTotal} onClick={this.confirmMinusPoints}>-</button>
->>>>>>> 8b8c4446183269bd1e05bc421e60ae658a76f85b
                                         </div>
                                     </div>
                                 </div>
