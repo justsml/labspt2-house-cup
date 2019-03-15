@@ -18,8 +18,10 @@ import BillingPage from './sub-components/billingPage';
 
 //Settings import(s):
 import SettingsPage from './sub-components/settingsPage';
+
 //SignupPage import
 import SignupPage from './sub-components/signupPage';
+import SchoolsPage from './sub-components/schoolsPage';
 
 //adminAnalyticsPage
 import AdminAnalyticsPage from './sub-components/analytics/AdminAnalyticsPage';
