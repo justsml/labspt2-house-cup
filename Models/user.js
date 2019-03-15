@@ -8,3 +8,9 @@ module.exports = sequelize.define('users', {
   password: { type: Sequelize.STRING, allowNull: false },
   isAdmin: { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: true },
 });
+
+/*
+  knex('users').select('firstName')
+
+  users = User.findAll()
+*/

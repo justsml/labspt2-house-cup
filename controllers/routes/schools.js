@@ -1,9 +1,9 @@
-const express = require("express");
-const { School, User } = require("../../Models");
+const express = require('express');
+const { School, User } = require('../../Models');
 const router = express.Router();
-const { protectEndPoint } = require("../../auth/jwt");
+const { protectEndPoint } = require('../../auth/jwt');
 
-router.get("/", protectEndPoint, async function(req, res) {
+router.get('/', protectEndPoint, async function(req, res) {
   const sequelize = User.sequelize;
   try {
     const schools = await School.findAll({
@@ -13,23 +13,23 @@ router.get("/", protectEndPoint, async function(req, res) {
           attributes: [
             [
               sequelize.fn(
-                "concat",
-                sequelize.col("firstName"),
-                " ",
-                sequelize.col("lastName")
+                'concat',
+                sequelize.col('firstName'),
+                ' ',
+                sequelize.col('lastName')
               ),
-              "name"
+              'name',
             ],
-            "email"
-          ]
-        }
-      ]
+            'email',
+          ],
+        },
+      ],
     });
     return res.json({
       status: true,
       data: {
-        schools
-      }
+        schools,
+      },
     });
   } catch (err) {
     console.log(err);
@@ -37,14 +37,14 @@ router.get("/", protectEndPoint, async function(req, res) {
   }
 });
 
-router.get("/:id", protectEndPoint, async function(req, res) {
+router.get('/:id', protectEndPoint, async function(req, res) {
   try {
     const school = await School.findById(req.params.id);
     res.json({
       status: true,
       data: {
-        school
-      }
+        school,
+      },
     });
   } catch (err) {
     console.log(err);
@@ -52,22 +52,25 @@ router.get("/:id", protectEndPoint, async function(req, res) {
   }
 });
 
-router.post("/", protectEndPoint, async function(req, res) {
+router.post('/', protectEndPoint, async function(req, res) {
   try {
     const user = await User.findOne({
       where: {
-        email: req.user.email
-      }
+        email: req.user.email,
+      },
     });
+
     const newSchool = await School.create({
       ...req.body,
-      userId: user.id
+      userId: user.id,
     });
+
+    // const newSchool = await user.addSchool(req.body);
     res.status(201).json({
       status: true,
       data: {
-        newSchool
-      }
+        newSchool,
+      },
     });
   } catch (err) {
     console.log(err);
