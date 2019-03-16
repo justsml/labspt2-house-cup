@@ -24,6 +24,9 @@ import SignupPage from './sub-components/signupPage';
 //adminAnalyticsPage
 import AdminAnalyticsPage from './sub-components/analytics/AdminAnalyticsPage';
 
+//CallbackPage for Auth0.js
+import Callback from './sub-components/Callback.js';
+
 //Auth0.js
 import Auth from './Auth';
 const auth = new Auth();
@@ -47,6 +50,8 @@ class App extends Component {
         <Route exact path = '/admin/billing' render={(props) => <BillingPage {...props} premiumPrice={'$19.99'}/>}/>
         <Route exact path = '/admin/settings' render={(props) => <SettingsPage/>}/>
         <Route exact path = '/analytics' render={(props) => <AdminAnalyticsPage  />}/>
+        <Route exact path = '/callback' render={  (props) => <Callback />  }/>
+
 
       </div>
     );
