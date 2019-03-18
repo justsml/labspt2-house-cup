@@ -5,7 +5,7 @@ import auth from '../Auth';
 function NavBar(props) {
   const signOut = () => {
     auth.logout();
-    props.history.replace('/admin');
+    props.history.replace('/');
   };
 
   return (

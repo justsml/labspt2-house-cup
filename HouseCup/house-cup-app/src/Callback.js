@@ -5,7 +5,7 @@ import auth from './Auth';
 class Callback extends Component {
   async componentDidMount() {
     await auth.handleAuthentication();
-    this.props.history.replace('/admin/billingPage');
+    this.props.history.replace('/about');
   }
   render() {
     return (
