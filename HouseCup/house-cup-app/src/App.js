@@ -25,11 +25,15 @@ import SignupPage from './sub-components/signupPage';
 import AdminAnalyticsPage from './sub-components/analytics/AdminAnalyticsPage';
 
 //CallbackPage for Auth0.js
-import Callback from './sub-components/Callback.js';
+import Callback from './Callback.js';
+
+//Secured Route
+import SecuredRoute from './sub-components/SecuredRoute';
 
 //Auth0.js
-import Auth from './Auth';
-const auth = new Auth();
+import NavBar from './sub-components/NavBar';
+import billingPage from './sub-components/billingPage';
+
 
 
 class App extends Component {
@@ -37,22 +41,21 @@ class App extends Component {
     super(props);
     this.state = {
       testData: scoreboardTestData,
-      auth
+    
     }
   }
 
   render() {
     return (
       <div className="App">
-        <Route exact path='/' render={(props) => <LandingPage {...props} auth={this.state.auth}/>} />
+        <NavBar />
+        <Route exact path='/' render={(props) => <LandingPage {...props} />} />
+        <Route exact path = '/callback' render={  (props) => <Callback />  }/>
         <Route exact path='/signup' render={(props) => <SignupPage {...props} houseList={this.state.testData} confirmAddPoints={this.confirmAddPoints} />} />
         <Route exact path = '/admin' render={(props) => <AdminMainPage {...props} houseList={this.state.testData}/> }/>
-        <Route exact path = '/admin/billing' render={(props) => <BillingPage {...props} premiumPrice={'$19.99'}/>}/>
-        <Route exact path = '/admin/settings' render={(props) => <SettingsPage/>}/>
-        <Route exact path = '/analytics' render={(props) => <AdminAnalyticsPage  />}/>
-        <Route exact path = '/callback' render={  (props) => <Callback />  }/>
-
-
+        <SecuredRoute path = '/admin/billing' component={billingPage}/>
+        <SecuredRoute exact path = '/admin/settings' render={(props) => <SettingsPage/>}/>
+        <SecuredRoute exact path = '/analytics' render={(props) => <AdminAnalyticsPage  />}/>
       </div>
     );
   }

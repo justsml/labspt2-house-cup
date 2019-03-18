@@ -1,13 +1,21 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
-
+import auth from '../Auth';
 class sideMenu extends React.Component {
+  
+    logout = () => {
+        auth.logout();
+        this.props.history.replace('/');
+      }
     render() {
+      
         return (
             <div className='side-menu'>
                 <header>
                     <h1>House Cup Tracker</h1>
                 </header>
+                {/* {auth.isAuthenticated() && (
+                <>     */}
                 <NavLink to="/dashboard" activeClassName="activeMenu" style={{ textDecoration: "none", color: "inherit" }}>
                     <h2>Dashboard</h2>
                 </NavLink>
@@ -27,6 +35,8 @@ class sideMenu extends React.Component {
                 <NavLink to='/' style={{ textDecoration: "none", color: "inherit" }}>
                     <h2>Sign Out</h2>
                 </NavLink>
+               {/* </>
+                )} */}
             </div>);
     }
 }
