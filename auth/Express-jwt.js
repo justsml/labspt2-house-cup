@@ -14,3 +14,5 @@ const checkJwt = jwt({
   issuer: `https://venky-yagatilee.auth0.com/`,
   algorithms: ['RS256']
 });
+
+module.exports = {checkJwt};
