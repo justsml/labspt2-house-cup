@@ -1,0 +1,16 @@
+const jwt = require('express-jwt');
+const jwksRsa = require('jwks-rsa');
+
+const checkJwt = jwt({
+  secret: jwksRsa.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri: `https://venky-yagatilee.auth0.com/.well-known/jwks.json`
+  }),
+
+  // Validate the audience and the issuer.
+  audience: '46Ngw5RelPCvdaCoKrqPvIWyvgFQBqvx',
+  issuer: `https://venky-yagatilee.auth0.com/`,
+  algorithms: ['RS256']
+});
