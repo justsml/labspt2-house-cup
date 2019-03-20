@@ -30,10 +30,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzaEBhb2wuY29t
 ###
 POST http://localhost:5000/schools HTTP/1.1
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzaEBhb2wuY29tIiwiaWF0IjoxNTUxOTI4Mzc4LCJleHAiOjE1NTE5MzE5NzgsImp0aSI6ImU4Yjg1MmEwLTQwODYtMTFlOS1iYjgxLTFmNWU1MjBhNTQ0YyJ9.bKF-SftrY3gVwLLj0KGfVbLg9f9Sks2_WCEZR1xb9YU
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzaEBhb2wuY29tIiwiaWF0IjoxNTUyMzU5NTc4LCJleHAiOjE1NTIzNjMxNzgsImp0aSI6ImRmZTc5ZjEwLTQ0NzItMTFlOS04ZDY4LTliNDQyMmU3MjhjYiJ9.LfzBuP6l9rI2mp-_VzXo1OOmDJAXvfytUj-P_aoRZYY
 
 {
-  "name": "School2",
+  "name": "School3",
   "city": "Middle Earth"
 }
 

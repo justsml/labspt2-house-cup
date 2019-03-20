@@ -33,10 +33,7 @@ button:active {
 html {
   background-color: #f9f7f6;
 }
-.admin-main-page {
-  display: flex;
-}
-.admin-main-page .side-menu {
+.side-menu {
   background-color: #E2592D;
   display: flex;
   flex-direction: column;
@@ -44,26 +41,29 @@ html {
   align-items: center;
   color: white;
 }
-.admin-main-page .side-menu h1 {
+.side-menu h1 {
   font-family: 'BigJohnPRO-Bold';
   font-size: 2.8rem;
   padding: 10px;
 }
-.admin-main-page .side-menu a {
+.side-menu a {
   width: 100%;
   display: flex;
   justify-content: center;
   transition-duration: 0.2s;
 }
-.admin-main-page .side-menu a:hover {
+.side-menu a:hover {
   background-color: #F1EFEA;
 }
-.admin-main-page .side-menu a:hover h2 {
+.side-menu a:hover h2 {
   color: #E2592D;
 }
-.admin-main-page .side-menu h2 {
+.side-menu h2 {
   font-family: 'BigJohnPRO-Regular';
   font-size: 2.4rem;
+}
+.admin-main-page {
+  display: flex;
 }
 .admin-main-page .housecard-container {
   font-family: 'Lato';
@@ -105,7 +105,7 @@ html {
   padding-top: 80px;
   padding-bottom: 20px;
   height: 80px;
-  width: 120px;
+  width: 100%;
   text-align: center;
   overflow: hidden;
   mix-blend-mode: hard-light;
@@ -209,16 +209,78 @@ html {
 .admin-main-page .housecard-container .housecard .housecard-inner .housecard-back .point-total {
   padding-top: 30px;
   cursor: default;
+  width: 100%;
 }
 .admin-main-page .housecard-container .flip .housecard-inner {
   transform: rotateY(180deg);
 }
 .landing-page {
-  width: 1200px;
-  margin: auto;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.landing-page .landing-page-header {
+  position: fixed;
+  z-index: 3;
+  display: flex;
+  width: 100%;
+  height: 60px;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(249, 247, 246, 0.8);
+}
+.landing-page .landing-page-header .house-cup-title {
+  font-family: 'BigJohnPRO-Bold';
+  font-size: 3rem;
+  margin: 10px 0 0 20px;
+  color: #E2592D;
+}
+.landing-page .landing-page-header .button-container {
+  width: 10%;
+  display: flex;
+  justify-content: space-around;
+}
+.landing-page .landing-page-header .button-container .button {
+  height: 35px;
+  width: 65px;
+  border-radius: 100px;
+  font-size: 1.3rem;
+  opacity: 0.8;
+  transition-duration: 0.2s;
+}
+.landing-page .landing-page-header .button-container .button:hover {
+  opacity: 1;
+}
+.landing-page .landing-page-header .button-container .login-button {
+  color: white;
+  background-color: #ECA00D;
+}
+.landing-page .landing-page-header .button-container .signup-button {
+  color: white;
+  background-color: #DA2E05;
+}
+.landing-page .landing-page-block {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.landing-page .landing-page-block-1 {
+  margin-top: 60px;
+  max-width: 1080px;
+  min-width: 950px;
+  min-height: 300px;
+}
+.landing-page .landing-page-block-2 {
+  margin: 0 auto;
+  max-width: 1080px;
+  min-width: 950px;
+  min-height: 500px;
+}
+.landing-page .landing-page-block-2 .feature {
+  width: 180px;
+  font-size: 2rem;
 }
 .landing-page .landing-img {
   width: 300px;
@@ -228,14 +290,6 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.landing-page .login-box .title {
-  font-family: 'BigJohnPRO-Bold';
-  font-size: 4rem;
-  margin: 0;
-  padding: 10px 0;
-  margin-bottom: 50px;
-  color: #E2592D;
 }
 .landing-page .login-box .loginInput {
   display: flex;
@@ -253,28 +307,6 @@ html {
   padding: 0 10px;
   font-size: 1.2rem;
   border-radius: 3px;
-}
-.landing-page .login-box .button {
-  height: 36px;
-  width: 280px;
-  border: 0;
-  border-radius: 3px;
-  font-size: 1.4rem;
-  margin-top: 10px;
-  opacity: 0.8;
-  transition-duration: 0.2s;
-}
-.landing-page .login-box .button:hover {
-  opacity: 1;
-}
-.landing-page .login-box .login-button {
-  color: white;
-  background-color: #ECA00D;
-}
-.landing-page .login-box .signup-button {
-  color: white;
-  background-color: #DA2E05;
-  border: solid 1px #efefef;
 }
 .landing-page .signup-page {
   padding-top: 50px;

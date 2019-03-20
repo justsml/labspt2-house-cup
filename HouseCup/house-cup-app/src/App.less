@@ -55,38 +55,38 @@ html {
     background-color: @background-color;
 }
 
-.admin-main-page {
+.side-menu {
+    background-color: @theme-color-oranage;
     display: flex;
-    .side-menu {
-        background-color: @theme-color-oranage;
+    flex-direction: column;
+    width: 20%;
+    align-items: center;
+    color: white;
+    h1 {
+        font-family: 'BigJohnPRO-Bold';
+        font-size: 2.8rem;
+        padding: 10px;
+    }
+    a {
+        width: 100%;
         display: flex;
-        flex-direction: column;
-        width: 20%;
-        align-items: center;
-        color: white;
-        h1 {
-            font-family: 'BigJohnPRO-Bold';
-            font-size: 2.8rem;
-            padding: 10px;
-        }
-        a {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            transition-duration: 0.2s;
-            &:hover {
-                // background-color: 0.8;
-                background-color: @theme-color-white;
-                h2 {
-                    color: @theme-color-oranage;
-                }
+        justify-content: center;
+        transition-duration: 0.2s;
+        &:hover {
+            background-color: @theme-color-white;
+            h2 {
+                color: @theme-color-oranage;
             }
         }
-        h2 {
-            font-family: 'BigJohnPRO-Regular'; // width: 100%;
-            font-size: 2.4rem;
-        }
     }
+    h2 {
+        font-family: 'BigJohnPRO-Regular'; // width: 100%;
+        font-size: 2.4rem;
+    }
+}
+
+.admin-main-page {
+    display: flex;
     .housecard-container {
         font-family: 'Lato';
         width: 100%;
@@ -101,7 +101,6 @@ html {
             width: 260px;
             height: 360px;
             perspective: 1000px;
-            
             .housecard-inner {
                 position: relative;
                 width: 250px;
@@ -125,7 +124,7 @@ html {
                     padding-top: 80px;
                     padding-bottom: 20px;
                     height: 80px;
-                    width: 120px;
+                    width: 100%;
                     text-align: center;
                     overflow: hidden;
                     mix-blend-mode: hard-light;
@@ -227,6 +226,7 @@ html {
                     .point-total {
                         padding-top: 30px;
                         cursor: default;
+                        width: 100%;
                     }
                 }
             }
@@ -240,11 +240,74 @@ html {
 }
 
 .landing-page {
-    width: 1200px;
-    margin: auto;
+    width: 100%; // margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+    .landing-page-header {
+        position: fixed;
+        z-index: 3;
+        display: flex;
+        width: 100%;
+        height: 60px;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(249, 247, 246, 0.8);
+        // opacity: 0.8;
+        .house-cup-title {
+            font-family: 'BigJohnPRO-Bold';
+            font-size: 3rem;
+            margin: 10px 0 0 20px;
+            color: @theme-color-oranage;
+        }
+        .button-container {
+            width: 10%;
+            display: flex;
+            justify-content: space-around;
+            .button {
+                height: 35px;
+                width: 65px;
+                border-radius: 100px;
+                font-size: 1.3rem;
+                opacity: 0.8;
+                transition-duration: 0.2s;
+                &:hover {
+                    opacity: 1;
+                }
+            }
+            .login-button {
+                color: white;
+                background-color: @theme-color-yellow;
+            }
+            .signup-button {
+                color: white;
+                background-color: @theme-color-tomato;
+            }
+        }
+
+    }
+    .landing-page-block{
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+    .landing-page-block-1 {
+        margin-top: 60px;
+        max-width: 1080px;
+        min-width: 950px;
+        min-height: 300px;
+    }
+    .landing-page-block-2 {
+        margin: 0 auto;
+        max-width: 1080px;
+        min-width: 950px;
+        min-height: 500px;
+        .feature {
+            width: 180px;
+            font-size: 2rem;
+        }
+    }
     .landing-img {
         width: 300px;
     }
@@ -253,14 +316,6 @@ html {
         display: flex;
         flex-direction: column;
         align-items: center;
-        .title {
-            font-family: 'BigJohnPRO-Bold';
-            font-size: 4rem;
-            margin: 0;
-            padding: 10px 0;
-            margin-bottom: 50px;
-            color: @theme-color-oranage;
-        }
         .loginInput {
             display: flex;
             flex-direction: column;
@@ -277,30 +332,6 @@ html {
                 font-size: 1.2rem;
                 border-radius: 3px;
             }
-        }
-        .button {
-            height: 36px;
-            width: 280px;
-            border: 0;
-            border-radius: 3px;
-            font-size: 1.4rem;
-            margin-top: 10px;
-            opacity: 0.8;
-            transition-duration: 0.2s;
-            &:hover {
-                // background-color: @theme-color-oranage;
-                // color: white;
-                opacity: 1;
-            }
-        }
-        .login-button {
-            color: white;
-            background-color: @theme-color-yellow;
-        }
-        .signup-button {
-            color: white;
-            background-color: @theme-color-tomato;
-            border: solid 1px #efefef;
         }
     }
     .signup-page {

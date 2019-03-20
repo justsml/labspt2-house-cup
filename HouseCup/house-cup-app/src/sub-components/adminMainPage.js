@@ -1,5 +1,4 @@
 import React from 'react';
-// import { NavLink } from 'react-router-dom';
 import SideMenu from './sideMenu';
 
 class AdminMainPage extends React.Component {
@@ -16,7 +15,6 @@ class AdminMainPage extends React.Component {
         })
     }
     pickTicker = e => {
-        // console.log(e.target.id);
         var activeNum = document.getElementsByClassName(`active-number`);
         if (activeNum.length > 0) {
             activeNum[0].classList.toggle('active-number');
@@ -45,20 +43,20 @@ class AdminMainPage extends React.Component {
         elements[0].classList.toggle('active-number');
         this.forceUpdate();
     };
-    confirmAddPoints = e => {
-        var valueAdded = e.target.parentNode.children[1].children[0].innerHTML;
-        const test = e.target.name;
-        console.log(test);
-        console.log(valueAdded);
-        var currentValue = e.target.parentNode.parentNode.children[2].innerHTML;
-        this.setState({[test]: +currentValue + +valueAdded});
-    };
-    confirmMinusPoints = e => {
-        var valueSubtracted = e.target.parentNode.children[1].children[0].innerHTML;
-        const test = e.target.name;
-        var currentValue = e.target.parentNode.parentNode.children[2].innerHTML;
-        this.setState({[test]: +currentValue - +valueSubtracted});
-    }
+    // confirmAddPoints = e => {
+    //     var valueAdded = e.target.parentNode.children[1].children[0].innerHTML;
+    //     const test = e.target.name;
+    //     console.log(test);
+    //     console.log(valueAdded);
+    //     var currentValue = e.target.parentNode.parentNode.children[2].innerHTML;
+    //     this.setState({[test]: +currentValue + +valueAdded});
+    // };
+    // confirmMinusPoints = e => {
+    //     var valueSubtracted = e.target.parentNode.children[1].children[0].innerHTML;
+    //     const test = e.target.name;
+    //     var currentValue = e.target.parentNode.parentNode.children[2].innerHTML;
+    //     this.setState({[test]: +currentValue - +valueSubtracted});
+    // }
 
     toggleFlip = id => {
         var element = document.getElementById(`housecard-${id}`);
@@ -71,14 +69,11 @@ class AdminMainPage extends React.Component {
                 <SideMenu />
                 <div className='housecard-container'>
                     {this.state.houseList.map((eachHouse) => {
-                        // console.log(this.state);
-                        // console.log(this.state.houseList[eachHouse.id-1]);
                         return (
                             <div
                                 className='housecard'
                                 id={`housecard-${eachHouse.id}`}
                                 key={eachHouse.id}
-                            // onClick={this.toggleFlip.bind(this, eachHouse.id)}
                             >
                                 <div className='housecard-inner'>
                                     <div
@@ -110,7 +105,6 @@ class AdminMainPage extends React.Component {
                                                     <span className='increment-number' id='10' onClick={this.pickTicker.bind(this)}>10</span>
                                                 </div>
                                                 <div className='increment-number-ticker'>
-                                                    {/* <button className='up-ticker' onClick={this.incrementChangeUp}>↑</button> */}
                                                     {/* <button className='down-ticker' onClick={this.incrementChangeDown}>↓</button> */}
                                                 </div>
                                             </div>
