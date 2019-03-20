@@ -14,9 +14,7 @@ class sideMenu extends React.Component {
                 <header>
                     <h1>House Cup Tracker</h1>
                 </header>
-                {/* {auth.isAuthenticated() && (
-                <>     */}
-                <NavLink to="/dashboard" activeClassName="activeMenu" style={{ textDecoration: "none", color: "inherit" }}>
+                <NavLink to="/admin" activeClassName="activeMenu" style={{ textDecoration: "none", color: "inherit" }}>
                     <h2>Dashboard</h2>
                 </NavLink>
 
