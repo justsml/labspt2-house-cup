@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import axios from 'axios';
 
 import { Route } from 'react-router-dom';
 
@@ -30,11 +31,18 @@ class App extends Component {
     }
   }
 
+  componentDidMount = e => {
+    axios.get('https://labspt2-housecup.herokuapp.com/users')
+      .then(response => this.setState({userList: response.data.data.allUsers}))
+      .catch(err => console.log(err));
+    axios.get()
+  }
+
   render() {
     return (
       <div className="App">
-        <Route exact path='/welcome' render={(props) => <LandingPage {...props} />} />
-        <Route exact path='/' render={(props) => <SignupPage {...props} houseList={this.state.testData} />} />
+        <Route exact path='/' render={(props) => <LandingPage {...props} />} />
+        <Route exact path='/signup' render={(props) => <SignupPage {...props} houseList={this.state.testData} />} />
         <Route exact path = '/public' render={ (props) => <PublicPage {...props} houseList={this.state.testData}/> }/>
         <Route exact path = '/admin' render={(props) => <AdminMainPage {...props} houseList={this.state.testData}/> }/>
         <Route exact path = '/admin/billing' render={(props) => <BillingPage {...props} premiumPrice={'$19.99'}/>}/>
