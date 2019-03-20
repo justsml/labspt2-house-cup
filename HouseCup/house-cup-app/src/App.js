@@ -24,7 +24,7 @@ import Callback from './Callback.js';
 //Secured Route
 import SecuredRoute from './sub-components/SecuredRoute';
 //Auth0.js
-import NavBar from './sub-components/NavBar';
+// import NavBar from './sub-components/NavBar';
 import billingPage from './sub-components/billingPage';
 //About.js
 import About from './sub-components/About';
@@ -42,7 +42,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <NavBar />
+        {/* <NavBar /> */}
         <Route exact path='/' render={(props) => <LandingPage {...props} />} />
         <Route exact path = '/callback' render={  (props) => <Callback />  }/>
         <Route exact path='/signup' render={(props) => <SignupPage {...props} houseList={this.state.testData} confirmAddPoints={this.confirmAddPoints} />} />

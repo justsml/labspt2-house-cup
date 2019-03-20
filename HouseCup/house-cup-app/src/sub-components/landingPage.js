@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LandingImg from '../images/realestate.png';
 import schoolsTestData from '../mock data/schools';
-
+import auth from '../Auth';
 
 class LandingPage extends React.Component {
     constructor(props) {
@@ -10,11 +10,7 @@ class LandingPage extends React.Component {
         this.state = {
             username: "",
             password: "",
-<<<<<<< HEAD
-                
-=======
             schoolsList: [],
->>>>>>> 7c3e4f04c69f55ea13d7d3e4ddd2628f31f14d1e
         };
     }
 
@@ -34,21 +30,38 @@ class LandingPage extends React.Component {
         window.location.reload();
     }
 
-    
+  signOut = () => {
+        auth.logout();
+        this.props.history.replace('/');
+  }
 
     render() {
         // console.log(this.props.auth.login)
         return (
             <div className='landing-page'>
                 <header className='landing-page-header'>
-                    <div className="house-cup-title">House Cup Tracker</div>
+                    <NavLink to='/'>
+                        <div className="house-cup-title">House Cup Tracker</div>
+                    </NavLink>
                     <div className='button-container'>
                         <NavLink to='/signup' style={{ textDecoration: "none", color: "inherit" }}>
                             <button onClick={this.handleSubmit} className="button signup-button">Sign up</button>
                         </NavLink>
-                        <NavLink to='/dashboard' style={{ textDecoration: "none", color: "inherit" }}>
+                          {
+                             !auth.isAuthenticated() &&
+                               <button onClick={auth.login}
+                                       className="button login-button">Sign In</button>
+                           }
+                           {
+                                auth.isAuthenticated() &&
+                                <div>
+                                <label className="mr-2 text-white">{auth.getProfile().name}</label>
+                                <button className="btn btn-dark" onClick={() => {this.signOut()}}>Sign Out</button>
+                                </div>
+                            }
+                        {/* <NavLink to='/dashboard' style={{ textDecoration: "none", color: "inherit" }}>
                             <button onClick={this.handleSubmit} className="button login-button">Log in</button>
-                        </NavLink>
+                        </NavLink> */}
                     </div>
                 </header>
                 <div className='landing-page-block landing-page-block-1'>
@@ -108,20 +121,8 @@ class LandingPage extends React.Component {
                             onChange={this.handleInput}
                         />
                     </form>
-<<<<<<< HEAD
-                    <NavLink to='/dashboard'>
-                    <button onClick={this.handleSubmit}
-                            className="button login-button"
-                           >Log in</button>
-                    </NavLink>
-                    <NavLink to='/signup'>
-                    <button onClick={this.handleSubmit} className="button signup-button">Sign up</button>
-                    </NavLink>                                  
-                </div>
-=======
 
                 </div> */}
->>>>>>> 7c3e4f04c69f55ea13d7d3e4ddd2628f31f14d1e
             </div>
         )
     }
