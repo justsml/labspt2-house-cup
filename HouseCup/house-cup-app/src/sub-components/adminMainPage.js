@@ -9,6 +9,7 @@ class AdminMainPage extends React.Component {
             houseList: []
         }
     }
+    
     componentDidMount() {
         this.setState({
             houseList: this.props.houseList
