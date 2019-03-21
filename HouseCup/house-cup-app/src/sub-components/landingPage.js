@@ -2,6 +2,9 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LandingImg from '../images/realestate.png';
 import Dumbledore from '../images/dumbledore.jpg';
+import IconPhone from '../images/icon-phone.svg';
+import IconChart from '../images/icon-chart.svg';
+import IconTeacher from '../images/icon-teacher.svg';
 
 import schoolsTestData from '../mock data/schools';
 
@@ -55,13 +58,16 @@ class LandingPage extends React.Component {
                 </div>
                 <div className='landing-page-block landing-page-block-2'>
                     <div className='feature-1 feature'>
-                        <span>View your house scoreboard anytime, anywhere</span>
+                        <img src={IconPhone} alt="dumbledore" className="icon icon-phone" />
+                        <span className='feature-txt'>View your house scoreboard anytime, anywhere</span>
                     </div>
                     <div className='feature-2 feature'>
-                        <span>Coordinate with all the teachers</span>
+                        <img src={IconTeacher} alt="dumbledore" className="icon icon-teacher" />
+                        <span className='feature-txt'>Coordinate with all the teachers</span>
                     </div>
                     <div className='feature-3 feature'>
-                        <span>Visual analysis at your fingertip</span>
+                        <img src={IconChart} alt="dumbledore" className="icon icon-teacher" />
+                        <span className='feature-txt'>Visual analysis at your fingertip</span>
                     </div>
                 </div>
                 <div className='landing-page-block landing-page-block-3'>

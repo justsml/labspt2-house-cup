@@ -270,20 +270,63 @@ html {
 }
 .landing-page .landing-page-block-1 {
   margin-top: 60px;
-  min-height: 300px;
+  min-height: 500px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1080px;
+}
+.landing-page .landing-page-block-1 .jumbo-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 100px;
+}
+.landing-page .landing-page-block-1 .jumbo-container .jumbo-1 {
+  font-size: 3rem;
+  color: #DA2E05;
+  font-family: 'BigJohnPRO-Regular';
+}
+.landing-page .landing-page-block-1 .jumbo-container .jumbo-title {
+  font-size: 4rem;
+  margin: 0;
+  font-family: 'BigJohnPRO-Bold';
+  font-weight: 100;
+  color: #323232;
+}
+.landing-page .landing-page-block-1 .landing-img {
+  width: 400px;
 }
 .landing-page .landing-page-block-2 {
-  min-height: 500px;
+  min-height: 250px;
+  max-width: unset;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  background-image: linear-gradient(#f9f7f6, #ECA00D);
 }
 .landing-page .landing-page-block-2 .feature {
-  width: 180px;
+  width: 250px;
   font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.landing-page .landing-page-block-2 .icon {
+  width: 50px;
+}
+.landing-page .landing-page-block-2 .feature-txt {
+  margin-left: 20px;
+  margin-top: 20px;
+  font-size: 2rem;
+  font-weight: 300;
 }
 .landing-page .landing-page-block-4 {
   min-height: 500px;
   max-width: unset;
   width: 100%;
-  background-image: linear-gradient(#E2592D, white);
+  background-image: linear-gradient(#f9f7f6, #E2592D);
 }
 .landing-page .landing-page-block-4 .review-container {
   max-width: 1080px;
