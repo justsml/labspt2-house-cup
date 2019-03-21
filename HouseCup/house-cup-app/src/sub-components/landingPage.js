@@ -32,7 +32,7 @@ class LandingPage extends React.Component {
 
   signOut = () => {
         auth.logout();
-        this.props.history.replace('/');
+        this.props.history.replace('/dashboardPage');
   }
 
     render() {
@@ -45,7 +45,8 @@ class LandingPage extends React.Component {
                     </NavLink>
                     <div className='button-container'>
                         <NavLink to='/signup' style={{ textDecoration: "none", color: "inherit" }}>
-                            <button onClick={this.handleSubmit} className="button signup-button">Sign up</button>
+                            {!auth.isAuthenticated() &&
+                            <button onClick={this.handleSubmit} className="button signup-button">Sign up</button>}
                         </NavLink>
                           {
                              !auth.isAuthenticated() &&
@@ -56,7 +57,7 @@ class LandingPage extends React.Component {
                                 auth.isAuthenticated() &&
                                 <div>
                                 <label className="mr-2 text-white">{auth.getProfile().name}</label>
-                                <button className="btn btn-dark" onClick={() => {this.signOut()}}>Sign Out</button>
+                                <button className="button login-button" onClick={() => {this.signOut()}}>Sign Out</button>
                                 </div>
                             }
                         {/* <NavLink to='/dashboard' style={{ textDecoration: "none", color: "inherit" }}>
