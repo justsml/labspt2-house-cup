@@ -1,12 +1,17 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
 import auth from '../Auth';
+
 class sideMenu extends React.Component {
-  
+   constructor(props) {
+       super(props)
+   }
+
     logout = () => {
         auth.logout();
         this.props.history.replace('/');
       }
+
     render() {
       
         return (
@@ -30,9 +35,9 @@ class sideMenu extends React.Component {
                     <h2>Settings</h2>
                 </NavLink>
 
-                <NavLink to='/' style={{ textDecoration: "none", color: "inherit" }}>
-                    <h2>Sign Out</h2>
-                </NavLink>
+              
+                 <button onClick={() => {this.logout()}}>Sign Out</button>
+             
                {/* </>
                 )} */}
             </div>);
