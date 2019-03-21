@@ -1,6 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LandingImg from '../images/realestate.png';
+import Dumbledore from '../images/dumbledore.jpg';
+
 import schoolsTestData from '../mock data/schools';
 
 
@@ -23,7 +25,7 @@ class LandingPage extends React.Component {
         this.setState({
             [e.target.name]: e.target.value
         });
-    }; 
+    };
 
     handleSubmit = e => {
         localStorage.setItem('username', this.state.username)
@@ -73,12 +75,16 @@ class LandingPage extends React.Component {
                     </div>
                 </div>
                 <div className='landing-page-block landing-page-block-4'>
-                    <div className='review-text'>
-                        <h2>review review review</h2>
-                    </div>
-                    <div className='review-user'>
-                        <h2>Professor Albus Dumbledore</h2>
-                        <h3>Headmaster of Hogwarts. </h3>
+                    <div className='review-container'>
+                        <div className='review-text'>
+                            <h2 className='slogan'>This is the real magic!</h2>
+                            <h4 className="text">"Managing Hogwarts has never been so easy for me. Sometimes technology can be more powerful than magic, and House Cup Tracker is the best example!"</h4>
+                        </div>
+                        <div className='review-user'>
+                            <img src={Dumbledore} alt="dumbledore" className="dumbledore-img" />
+                            <h2 className='dumbledore-name'>Professor Albus Dumbledore</h2>
+                            <h3 className='dumbledore-title'>Headmaster of Hogwarts. </h3>
+                        </div>
                     </div>
                 </div>
 

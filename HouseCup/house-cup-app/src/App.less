@@ -80,7 +80,7 @@ html {
         }
     }
     h2 {
-        font-family: 'BigJohnPRO-Regular'; // width: 100%;
+        font-family: 'BigJohnPRO-Regular';
         font-size: 2.4rem;
     }
 }
@@ -169,7 +169,7 @@ html {
                             font-size: 1.6rem;
                             height: 20px;
                             margin-top: 10px;
-                            margin-bottom: 6px; // font-weight: 400;
+                            margin-bottom: 6px;
                         }
                         .increment-number-container {
                             .row-1,
@@ -240,7 +240,7 @@ html {
 }
 
 .landing-page {
-    width: 100%; // margin: auto;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -253,7 +253,6 @@ html {
         justify-content: space-between;
         align-items: center;
         background: rgba(249, 247, 246, 0.8);
-        // opacity: 0.8;
         .house-cup-title {
             font-family: 'BigJohnPRO-Bold';
             font-size: 3rem;
@@ -284,28 +283,69 @@ html {
                 background-color: @theme-color-tomato;
             }
         }
-
     }
-    .landing-page-block{
+    .landing-page-block {
         margin: 0 auto;
         display: flex;
         align-items: center;
         justify-content: space-around;
+        max-width: 1080px;
+        min-width: 950px;
     }
     .landing-page-block-1 {
         margin-top: 60px;
-        max-width: 1080px;
-        min-width: 950px;
         min-height: 300px;
     }
     .landing-page-block-2 {
-        margin: 0 auto;
-        max-width: 1080px;
-        min-width: 950px;
         min-height: 500px;
         .feature {
             width: 180px;
             font-size: 2rem;
+        }
+    }
+    .landing-page-block-4 {
+        // margin: 0 auto;
+        min-height: 500px;
+        max-width: unset;
+        width: 100%;
+        background-image: linear-gradient(@theme-color-oranage,
+        white);
+        .review-container {
+            max-width: 1080px;
+            min-width: 950px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .review-text {
+                 width: 600px;
+                 .slogan {
+                     font-size: 4rem;
+                     font-weight: 600;
+                 }
+                 .text {
+                     font-size: 2.5rem;
+                     line-height: 1.5;
+                     font-weight: 200;
+                 }
+            }
+            .review-user {
+                margin-left: 150px;
+                width: 300px;
+                .dumbledore-img {
+                    width: 100px;
+                    border-radius:  50%;
+                }
+                .dumbledore-name {
+                    font-size: 2rem;
+                    font-weight: 500;
+                    margin: 10px 0;
+                }
+                .dumbledore-title {
+                    font-size: 1.8rem;
+                    font-weight: 200;
+                    margin: 5px 0;
+                }
+            }
         }
     }
     .landing-img {
@@ -336,6 +376,13 @@ html {
     }
     .signup-page {
         padding-top: 50px;
+        .title {
+            font-family: 'BigJohnPRO-Bold';
+            font-size: 4rem;
+            margin-top: 20px;
+            margin-bottom: 50px;
+            color: @theme-color-oranage;
+        }
         .or-container {
             .line {
                 background-color: #999;
@@ -353,6 +400,18 @@ html {
             color: #999;
             font-size: 1.4rem;
         }
+        .button {
+            height: 38px;
+            margin: 5px 0;
+            width: 280px;
+            border-radius: 3px;
+            font-size: 1.3rem;
+            opacity: 0.8;
+            transition-duration: 0.2s;
+            &:hover {
+                opacity: 1;
+            }
+        }
         .signup-button-2 {
             color: white;
             background-color: @theme-color-yellow;
@@ -360,10 +419,7 @@ html {
         }
         .google-button {
             background-color: #DB4437;
-            color: white; // &:hover {
-            //     background-color: #DB4437;
-            //     opacity: 0.8;
-            // }
+            color: white;
         }
         .facebook-button {
             background-color: #3C5A99;

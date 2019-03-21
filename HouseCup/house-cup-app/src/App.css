@@ -265,22 +265,62 @@ html {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  max-width: 1080px;
+  min-width: 950px;
 }
 .landing-page .landing-page-block-1 {
   margin-top: 60px;
-  max-width: 1080px;
-  min-width: 950px;
   min-height: 300px;
 }
 .landing-page .landing-page-block-2 {
-  margin: 0 auto;
-  max-width: 1080px;
-  min-width: 950px;
   min-height: 500px;
 }
 .landing-page .landing-page-block-2 .feature {
   width: 180px;
   font-size: 2rem;
+}
+.landing-page .landing-page-block-4 {
+  min-height: 500px;
+  max-width: unset;
+  width: 100%;
+  background-image: linear-gradient(#E2592D, white);
+}
+.landing-page .landing-page-block-4 .review-container {
+  max-width: 1080px;
+  min-width: 950px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.landing-page .landing-page-block-4 .review-container .review-text {
+  width: 600px;
+}
+.landing-page .landing-page-block-4 .review-container .review-text .slogan {
+  font-size: 4rem;
+  font-weight: 600;
+}
+.landing-page .landing-page-block-4 .review-container .review-text .text {
+  font-size: 2.5rem;
+  line-height: 1.5;
+  font-weight: 200;
+}
+.landing-page .landing-page-block-4 .review-container .review-user {
+  margin-left: 150px;
+  width: 300px;
+}
+.landing-page .landing-page-block-4 .review-container .review-user .dumbledore-img {
+  width: 100px;
+  border-radius: 50%;
+}
+.landing-page .landing-page-block-4 .review-container .review-user .dumbledore-name {
+  font-size: 2rem;
+  font-weight: 500;
+  margin: 10px 0;
+}
+.landing-page .landing-page-block-4 .review-container .review-user .dumbledore-title {
+  font-size: 1.8rem;
+  font-weight: 200;
+  margin: 5px 0;
 }
 .landing-page .landing-img {
   width: 300px;
@@ -311,6 +351,13 @@ html {
 .landing-page .signup-page {
   padding-top: 50px;
 }
+.landing-page .signup-page .title {
+  font-family: 'BigJohnPRO-Bold';
+  font-size: 4rem;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  color: #E2592D;
+}
 .landing-page .signup-page .or-container {
   width: 320px;
   margin: 20px 0 10px 0;
@@ -327,6 +374,18 @@ html {
   font-weight: 600;
   color: #999;
   font-size: 1.4rem;
+}
+.landing-page .signup-page .button {
+  height: 38px;
+  margin: 5px 0;
+  width: 280px;
+  border-radius: 3px;
+  font-size: 1.3rem;
+  opacity: 0.8;
+  transition-duration: 0.2s;
+}
+.landing-page .signup-page .button:hover {
+  opacity: 1;
 }
 .landing-page .signup-page .signup-button-2 {
   color: white;
