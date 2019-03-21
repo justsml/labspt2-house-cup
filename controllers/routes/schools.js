@@ -3,7 +3,7 @@ const { School, User } = require('../../Models');
 const router = express.Router();
 const { protectEndPoint } = require('../../auth/jwt');
 
-router.get('/', protectEndPoint, async function(req, res) {
+router.get('/', async function(req, res) {
   const sequelize = User.sequelize;
   try {
     const schools = await School.findAll({
