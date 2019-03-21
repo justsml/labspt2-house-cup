@@ -49,6 +49,7 @@ button:active {
 @theme-color-oranage: #E2592D;
 @theme-color-beige: #D0CAAD;
 @theme-color-navy: #094DA8;
+@theme-color-pink: #d51c38;
 @background-color: #f9f7f6;
 //starting css
 html {
@@ -277,8 +278,9 @@ html {
             .login-button {
                 color: white;
                 background-color: @theme-color-yellow;
+                width: 120px;
             }
-            .signup-button {
+            .logout-button {
                 color: white;
                 background-color: @theme-color-tomato;
             }
@@ -293,24 +295,21 @@ html {
         min-width: 950px;
     }
     .landing-page-block-1 {
-        margin-top: 60px;
-        min-height: 500px;
+        // margin: 60px 0 120px 0;
+        min-height: 750px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         width: 1080px;
-        // background-color: #323232;
         .jumbo-container {
             display: flex;
             flex-direction: column;
             justify-content: center;
             margin-top: 100px;
-        
             .jumbo-1 {
                 font-size: 3rem;
                 color: @theme-color-tomato;
                 font-family: 'BigJohnPRO-Regular';
-
             }
             .jumbo-title {
                 font-size: 4rem;
@@ -325,11 +324,12 @@ html {
         }
     }
     .landing-page-block-2 {
-        min-height:250px;
+        min-height: 450px;
         max-width: unset;
         width: 100%;
         display: flex;
         justify-content: space-evenly;
+        background-color: @theme-color-pink;
         .feature {
             width: 250px;
             font-size: 2rem;
@@ -339,19 +339,60 @@ html {
             align-items: center;
         }
         .icon {
-            width: 50px;
+            width: 60px;
+            fill: white;
+            transition-duration: 0.2s;
+            &:hover {
+                width: 70px;
+            }
         }
         .feature-txt {
             margin-left: 20px;
-            margin-top: 20px;
-            font-size: 2rem;
+            margin-top: 40px;
+            font-size: 2.6rem;
             font-weight: 300;
+            font-family: 'BigJohnPRO-Regular';
+            color: @theme-color-white;
         }
-        background-image: linear-gradient(@background-color, @theme-color-yellow);
+    }
+    .landing-page-block-3 {
+        min-height: 350px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        .checkout {
+            margin: 50px 0 0 0;
+            font-size: 3rem;
+            font-family: 'BigJohnPRO-Bold';
+            font-weight: 200;
+        }
+        .schools-list {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            min-height: 150px;
+            .school {
+                margin-top: 0;
+                font-family: 'BigJohnPRO-Bold';
+                font-size: 3.8rem;
+                font-weight: 100;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: @theme-color-navy;
+                border-radius: 8px;
+                width: 200px;
+                height: 110px;
+                transition-duration: 0.2s;
+                &:hover {
+                    font-size: 4rem;
+                }
+            }
+        }
     }
     .landing-page-block-4 {
         // margin: 0 auto;
-        min-height: 500px;
+        min-height: 800px;
         max-width: unset;
         width: 100%;
         background-image: linear-gradient(@background-color, @theme-color-oranage);
@@ -365,9 +406,11 @@ html {
                 width: 600px;
                 .slogan {
                     font-size: 4rem;
-                    font-weight: 600;
+                    font-weight: 100;
+                    font-family: 'BigJohnPRO-Bold';
                 }
                 .text {
+                    font-family: 'BigJohnPRO-Regular';
                     font-size: 2.5rem;
                     line-height: 1.5;
                     font-weight: 200;
@@ -381,11 +424,13 @@ html {
                     border-radius: 50%;
                 }
                 .dumbledore-name {
+                    font-family: 'BigJohnPRO-Bold';
                     font-size: 2rem;
-                    font-weight: 500;
+                    font-weight: 100;
                     margin: 10px 0;
                 }
                 .dumbledore-title {
+                    font-family: 'BigJohnPRO-Regular';
                     font-size: 1.8rem;
                     font-weight: 200;
                     margin: 5px 0;

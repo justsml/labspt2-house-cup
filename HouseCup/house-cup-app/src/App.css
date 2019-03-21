@@ -255,8 +255,9 @@ html {
 .landing-page .landing-page-header .button-container .login-button {
   color: white;
   background-color: #ECA00D;
+  width: 120px;
 }
-.landing-page .landing-page-header .button-container .signup-button {
+.landing-page .landing-page-header .button-container .logout-button {
   color: white;
   background-color: #DA2E05;
 }
@@ -269,8 +270,7 @@ html {
   min-width: 950px;
 }
 .landing-page .landing-page-block-1 {
-  margin-top: 60px;
-  min-height: 500px;
+  min-height: 750px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -298,12 +298,12 @@ html {
   width: 400px;
 }
 .landing-page .landing-page-block-2 {
-  min-height: 250px;
+  min-height: 450px;
   max-width: unset;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
-  background-image: linear-gradient(#f9f7f6, #ECA00D);
+  background-color: #d51c38;
 }
 .landing-page .landing-page-block-2 .feature {
   width: 250px;
@@ -314,16 +314,58 @@ html {
   align-items: center;
 }
 .landing-page .landing-page-block-2 .icon {
-  width: 50px;
+  width: 60px;
+  fill: white;
+  transition-duration: 0.2s;
+}
+.landing-page .landing-page-block-2 .icon:hover {
+  width: 70px;
 }
 .landing-page .landing-page-block-2 .feature-txt {
   margin-left: 20px;
-  margin-top: 20px;
-  font-size: 2rem;
+  margin-top: 40px;
+  font-size: 2.6rem;
   font-weight: 300;
+  font-family: 'BigJohnPRO-Regular';
+  color: #F1EFEA;
+}
+.landing-page .landing-page-block-3 {
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.landing-page .landing-page-block-3 .checkout {
+  margin: 50px 0 0 0;
+  font-size: 3rem;
+  font-family: 'BigJohnPRO-Bold';
+  font-weight: 200;
+}
+.landing-page .landing-page-block-3 .schools-list {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  min-height: 150px;
+}
+.landing-page .landing-page-block-3 .schools-list .school {
+  margin-top: 0;
+  font-family: 'BigJohnPRO-Bold';
+  font-size: 3.8rem;
+  font-weight: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #094DA8;
+  border-radius: 8px;
+  width: 200px;
+  height: 110px;
+  transition-duration: 0.2s;
+}
+.landing-page .landing-page-block-3 .schools-list .school:hover {
+  font-size: 4rem;
 }
 .landing-page .landing-page-block-4 {
-  min-height: 500px;
+  min-height: 800px;
   max-width: unset;
   width: 100%;
   background-image: linear-gradient(#f9f7f6, #E2592D);
@@ -340,9 +382,11 @@ html {
 }
 .landing-page .landing-page-block-4 .review-container .review-text .slogan {
   font-size: 4rem;
-  font-weight: 600;
+  font-weight: 100;
+  font-family: 'BigJohnPRO-Bold';
 }
 .landing-page .landing-page-block-4 .review-container .review-text .text {
+  font-family: 'BigJohnPRO-Regular';
   font-size: 2.5rem;
   line-height: 1.5;
   font-weight: 200;
@@ -356,11 +400,13 @@ html {
   border-radius: 50%;
 }
 .landing-page .landing-page-block-4 .review-container .review-user .dumbledore-name {
+  font-family: 'BigJohnPRO-Bold';
   font-size: 2rem;
-  font-weight: 500;
+  font-weight: 100;
   margin: 10px 0;
 }
 .landing-page .landing-page-block-4 .review-container .review-user .dumbledore-title {
+  font-family: 'BigJohnPRO-Regular';
   font-size: 1.8rem;
   font-weight: 200;
   margin: 5px 0;
