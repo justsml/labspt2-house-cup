@@ -45,20 +45,6 @@ class AdminMainPage extends React.Component {
         elements[0].classList.toggle('active-number');
         this.forceUpdate();
     };
-    // confirmAddPoints = e => {
-    //     var valueAdded = e.target.parentNode.children[1].children[0].innerHTML;
-    //     const test = e.target.name;
-    //     console.log(test);
-    //     console.log(valueAdded);
-    //     var currentValue = e.target.parentNode.parentNode.children[2].innerHTML;
-    //     this.setState({[test]: +currentValue + +valueAdded});
-    // };
-    // confirmMinusPoints = e => {
-    //     var valueSubtracted = e.target.parentNode.children[1].children[0].innerHTML;
-    //     const test = e.target.name;
-    //     var currentValue = e.target.parentNode.parentNode.children[2].innerHTML;
-    //     this.setState({[test]: +currentValue - +valueSubtracted});
-    // }
 
     toggleFlip = id => {
         var element = document.getElementById(`housecard-${id}`);

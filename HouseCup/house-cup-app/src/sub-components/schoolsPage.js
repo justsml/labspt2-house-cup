@@ -26,10 +26,21 @@ class SchoolsPage extends Component {
                         <input
                             className="school-name"
                             type="text"
-                            name="name"
+                            name="school"
                             // value={value}
                             // onChange={props.handleInput}
                             placeholder="School Name"
+                        />
+                        <button>Save</button>
+                    </form>
+                    <form className="add-House-form">
+                        <input
+                            className="house-name"
+                            type="text"
+                            name="house"
+                            // value={value}
+                            // onChange={props.handleInput}
+                            placeholder="House Name"
                         />
                         <button>Save</button>
                     </form>
@@ -37,7 +48,14 @@ class SchoolsPage extends Component {
                 <div className='schools-list'>
                     {this.state.schoolsList.map((school) => {
                         return (
-                            <h2>{school.name}</h2>
+                            <div>
+                                <h2>{school.name}</h2>
+                                <div>{school.houses.map((house) => {
+                                    return (
+                                        <h3>{house}</h3>
+                                    )
+                                })}</div>
+                            </div>
                         )
                     })}
                 </div>
