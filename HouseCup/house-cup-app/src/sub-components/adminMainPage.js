@@ -1,5 +1,6 @@
 import React from 'react';
 import SideMenu from './sideMenu';
+import auth from '../Auth';
 
 class AdminMainPage extends React.Component {
     constructor(props) {
@@ -53,7 +54,7 @@ class AdminMainPage extends React.Component {
     render() {
         return (
             <div className='admin-main-page'>
-                <SideMenu />
+                <SideMenu {...this.props} />
                 <div className='housecard-container'>
                     {this.state.houseList.map((eachHouse) => {
                         return (

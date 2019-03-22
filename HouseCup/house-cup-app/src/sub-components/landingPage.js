@@ -38,7 +38,7 @@ class LandingPage extends React.Component {
     signOut = () => {
         auth.logout();
         this.props.history.replace('/');
-    }
+  }
 
     render() {
         return (
