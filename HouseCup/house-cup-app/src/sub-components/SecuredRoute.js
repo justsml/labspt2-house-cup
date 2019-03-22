@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import auth from '../Auth';
+import LandingPage from './landingPage';
 
 function SecuredRoute(props) {
   const { component: Component, path } = props;
@@ -10,7 +11,7 @@ function SecuredRoute(props) {
       render={() => {
         if (!auth.isAuthenticated()) {
           auth.login();
-          return <div />;
+          return <LandingPage />;
         }
         return <Component />;
       }}

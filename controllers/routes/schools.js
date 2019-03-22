@@ -52,7 +52,7 @@ router.get('/:id', protectEndPoint, async function(req, res) {
   }
 });
 
-router.post('/', protectEndPoint, async function(req, res) {
+router.post('/', async function(req, res) {
   try {
     const user = await User.findOne({
       where: {

@@ -1,12 +1,16 @@
 import React from 'react';
 import SideMenu from './sideMenu';
+import axios from 'axios';
 
 class AdminMainPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             incrementTicker: 0,
-            houseList: []
+            houseList: [],
+            newSchoolName: '',
+            newSchoolCity: '',
+            newSchoolUserID: '',
         }
     }
     
@@ -15,6 +19,20 @@ class AdminMainPage extends React.Component {
             houseList: this.props.houseList
         })
     }
+
+    handleSchoolInput = (e) => {
+        // console.log([e.target.value]);
+        this.setState({[e.target.name]: e.target.value})
+      }
+
+    addHouse = newHouse => {
+        axios.post('https://labspt2-housecup.herokuapp.com/schools', {
+            name: this.state.newSchoolName,
+            city: this.state.newSchoolCity,
+            userId: this.state.newSchoolUserID
+        })
+    }
+
     pickTicker = e => {
         var activeNum = document.getElementsByClassName(`active-number`);
         if (activeNum.length > 0) {
@@ -128,6 +146,12 @@ class AdminMainPage extends React.Component {
                             </div>
                         )
                     })}
+                <div>
+                    <input name='newSchoolName' placeholder='name' onChange={this.handleSchoolInput}></input>
+                    <input placeholder='city' name='newSchoolCity' onChange={this.handleSchoolInput}></input>
+                    <input placeholder='userID' name='newSchoolUserID' onChange={this.handleSchoolInput}></input>
+                    <button onClick={this.addHouse}><b>+ Add House +</b></button>
+                </div>
                 </div>
             </div>
         )
