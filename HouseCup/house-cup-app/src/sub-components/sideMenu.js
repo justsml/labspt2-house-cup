@@ -18,7 +18,7 @@ class sideMenu extends React.Component {
                     <h2>Dashboard</h2>
                 </NavLink>
 
-                <NavLink to="/schools" activeClassName="activeMenu" style={{ textDecoration: "none", color: "inherit" }}>
+                <NavLink to="/admin/schools" activeClassName="activeMenu" style={{ textDecoration: "none", color: "inherit" }}>
                     <h2>Schools</h2>
                 </NavLink>
 
