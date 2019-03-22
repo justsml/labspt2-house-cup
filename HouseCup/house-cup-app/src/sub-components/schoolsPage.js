@@ -19,19 +19,6 @@ class SchoolsPage extends Component {
         })
     }
 
-    // colorOptions = [
-    //     { value: 'ocean', label: 'Ocean', color: '#00B8D9', isFixed: true },
-    //     { value: 'blue', label: 'Blue', color: '#0052CC', disabled: true },
-    //     { value: 'purple', label: 'Purple', color: '#5243AA' },
-    //     { value: 'red', label: 'Red', color: '#FF5630', isFixed: true },
-    //     { value: 'orange', label: 'Orange', color: '#FF8B00' },
-    //     { value: 'yellow', label: 'Yellow', color: '#FFC400' },
-    //     { value: 'green', label: 'Green', color: '#36B37E' },
-    //     { value: 'forest', label: 'Forest', color: '#00875A' },
-    //     { value: 'slate', label: 'Slate', color: '#253858' },
-    //     { value: 'silver', label: 'Silver', color: '#666666' },
-    //   ];
-
     dot = (color = '#ccc') => ({
         alignItems: 'center',
         display: 'flex',
@@ -69,12 +56,10 @@ class SchoolsPage extends Component {
         singleValue: (styles, { data }) => ({ ...styles, ...this.dot(data.color) }),
     };
 
-
-
     render() {
         return (
             <div className='schools-page'>
-                <SideMenu />
+                <SideMenu {...this.props} />
                 <div className='schools-page-container'>
                     <div className='add-school-container'>
                         <h2>Add New School</h2>
