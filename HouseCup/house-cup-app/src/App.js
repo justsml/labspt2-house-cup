@@ -48,7 +48,7 @@ class App extends Component {
       .then(response => this.setState({userList: response.data.data.allUsers}))
       .catch(err => console.log(err));
 
-    axios.get('https://labspt2-housecup.herokuapp.com/schools')
+    axios.get('http://localhost:5000/schools')
       .then(response => console.log(response))
       .catch(err => console.log(err))
   }

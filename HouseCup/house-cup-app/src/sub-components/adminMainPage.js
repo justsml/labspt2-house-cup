@@ -17,20 +17,26 @@ class AdminMainPage extends React.Component {
     componentDidMount() {
         this.setState({
             houseList: this.props.houseList
-        })
+        });
+        axios.get('http://localhost:5000/schools')
+            .then(response => this.setState({schoolList: response.data.data.schools}))
+            .catch(err => console.log(err))
     }
 
+    
     handleSchoolInput = (e) => {
         // console.log([e.target.value]);
         this.setState({[e.target.name]: e.target.value})
       }
 
     addHouse = newHouse => {
-        axios.post('https://labspt2-housecup.herokuapp.com/schools', {
+        axios.post('http://localhost:5000/schools', {
             name: this.state.newSchoolName,
             city: this.state.newSchoolCity,
             userId: this.state.newSchoolUserID
-        })
+        });
+        console.log(`school ${this.state.newSchoolName} added!`);
+        
     }
 
     pickTicker = e => {
