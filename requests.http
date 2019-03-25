@@ -25,7 +25,7 @@ Content-Type: application/json
 ###
 
 GET http://localhost:5000/schools HTTP/1.1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzaEBhb2wuY29tIiwiaWF0IjoxNTUxOTI4Mzc4LCJleHAiOjE1NTE5MzE5NzgsImp0aSI6ImU4Yjg1MmEwLTQwODYtMTFlOS1iYjgxLTFmNWU1MjBhNTQ0YyJ9.bKF-SftrY3gVwLLj0KGfVbLg9f9Sks2_WCEZR1xb9YU
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzaEBhb2wuY29tIiwiaWF0IjoxNTUzMTMxODkyLCJleHAiOjE1NTMxMzU0OTIsImp0aSI6IjBmMDViOGIwLTRiNzktMTFlOS04OWNhLWEzYjEzNmM2NGM2OSJ9.refNrg38gfMBXB_64-7XvZeFjB7aX0SlvwBN8lnhdqU
 
 ###
 POST http://localhost:5000/schools HTTP/1.1
@@ -40,3 +40,38 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzaEBhb2wuY29t
 ###
 
 #eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZlbmthdEBhb2wuY29tIiwiaWF0IjoxNTUxOTI2OTUxLCJleHAiOjE1NTE5MzA1NTEsImp0aSI6Ijk2MzQzYzkwLTQwODMtMTFlOS04MzBhLTIxYjI1Y2JhNTM5MyJ9.gndkUhxSc_eupks143OxTsxoxk8vZvzwuf9QRFuZw6s
+
+
+GET http://localhost:5000/schools/4/houses HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzaEBhb2wuY29tIiwiaWF0IjoxNTUzMTMxODkyLCJleHAiOjE1NTMxMzU0OTIsImp0aSI6IjBmMDViOGIwLTRiNzktMTFlOS04OWNhLWEzYjEzNmM2NGM2OSJ9.refNrg38gfMBXB_64-7XvZeFjB7aX0SlvwBN8lnhdqU
+
+###
+
+GET http://localhost:5000/schools/4/houses/1 HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzaEBhb2wuY29tIiwiaWF0IjoxNTUzMTMxODkyLCJleHAiOjE1NTMxMzU0OTIsImp0aSI6IjBmMDViOGIwLTRiNzktMTFlOS04OWNhLWEzYjEzNmM2NGM2OSJ9.refNrg38gfMBXB_64-7XvZeFjB7aX0SlvwBN8lnhdqU
+
+###
+
+POST http://localhost:5000/schools/4/houses HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzaEBhb2wuY29tIiwiaWF0IjoxNTUzMTMxODkyLCJleHAiOjE1NTMxMzU0OTIsImp0aSI6IjBmMDViOGIwLTRiNzktMTFlOS04OWNhLWEzYjEzNmM2NGM2OSJ9.refNrg38gfMBXB_64-7XvZeFjB7aX0SlvwBN8lnhdqU
+Content-Type: application/json
+
+{
+  "name": "Gryffindor",
+  "color": "green"
+}
+
+###
+
+PUT http://localhost:5000/schools/4/houses/1 HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzaEBhb2wuY29tIiwiaWF0IjoxNTUzMTMxODkyLCJleHAiOjE1NTMxMzU0OTIsImp0aSI6IjBmMDViOGIwLTRiNzktMTFlOS04OWNhLWEzYjEzNmM2NGM2OSJ9.refNrg38gfMBXB_64-7XvZeFjB7aX0SlvwBN8lnhdqU
+Content-Type: application/json
+
+{
+  "points": 5
+}
+
+###
+
+DELETE  http://localhost:5000/schools/4/houses/2 HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzaEBhb2wuY29tIiwiaWF0IjoxNTUzMTMxODkyLCJleHAiOjE1NTMxMzU0OTIsImp0aSI6IjBmMDViOGIwLTRiNzktMTFlOS04OWNhLWEzYjEzNmM2NGM2OSJ9.refNrg38gfMBXB_64-7XvZeFjB7aX0SlvwBN8lnhdqU

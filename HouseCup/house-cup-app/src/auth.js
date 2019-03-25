@@ -9,7 +9,7 @@ class Auth {
       redirectUri: 'http://localhost:3000/callback',
       audience: 'https://venky-yagatilee.auth0.com/userinfo',
       responseType: 'token id_token',
-      scope: 'openid profile'
+      scope: 'openid profile email'
     });
 
     this.getProfile = this.getProfile.bind(this);
@@ -42,8 +42,10 @@ class Auth {
         if (!authResult || !authResult.idToken) {
           return reject(err);
         }
+        console.log(`Auth Results`, authResult)
         this.idToken = authResult.idToken;
         this.profile = authResult.idTokenPayload;
+            
         // set the time that the id token will expire at
         console.log(`profile`,this.profile);
         console.log(`idToken`, this.idToken);

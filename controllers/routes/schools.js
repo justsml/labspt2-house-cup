@@ -2,6 +2,7 @@ const express = require('express');
 const { School, User } = require('../../Models');
 const router = express.Router();
 const { protectEndPoint } = require('../../auth/jwt');
+const houses = require('./houses');
 
 router.get('/', async function(req, res) {
   const sequelize = User.sequelize;
@@ -77,5 +78,9 @@ router.post('/', async function(req, res) {
     next({ ...err, code: 500 });
   }
 });
+
+// Add school routes above this  line
+// nested route
+router.use('/:id/houses', houses);
 
 module.exports = router;

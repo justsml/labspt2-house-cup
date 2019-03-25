@@ -1,6 +1,7 @@
 import React from 'react';
 import SideMenu from './sideMenu';
 import axios from 'axios';
+import auth from '../Auth';
 
 class AdminMainPage extends React.Component {
     constructor(props) {
@@ -68,20 +69,6 @@ class AdminMainPage extends React.Component {
         elements[0].classList.toggle('active-number');
         this.forceUpdate();
     };
-    // confirmAddPoints = e => {
-    //     var valueAdded = e.target.parentNode.children[1].children[0].innerHTML;
-    //     const test = e.target.name;
-    //     console.log(test);
-    //     console.log(valueAdded);
-    //     var currentValue = e.target.parentNode.parentNode.children[2].innerHTML;
-    //     this.setState({[test]: +currentValue + +valueAdded});
-    // };
-    // confirmMinusPoints = e => {
-    //     var valueSubtracted = e.target.parentNode.children[1].children[0].innerHTML;
-    //     const test = e.target.name;
-    //     var currentValue = e.target.parentNode.parentNode.children[2].innerHTML;
-    //     this.setState({[test]: +currentValue - +valueSubtracted});
-    // }
 
     toggleFlip = id => {
         var element = document.getElementById(`housecard-${id}`);
@@ -91,7 +78,7 @@ class AdminMainPage extends React.Component {
     render() {
         return (
             <div className='admin-main-page'>
-                <SideMenu />
+                <SideMenu {...this.props} />
                 <div className='housecard-container'>
                     {this.state.houseList.map((eachHouse) => {
                         return (

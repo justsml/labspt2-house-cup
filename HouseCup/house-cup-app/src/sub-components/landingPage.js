@@ -1,6 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LandingImg from '../images/realestate.png';
+import Dumbledore from '../images/dumbledore.jpg';
+import { ReactComponent as IconPhone } from '../images/icon-phone.svg';
+import { ReactComponent as IconChart } from '../images/icon-chart.svg';
+import { ReactComponent as IconTeacher } from '../images/icon-teacher.svg';
+
 import schoolsTestData from '../mock data/schools';
 import auth from '../Auth';
 
@@ -23,45 +28,42 @@ class LandingPage extends React.Component {
         this.setState({
             [e.target.name]: e.target.value
         });
-    }; 
+    };
 
     handleSubmit = e => {
         localStorage.setItem('username', this.state.username)
         window.location.reload();
     }
 
-  signOut = () => {
+    signOut = () => {
         auth.logout();
         this.props.history.replace('/');
   }
 
     render() {
-        // console.log(this.props.auth.login)
         return (
             <div className='landing-page'>
                 <header className='landing-page-header'>
-                    <NavLink to='/'>
-                        <div className="house-cup-title">House Cup Tracker</div>
-                    </NavLink>
+                    <div className="house-cup-title">House Cup Tracker</div>
                     <div className='button-container'>
-                        <NavLink to='/signup' style={{ textDecoration: "none", color: "inherit" }}>
-                            <button onClick={this.handleSubmit} className="button signup-button">Sign up</button>
-                        </NavLink>
-                          {
-                             !auth.isAuthenticated() &&
-                               <button onClick={auth.login}
-                                       className="button login-button">Sign In</button>
-                           }
-                           {
-                                auth.isAuthenticated() &&
-                                <div>
+
+                        {
+                            !auth.isAuthenticated() &&
+                            <button onClick={auth.login}
+                                className="button login-button">Sign Up/Log In</button>
+                        }
+                        {
+                            auth.isAuthenticated() &&
+                            <div>
                                 <label className="mr-2 text-white">{auth.getProfile().name}</label>
-                                <button className="btn btn-dark" onClick={() => {this.signOut()}}>Sign Out</button>
-                                </div>
-                            }
-                        {/* <NavLink to='/dashboard' style={{ textDecoration: "none", color: "inherit" }}>
-                            <button onClick={this.handleSubmit} className="button login-button">Log in</button>
-                        </NavLink> */}
+                                <button
+                                    className="button logout-button"
+                                    onClick={() => { this.signOut() }}>
+                                    Sign Out
+                                </button>
+                            </div>
+                        }
+
                     </div>
                 </header>
                 <div className='landing-page-block landing-page-block-1'>
@@ -73,32 +75,40 @@ class LandingPage extends React.Component {
                 </div>
                 <div className='landing-page-block landing-page-block-2'>
                     <div className='feature-1 feature'>
-                        <span>View your house scoreboard anytime, anywhere</span>
+                        <IconPhone className='icon' />
+                        {/* <svg src={IconPhone} alt="dumbledore" className="icon icon-phone" /> */}
+                        <span className='feature-txt'>View your house scoreboard anytime, anywhere</span>
                     </div>
                     <div className='feature-2 feature'>
-                        <span>Coordinate with all the teachers</span>
+                        <IconTeacher className='icon' />
+                        <span className='feature-txt'>Coordinate with all the teachers</span>
                     </div>
                     <div className='feature-3 feature'>
-                        <span>Visual analysis at your fingertip</span>
+                        <IconChart className='icon' />
+                        <span className='feature-txt'>Visual analysis at your fingertip</span>
                     </div>
                 </div>
                 <div className='landing-page-block landing-page-block-3'>
-                    <h2>Check out the top-tier schools we work with</h2>
+                    <h2 className='checkout'>Check out the top-tier schools we work with</h2>
                     <div className='schools-list'>
                         {this.state.schoolsList.map((school) => {
                             return (
-                                <h2>{school.name}</h2>
+                                <h2 className='school'>{school.name}</h2>
                             )
                         })}
                     </div>
                 </div>
                 <div className='landing-page-block landing-page-block-4'>
-                    <div className='review-text'>
-                        <h2>review review review</h2>
-                    </div>
-                    <div className='review-user'>
-                        <h2>Professor Albus Dumbledore</h2>
-                        <h3>Headmaster of Hogwarts. </h3>
+                    <div className='review-container'>
+                        <div className='review-text'>
+                            <h2 className='slogan'>This is the real magic!</h2>
+                            <h4 className="text">"Managing Hogwarts has never been so easy for me. Sometimes technology can be more powerful than magic, and House Cup Tracker is the best example!"</h4>
+                        </div>
+                        <div className='review-user'>
+                            <img src={Dumbledore} alt="dumbledore" className="dumbledore-img" />
+                            <h2 className='dumbledore-name'>Professor Albus Dumbledore</h2>
+                            <h3 className='dumbledore-title'>Headmaster of Hogwarts. </h3>
+                        </div>
                     </div>
                 </div>
 
