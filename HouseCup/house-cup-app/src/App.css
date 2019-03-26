@@ -40,22 +40,24 @@ html {
   width: 20%;
   align-items: center;
   color: white;
+  min-height: 100vh;
 }
 .side-menu h1 {
   font-family: 'BigJohnPRO-Bold';
   font-size: 2.8rem;
   padding: 10px;
 }
-.side-menu a {
+.side-menu .menu-button {
   width: 100%;
   display: flex;
   justify-content: center;
   transition-duration: 0.2s;
+  cursor: pointer;
 }
-.side-menu a:hover {
+.side-menu .menu-button:hover {
   background-color: #F1EFEA;
 }
-.side-menu a:hover h2 {
+.side-menu .menu-button:hover h2 {
   color: #E2592D;
 }
 .side-menu h2 {
@@ -488,4 +490,11 @@ html {
 .landing-page .signup-page .facebook-button {
   background-color: #3C5A99;
   color: white;
+}
+.schools-page {
+  display: flex;
+}
+.schools-page .schools-page-container {
+  display: flex;
+  flex-direction: column;
 }

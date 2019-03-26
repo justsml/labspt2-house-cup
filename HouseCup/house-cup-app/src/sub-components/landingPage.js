@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import LandingImg from '../images/realestate.png';
 import Dumbledore from '../images/dumbledore.jpg';
 import { ReactComponent as IconPhone } from '../images/icon-phone.svg';
@@ -38,7 +37,7 @@ class LandingPage extends React.Component {
     signOut = () => {
         auth.logout();
         this.props.history.replace('/');
-  }
+    }
 
     render() {
         return (
@@ -111,28 +110,6 @@ class LandingPage extends React.Component {
                         </div>
                     </div>
                 </div>
-
-
-                {/* <div className="login-box">
-                    <p className="title">House Cup Tracker</p>
-                    <form onSubmit={this.handleSubmit} className="loginInput">
-                        <input
-                            type="text"
-                            name="username"
-                            placeholder="Phone number, username or email"
-                            value={this.state.username}
-                            onChange={this.handleInput}
-                        />
-                        <input
-                            type="password"
-                            name="password"
-                            placeholder="Password"
-                            value={this.state.password}
-                            onChange={this.handleInput}
-                        />
-                    </form>
-
-                </div> */}
             </div>
         )
     }
