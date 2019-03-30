@@ -1,6 +1,6 @@
 import React from 'react';
 import SideMenu from './sideMenu';
-import auth from '../Auth';
+// import Auth from '../Auth';
 
 class AdminMainPage extends React.Component {
     constructor(props) {
