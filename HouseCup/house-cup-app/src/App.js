@@ -53,8 +53,11 @@ class App extends Component {
         <SecuredRoute path='/about' component={About} />
         <SecuredRoute path = '/admin/billing' component={billingPage}/>
         <SecuredRoute exact path = '/admin/settings' render={(props) => <SettingsPage/>}/>
-        <SecuredRoute exact path = '/analytics' render={(props) => <AdminAnalyticsPage  />}/>
+        <SecuredRoute exact path = '/scoreboard/analytics' component={AdminAnalyticsPage} />
+        {/* <Route exact path = '/scoreboard/analytics' render={(props) => <AdminAnalyticsPage  />}/> */}
+
       </div>
+
     );
   }
 }
