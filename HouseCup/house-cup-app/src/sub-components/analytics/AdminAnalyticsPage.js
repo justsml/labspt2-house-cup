@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Chart from "react-google-charts";
 
-export default class AnalyticsPage extends Component {
+export default class AdminAnalyticsPage extends Component {
   constructor(props) {
     super(props);
      this.state ={
@@ -43,9 +43,7 @@ export default class AnalyticsPage extends Component {
           options={this.state.options}
           width={"900px"}
           height={"500px"}
-         
-         />
-                 
+          />
       </>
     )
   }
