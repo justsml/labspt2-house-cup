@@ -4,13 +4,19 @@ import Dumbledore from '../images/dumbledore.jpg';
 import { ReactComponent as IconPhone } from '../images/icon-phone.svg';
 import { ReactComponent as IconChart } from '../images/icon-chart.svg';
 import { ReactComponent as IconTeacher } from '../images/icon-teacher.svg';
-
+import { ReactComponent as IconCastle } from '../images/castle.svg';
+//GSAP import
+import { TweenLite } from "gsap/all";
 import schoolsTestData from '../mock data/schools';
 import auth from '../Auth';
 
 class LandingPage extends React.Component {
     constructor(props) {
         super(props);
+        // reference to the DOM node
+        this.myElement = null;
+        // reference to the animation
+        this.myTween = null;
         this.state = {
             username: "",
             password: "",
@@ -21,8 +27,11 @@ class LandingPage extends React.Component {
     componentDidMount() {
         this.setState({
             schoolsList: schoolsTestData
-        })
+        });
+        this.myTween = TweenLite.to(this.myElement, 1, { x: 100, y: 100 });
+
     }
+
     handleInput = e => {
         this.setState({
             [e.target.name]: e.target.value
@@ -74,8 +83,7 @@ class LandingPage extends React.Component {
                 </div>
                 <div className='landing-page-block landing-page-block-2'>
                     <div className='feature-1 feature'>
-                        <IconPhone className='icon' />
-                        {/* <svg src={IconPhone} alt="dumbledore" className="icon icon-phone" /> */}
+                        <IconPhone ref={div => this.myElement = div} className='icon' />
                         <span className='feature-txt'>View your house scoreboard anytime, anywhere</span>
                     </div>
                     <div className='feature-2 feature'>
@@ -92,7 +100,10 @@ class LandingPage extends React.Component {
                     <div className='schools-list'>
                         {this.state.schoolsList.map((school) => {
                             return (
-                                <h2 className='school'>{school.name}</h2>
+                                <div className={`school-box school-box-${school.id}`} >
+                                    <IconCastle className='castle' />
+                                    <h2 className='school' >{school.name}</h2>
+                                </div>
                             )
                         })}
                     </div>
