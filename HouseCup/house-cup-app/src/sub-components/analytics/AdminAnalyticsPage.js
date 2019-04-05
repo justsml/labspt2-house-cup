@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import Chart from "react-google-charts";
+import Graph from '../Styles/Graphs.js';
 
 export default class AdminAnalyticsPage extends Component {
   constructor(props) {
     super(props);
      this.state ={
        data:[
-        ['x', 'House-1', 'House-2', 'House-3', 'House-4'],
+        ['x', 'H1', 'H2', 'H3', 'H4'],
         [0, 0,  0, 0,  0],
         [1, 10, 5,  4,  6],
         [2, 23, 15,  20,  26],
@@ -34,17 +35,30 @@ export default class AdminAnalyticsPage extends Component {
       }
      }
   }
+  
+  renderGraphs = () => {
+    this.setState({
+      options: this.state.options,
+      date: [...this.state.data]
+    })
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.renderGraphs);
+ }
   render() {
     return (
-      <>
-         <Chart
+      <div className="graphs">
+       <Graph>
+         <Chart 
           chartType="LineChart"
           data={this.state.data}
           options={this.state.options}
-          width={"900px"}
-          height={"500px"}
+          width={"100%"}
+          height={"600px"}
           />
-      </>
+      </Graph>    
+      </div>
     )
   }
 }
