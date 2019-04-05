@@ -27,6 +27,9 @@ class sideMenu extends React.Component {
                 <NavLink to="/admin/billing" className='menu-button' activeClassName="activeMenu" style={{ textDecoration: "none", color: "inherit" }}>
                     <h2>Billings</h2>
                 </NavLink>
+                <NavLink to="/admin/analytics" className='menu-button' activeClassName="activeMenu" style={{ textDecoration: "none", color: "inherit" }}>
+                    <h2>Analytics</h2>
+                </NavLink>
 
                 <NavLink to="/admin/settings" className='menu-button' activeClassName="activeMenu" style={{ textDecoration: "none", color: "inherit" }}>
                     <h2>Settings</h2>
