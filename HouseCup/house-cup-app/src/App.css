@@ -507,3 +507,10 @@ html {
    max-width:100%;
    padding: 0px;
 }  
+
+.select {
+    position: absolute;
+    right: 18%;
+    z-index: 2;
+    top: 10%;
+}
