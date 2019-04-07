@@ -1,7 +1,7 @@
 import React from 'react';
 import SideMenu from './sideMenu';
 import axios from 'axios';
-import auth from '../Auth';
+import auth from '../auth';
 
 class AdminMainPage extends React.Component {
     constructor(props) {
@@ -139,12 +139,12 @@ class AdminMainPage extends React.Component {
                             </div>
                         )
                     })}
+                </div>
                 <div>
                     <input name='newSchoolName' placeholder='name' onChange={this.handleSchoolInput}></input>
                     <input placeholder='city' name='newSchoolCity' onChange={this.handleSchoolInput}></input>
                     <input placeholder='userID' name='newSchoolUserID' onChange={this.handleSchoolInput}></input>
                     <button onClick={this.addHouse}><b>+ Add House +</b></button>
-                </div>
                 </div>
             </div>
         )

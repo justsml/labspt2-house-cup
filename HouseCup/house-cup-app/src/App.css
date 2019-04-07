@@ -489,3 +489,32 @@ html {
   background-color: #3C5A99;
   color: white;
 }
+
+
+
+/* adminMainPage.js */
+
+.admin-main-page {
+  display: flex;
+  /* flex-wrap: wrap; */
+}
+.housecard-container {
+  display: flex;
+  margin: auto;
+  align-content: center;
+  flex-wrap: wrap;
+}
+.housecard-container .housecard {
+ max-width: 25%;
+ min-width: 5px;
+ padding: 1%;
+ display: flex;
+ flex-shrink: 15px;
+}
+.housecard-container .housecard .housecard-front .house-name {
+ display: flex;
+ flex-shrink: 5px;
+ /* padding-right: 20%; */
+ font-size: 1rem;
+ /* margin-riugh */
+}

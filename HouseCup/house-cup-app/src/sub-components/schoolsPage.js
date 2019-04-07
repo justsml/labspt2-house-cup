@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import schoolsTestData from '../mock data/schools';
 import SideMenu from './sideMenu';
+import schoolsTestData from '../mock data/schools';
+import axios from 'axios';
 
 class SchoolsPage extends Component {
     constructor(props) {
@@ -13,13 +14,14 @@ class SchoolsPage extends Component {
     componentDidMount() {
         this.setState({
             schoolsList: schoolsTestData
-        })
+        });
+        // axios.get('')
     }
 
     render() {
         return (
             <div className='schools-page'>
-                <SideMenu />
+                <SideMenu {...this.props} />
                 <div className='add-school-container'>
                     <h2>Add New School</h2>
                     <form className="add-school-form">

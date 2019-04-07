@@ -31,7 +31,7 @@ import billingPage from './sub-components/billingPage';
 //About.js
 import About from './sub-components/About';
 
-import auth from './Auth.js';
+import auth from './auth.js';
 
 
 class App extends Component {
@@ -39,29 +39,45 @@ class App extends Component {
     super(props);
     this.state = {
       testData: scoreboardTestData,
-    
+      userData: [],
+      schoolData: [],
+      houseData: [],
     }
   }
 
   componentDidMount = e => {
-    axios.get('https://labspt2-housecup.herokuapp.com/users')
-      .then(response => this.setState({userList: response.data.data.allUsers}))
+    axios.get('http://localhost:5000/users')
+      .then(response => {
+        // console.log(response.data.data.allUsers)
+        this.setState({userData: response.data.data.allUsers})
+      })
       .catch(err => console.log(err));
 
     axios.get('http://localhost:5000/schools')
-      .then(response => console.log(response))
-      .catch(err => console.log(err))
+      .then(response => {
+        // console.log(response.data.data.schools)
+        this.setState({schoolData: response.data.data.schools})
+      })
+      .catch(err => console.log(err));
+    axios.get('http://localhost:5000/houses')
+      .then(response => {
+        // console.log(response.data.data.houses)
+        this.setState({houseData: response.data.data.houses})
+      })
+      .catch(err => {
+
+      })
   }
 
   render() {
     return (
       <div className="App">
         {/* <NavBar /> */}
-        <Route exact path='/' render={(props) => <LandingPage {...props} />} />
-        <Route exact path = '/callback' render={  (props) => <Callback />  }/>
-        <Route exact path='/signup' render={(props) => <SignupPage {...props} houseList={this.state.testData} confirmAddPoints={this.confirmAddPoints} />} />
-        <Route exact path = '/admin' render={(props) => <AdminMainPage {...props} houseList={this.state.testData}/> }/>
+        <Route exact path='/' render={(props) => <LandingPage {...props} schoolsSelected={this.state.schoolData} />} />
+        <Route exact path = '/callback' render={  (props) => <Callback />  }/>                                                       
+        {/* <Route exact path='/signup' render={(props) => <SignupPage {...props} houseList={this.state.testData} confirmAddPoints={this.confirmAddPoints} />} /> */}
         <Route exact path = '/admin/schools' render={(props) => <SchoolsPage {...props} houseList={this.state.testData}/> }/>
+        <Route exact path = '/admin' render={(props) => <AdminMainPage {...props} houseList={this.state.testData}/> }/>
         <SecuredRoute path='/about' component={About} />
         <SecuredRoute path = '/admin/billing' component={billingPage}/>
         <SecuredRoute exact path = '/admin/settings' render={(props) => <SettingsPage/>}/>

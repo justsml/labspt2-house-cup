@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
-import auth from '../Auth';
+import auth from '../auth';
 
 class sideMenu extends React.Component {
    constructor(props) {

@@ -1,30 +1,31 @@
 const express = require('express');
-const { School, User } = require('../../Models');
+const { School, User, House } = require('../../Models');
 const router = express.Router();
 const { protectEndPoint } = require('../../auth/jwt');
 const houses = require('./houses');
 
-router.get('/', async function(req, res) {
+router.get("/", async function(req, res) {
   const sequelize = User.sequelize;
   try {
     const schools = await School.findAll({
-      // include: [
-      //   {
-      //     model: User,
-      //     attributes: [
-      //       [
-      //         sequelize.fn(
-      //           'concat',
-      //           sequelize.col('firstName'),
-      //           ' ',m
-      //           sequelize.col('lastName')
-      //         ),
-      //         'name',
-      //       ],
-      //       'email',
-      //     ],
-      //   },
-      // ],
+      include: [
+        House
+        // {
+        //   model: User,
+        //   attributes: [
+        //     [
+        //       sequelize.fn(
+        //         'concat',
+        //         sequelize.col('firstName'),
+        //         ' ',
+        //         sequelize.col('lastName')
+        //       ),
+        //       'name',
+        //     ],
+        //     'email',
+        //   ],
+        // },
+      ],
     });
     return res.json({
       status: true,
@@ -38,7 +39,7 @@ router.get('/', async function(req, res) {
   }
 });
 
-router.get('/:id', protectEndPoint, async function(req, res) {
+router.get('/:id', async function(req, res) {
   try {
     const school = await School.findById(req.params.id);
     res.json({

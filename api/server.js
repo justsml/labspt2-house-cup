@@ -9,17 +9,16 @@ const sequelize = require('../sequelize');
 School.belongsTo(User, {
   foreignKey: 'userId',
 });
-
-// school.getUser()
-
-// OR
-
 User.hasMany(School, {
   foreignKey: 'userId',
 });
 
-House.belongsTo(School);
-School.hasMany(House);
+House.belongsTo(School, {
+  foreignKey: 'schoolId'
+});
+School.hasMany(House, {
+  foreignKey: 'schoolId'
+});
 
 // user.getSchools()
 // user.createSchool()
@@ -42,6 +41,7 @@ School.hasMany(House);
 sequelize.sync();
 const userRouter = require('../controllers/routes/user_routes');
 const schoolsRouter = require('../controllers/routes/schools');
+const housesRouter = require('../controllers/routes/houses');
 const { errorHandler } = require('../middleware/index');
 const server = express();
 
@@ -53,6 +53,7 @@ server.use(cors());
 
 server.use('/users', userRouter);
 server.use('/schools', schoolsRouter);
+server.use('/houses', housesRouter);
 
 server.get('/', (req, res) => {
   res.send(`Server is up and running now.`);

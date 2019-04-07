@@ -7,7 +7,7 @@ import { ReactComponent as IconChart } from '../images/icon-chart.svg';
 import { ReactComponent as IconTeacher } from '../images/icon-teacher.svg';
 
 import schoolsTestData from '../mock data/schools';
-import auth from '../Auth';
+import auth from '../auth';
 
 class LandingPage extends React.Component {
     constructor(props) {
@@ -23,6 +23,7 @@ class LandingPage extends React.Component {
         this.setState({
             schoolsList: schoolsTestData
         })
+        
     }
     handleInput = e => {
         this.setState({
@@ -94,6 +95,15 @@ class LandingPage extends React.Component {
                         {this.state.schoolsList.map((school) => {
                             return (
                                 <h2 className='school'>{school.name}</h2>
+                            )
+                        })}
+                    </div>
+                    <h2 className='school-search'>Find your school's Public Page!</h2>
+                    <input className='school-search-inputt' placeholder='search for schools here'></input>
+                    <div>
+                        {this.props.schoolsSelected.map((x) => {
+                            return (
+                                <ul>-{x.name}</ul>
                             )
                         })}
                     </div>

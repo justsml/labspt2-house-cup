@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import auth from '../Auth';
+import auth from '../auth';
 import LandingPage from './landingPage';
 
 function SecuredRoute(props) {

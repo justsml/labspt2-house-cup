@@ -6,28 +6,37 @@ const router = express.Router({
 const { protectEndPoint } = require('../../auth/jwt');
 const _ = require('lodash');
 
-router.get('/', protectEndPoint, async function(req, res, next) {
+router.get('/', async function(req, res, next) {
   try {
-    const school = await School.findByPk(req.params.id);
-    const user = await User.findOne({
-      where: {
-        email: req.user.email,
-      },
-    });
+    // const school = await School.findByPk(req.params.id);
+    // const user = await User.findOne({
+    //   where: {
+    //     email: req.User.email,
+    //   },
+    // });
 
-    if (Number(school.userId) !== Number(user.id)) {
-      return res.status(403).json({
-        message: 'You are not authorized to make changes to this school. ',
-      });
-    }
-    const houses = await school.getHouses();
-    res.json(houses);
+    // if (Number(school.userId) !== Number(user.id)) {
+    //   return res.status(403).json({
+    //     message: 'You are not authorized to make changes to this school. ',
+    //   });
+    // }
+    // const houses = await school.getHouses();
+    // res.json(houses);
+    const houses = await House.findAll({
+      // attributes: ["name", "points", "color"]
+    });
+    return res.json({
+        status: true,
+        data: {
+          houses,
+        },
+    });
   } catch (err) {
     next(err);
   }
 });
 
-router.get('/:houseId', protectEndPoint, async function(req, res) {
+router.get('/:houseId', async function(req, res) {
   const house = await House.findByPk(req.params.houseId, {
     include: [
       {
@@ -45,28 +54,45 @@ router.get('/:houseId', protectEndPoint, async function(req, res) {
   res.json(house);
 });
 
-router.post('/', protectEndPoint, async function(req, res) {
+router.post('/', async function(req, res, next) {
   try {
-    const school = await School.findByPk(req.params.id);
-    const user = await User.findOne({
-      where: {
-        email: req.user.email,
-      },
-    });
+    // const school = await School.findByPk(req.params.id);
+    // const user = await User.findOne({
+    //   where: {
+    //     email: req.user.email,
+    //   },
+    // });
 
-    if (Number(school.userId) !== Number(user.id)) {
-      return res.status(403).json({
-        message: 'You are not authorized to make changes to this school. ',
-      });
-    }
-    const newHouse = await school.createHouse(req.body);
-    res.json(newHouse);
+    // if (Number(school.userId) !== Number(user.id)) {
+    //   return res.status(403).json({
+    //     message: 'You are not authorized to make changes to this school. ',
+    //   });
+    // }
+    // const newHouse = await school.createHouse(req.body);
+    // res.json(newHouse);
+
+    const newHouse = await House.findOrCreate({
+      where: {
+        name: req.body.name
+      },
+      defaults: {
+        name: req.body.name,
+        color: req.body.color,
+        schoolId: req.body.schoolId
+      }
+    });
+    return res.json({
+      status: true,
+      data: {
+        newHouse,
+      }
+    })
   } catch (err) {
     next(err);
   }
 });
 
-router.put('/:houseId', protectEndPoint, async function(req, res, next) {
+router.put('/:houseId', async function(req, res, next) {
   const house = await House.findByPk(req.params.houseId, {
     include: [
       {
@@ -98,7 +124,7 @@ router.put('/:houseId', protectEndPoint, async function(req, res, next) {
   res.json(updatedHouse);
 });
 
-router.delete('/:houseId', protectEndPoint, async function(req, res, next) {
+router.delete('/:houseId', async function(req, res, next) {
   const house = await House.findByPk(req.params.houseId, {
     include: [
       {
