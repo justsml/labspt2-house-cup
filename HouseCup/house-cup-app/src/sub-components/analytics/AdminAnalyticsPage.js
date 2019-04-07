@@ -45,8 +45,12 @@ export default class AdminAnalyticsPage extends Component {
     })
   }
 
-  componentDidMount() {
+componentDidMount() {
     window.addEventListener('resize', this.renderGraphs);
+ }
+ 
+ componentUpdate() {
+   window.addEventListener('resize', this.renderGraphs);
  }
   render() {
     return (
@@ -67,7 +71,7 @@ export default class AdminAnalyticsPage extends Component {
                 data={this.state.data}
                 options={this.state.options}
                 className="chart"
-                width={"100%"}
+                width={"800px"}
                 height={"480px"}
             />
           </Graph>    

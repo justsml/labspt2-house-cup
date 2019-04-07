@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 
 const Payment = styled.div`
-    max-width:40%;
+    max-width:35%;
     margin: 56px auto;
     display:flex;
     flex-direction:column;

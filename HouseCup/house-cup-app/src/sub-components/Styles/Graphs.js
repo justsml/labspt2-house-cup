@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Graph = styled.div`
     max-width:100%;
-    margin: 0 auto;
+    ${'' /* margin: 0 auto; */}
     display:flex;
     justify-content:center;
     padding:0;
