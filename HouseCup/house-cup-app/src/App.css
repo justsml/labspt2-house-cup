@@ -504,15 +504,17 @@ html {
   Analytics Page - graphs
 *********************/
 .graphs {
-   max-width:100%;
+   margin:0 auto;
+   max-width:100%; 
+   position:relative;  
    padding: 0px;
 }  
 
 .select {
     position: absolute;
-    right: 18%;
+    right: 10%;
     z-index: 2;
-    top: 10%;
+    top: 8%;
 }
 
 /*****************
@@ -527,4 +529,17 @@ html {
 ***************/ 
 .checkout {
    background-color: rgb(224, 30, 89)
+}
+/************
+  Analytics
+************/  
+.analytics {
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  justify-content:flex-start;
+}
+
+.chart {
+  width:100%;
 }

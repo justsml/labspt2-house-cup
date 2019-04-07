@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Chart from "react-google-charts";
 import Graph from '../Styles/Graphs.js';
+import SideMenu from '../sideMenu.js';
 
 export default class AdminAnalyticsPage extends Component {
   constructor(props) {
@@ -49,24 +50,28 @@ export default class AdminAnalyticsPage extends Component {
  }
   render() {
     return (
-      <div className="graphs">
-        <Graph>
-          <form className="select" onSubmit={this.handleSubmit}>
-          <select value={this.state.value} onChange={this.handleChange}>
-                <option value="grapefruit">Grapefruit</option>
-                <option value="lime">Lime</option>
-                <option value="coconut">Coconut</option>
-                <option value="mango">Mango</option>
-            </select>      
-          </form>
-          <Chart 
-              chartType="LineChart"
-              data={this.state.data}
-              options={this.state.options}
-              width={"100%"}
-              height={"600px"}
-          />
+      <div className="analytics">
+        <SideMenu />
+        <div className="graphs">
+          <Graph>
+            <form className="select" onSubmit={this.handleSubmit}>
+              <select value={this.state.value} onChange={this.handleChange}>
+                    <option value="grapefruit">Grapefruit</option>
+                    <option value="lime">Lime</option>
+                    <option value="coconut">Coconut</option>
+                    <option value="mango">Mango</option>
+                </select>      
+            </form>
+            <Chart 
+                chartType="LineChart"
+                data={this.state.data}
+                options={this.state.options}
+                className="chart"
+                width={"100%"}
+                height={"480px"}
+            />
           </Graph>    
+        </div>
       </div>
     )
   }
