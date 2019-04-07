@@ -514,3 +514,17 @@ html {
     z-index: 2;
     top: 10%;
 }
+
+/*****************
+  Billing page
+******************/
+.billing-page {
+   display:flex;
+   justify-content: space-between;
+}  
+/**************
+ checkout button
+***************/ 
+.checkout {
+   background-color: rgb(224, 30, 89)
+}

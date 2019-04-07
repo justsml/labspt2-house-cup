@@ -1,24 +1,31 @@
 import React from 'react';
 import Checkout from '../Checkout';
+import SideMenu from './sideMenu';
+import Payment from './Styles/Payment.js';
 
-const billingPage = props => {
+const BillingPage = props => {
     return (
         <div className='billing-page'>
             {/* side page component goes here  */}
-            <div className='payment-section'>
+                <SideMenu />
+            {/* <div className='payment-section'> */}
+                <Payment >
+                <h1>House Cup Tracker</h1>
                 <span className='payment-premium-ad'>
                     For {props.premiumPrice} upgrade to a <b>premium</b> account with unlimited Houses and historical analytics.
                 </span>
                 <div className='payment-info-box'>
                     <Checkout
+                      className="checkout"
                       name={'Historical Analytics'}
                       description={'House Cup'}
                       amount={19}
                     />
-                </div>               
-            </div>
+                </div>   
+                </Payment>            
+            {/* </div> */}
         </div>
     )
 }
 
-export default billingPage;
+export default BillingPage;
