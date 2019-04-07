@@ -16,7 +16,6 @@ const BillingPage = props => {
                 </span>
                 <div className='payment-info-box'>
                     <Checkout
-                      className="checkout"
                       name={'Historical Analytics'}
                       description={'House Cup'}
                       amount={19}
