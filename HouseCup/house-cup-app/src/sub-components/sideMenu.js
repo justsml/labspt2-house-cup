@@ -19,13 +19,15 @@ class sideMenu extends React.Component {
                 <header>
                     <h1>House Cup Tracker</h1>
                 </header>
-                <NavLink to="/admin" activeClassName="activeMenu" style={{ textDecoration: "none", color: "inherit" }}>
-                    <h2>Dashboard</h2>
-                </NavLink>
-
+                
                 <NavLink to="/admin/schools" activeClassName="activeMenu" style={{ textDecoration: "none", color: "inherit" }}>
                     <h2>Schools</h2>
                 </NavLink>
+
+                <NavLink to="/admin/houses" activeClassName="activeMenu" style={{ textDecoration: "none", color: "inherit" }}>
+                    <h2>Houses</h2>
+                </NavLink>
+
 
                 <NavLink to="/admin/billing" activeClassName="activeMenu" style={{ textDecoration: "none", color: "inherit" }}>
                     <h2>Billings</h2>
@@ -38,8 +40,6 @@ class sideMenu extends React.Component {
               
                  <button onClick={() => {this.logout()}}>Sign Out</button>
              
-               {/* </>
-                )} */}
             </div>);
     }
 }

@@ -80,16 +80,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <NavBar /> */}
         <Route exact path='/' render={(props) => <LandingPage {...props} schoolsSelected={this.state.schoolData} />} />
         <Route exact path = '/callback' render={  (props) => <Callback />  }/>                                                       
-        {/* <Route exact path='/signup' render={(props) => <SignupPage {...props} houseList={this.state.testData} confirmAddPoints={this.confirmAddPoints} />} /> */}
         <Route exact path = '/admin/schools' render={(props) => <SchoolsPage {...props} houseList={this.state.testData}/> }/>
-        <Route exact path = '/admin' render={(props) => <AdminMainPage {...props} houseList={this.state.testData}/> }/>
-        <SecuredRoute path='/about' component={About} />
-        <SecuredRoute path = '/admin/billing' component={billingPage}/>
-        <SecuredRoute exact path = '/admin/settings' render={(props) => <SettingsPage/>}/>
+        <Route exact path = '/admin/houses' render={(props) => <AdminMainPage {...props} houseList={this.state.testData}/> }/>
         <SecuredRoute exact path = '/analytics' render={(props) => <AdminAnalyticsPage  />}/>
+        <SecuredRoute exact path = '/admin/billing' component={billingPage}/>
+        <SecuredRoute exact path = '/admin/settings' render={(props) => <SettingsPage/>}/>
       </div>
     );
   }

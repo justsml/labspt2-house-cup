@@ -81,7 +81,8 @@ class AdminMainPage extends React.Component {
                 <SideMenu {...this.props} />
                 <div className='housecard-container'>
                     <div className='newSchoolInputs'>
-                        <input name='newSchoolName' placeholder='name' onChange={this.handleSchoolInput}></input>
+                        <h2>Add School</h2>
+                        <input placeholder='name' name='newSchoolName' onChange={this.handleSchoolInput}></input>
                         <input placeholder='city' name='newSchoolCity' onChange={this.handleSchoolInput}></input>
                         <input placeholder='userID' name='newSchoolUserID' onChange={this.handleSchoolInput}></input>
                         <button onClick={this.addSchool}><b>+ Add House +</b></button>
