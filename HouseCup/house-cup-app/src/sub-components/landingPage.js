@@ -5,8 +5,10 @@ import { ReactComponent as IconPhone } from '../images/icon-phone.svg';
 import { ReactComponent as IconChart } from '../images/icon-chart.svg';
 import { ReactComponent as IconTeacher } from '../images/icon-teacher.svg';
 import { ReactComponent as IconCastle } from '../images/castle.svg';
+
 //GSAP import
 import { TweenLite } from "gsap/all";
+
 import schoolsTestData from '../mock data/schools';
 import auth from '../Auth';
 
@@ -28,7 +30,7 @@ class LandingPage extends React.Component {
         this.setState({
             schoolsList: schoolsTestData
         });
-        this.myTween = TweenLite.to(this.myElement, 1, { x: 100, y: 100 });
+        this.myTween = TweenLite.to(this.myElement, 1, { x: 100, repeat: -1 });
 
     }
 
@@ -82,8 +84,8 @@ class LandingPage extends React.Component {
                     <img src={LandingImg} alt="loginImg" className="landing-img" />
                 </div>
                 <div className='landing-page-block landing-page-block-2'>
-                    <div className='feature-1 feature'>
-                        <IconPhone ref={div => this.myElement = div} className='icon' />
+                    <div className='feature-1 feature' >
+                        <IconPhone className='icon' />
                         <span className='feature-txt'>View your house scoreboard anytime, anywhere</span>
                     </div>
                     <div className='feature-2 feature'>
@@ -97,7 +99,7 @@ class LandingPage extends React.Component {
                 </div>
                 <div className='landing-page-block landing-page-block-3'>
                     <h2 className='checkout'>Check out the top-tier schools we work with</h2>
-                    <div className='schools-list'>
+                    <div className='schools-list' ref={div => this.myElement = div} >
                         {this.state.schoolsList.map((school) => {
                             return (
                                 <div className={`school-box school-box-${school.id}`} >

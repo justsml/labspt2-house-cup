@@ -157,10 +157,8 @@ html {
   font-weight: 200;
 }
 .landing-page .landing-page-block-3 .schools-list {
-  width: 3000px;
+  width: 100%;
   display: flex;
-  min-height: 150px;
-  transition-duration: 2s;
 }
 .landing-page .landing-page-block-3 .schools-list .school-box {
   display: flex;
