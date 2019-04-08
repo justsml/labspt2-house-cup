@@ -16,8 +16,10 @@ import testSchoolData from './mock data/schools';
 
 //Admin import(s):
 import AdminMainPage from './sub-components/adminMainPage';
+
 //Billings import(s):
-import BillingPage from './sub-components/billingPage';
+// import BillingPage from './sub-components/billingPage';
+
 //Settings import(s):
 import SettingsPage from './sub-components/settingsPage';
 
@@ -87,7 +89,12 @@ class App extends Component {
         <SecuredRoute exact path = '/analytics' render={(props) => <AdminAnalyticsPage  />}/>
         <SecuredRoute exact path = '/admin/billing' component={billingPage}/>
         <SecuredRoute exact path = '/admin/settings' render={(props) => <SettingsPage/>}/>
+        <SecuredRoute path='/about' component={About} />
+        <SecuredRoute path = '/admin/billing' component={billingPage}/>
+        <SecuredRoute exact path = '/admin/settings' render={(props) => <SettingsPage/>}/>
+        <SecuredRoute exact path = '/admin/analytics' component={AdminAnalyticsPage} />
       </div>
+
     );
   }
 }

@@ -4,7 +4,7 @@ const router = express.Router();
 const { protectEndPoint } = require('../../auth/jwt');
 const houses = require('./houses');
 
-router.get("/", async function(req, res) {
+router.get('/', async function(req, res) {
   const sequelize = User.sequelize;
   try {
     const schools = await School.findAll({
@@ -67,7 +67,7 @@ router.post('/', async function(req, res) {
       // userId: user.id,
     });
 
-    // const newSchool = await user.addSchool(req.body);
+    const newSchool = await user.addSchool(req.body);
     res.status(201).json({
       status: true,
       data: {

@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import SideMenu from './sideMenu';
 import schoolsTestData from '../mock data/schools';
 import axios from 'axios';
+import Select from 'react-select';
+import chroma from 'chroma-js';
+import colorOptions from './ColorOptions';
 
 class SchoolsPage extends Component {
     constructor(props) {
@@ -24,6 +27,43 @@ class SchoolsPage extends Component {
         this.setState({[e.target.name]: e.target.value})
     }
 
+    dot = (color = '#ccc') => ({
+        alignItems: 'center',
+        display: 'flex',
+
+        ':before': {
+            backgroundColor: color,
+            borderRadius: 10,
+            content: '" "',
+            display: 'block',
+            marginRight: 8,
+            height: 10,
+            width: 10,
+        },
+    });
+
+    colorStyles = {
+        control: styles => ({ ...styles, backgroundColor: 'white' }),
+        option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+            const color = chroma(data.color);
+            return {
+                ...styles,
+                backgroundColor: isDisabled
+                    ? null
+                    : isSelected ? data.color : isFocused ? color.alpha(0.1).css() : null,
+                color: isDisabled
+                    ? '#ccc'
+                    : isSelected
+                        ? chroma.contrast(color, 'white') > 2 ? 'white' : 'black'
+                        : data.color,
+                cursor: isDisabled ? 'not-allowed' : 'default',
+            };
+        },
+        input: styles => ({ ...styles, ...this.dot() }),
+        placeholder: styles => ({ ...styles, ...this.dot() }),
+        singleValue: (styles, { data }) => ({ ...styles, ...this.dot(data.color) }),
+    };
+
     render() {
         return (
             <div className='schools-page'>
@@ -32,6 +72,10 @@ class SchoolsPage extends Component {
                     <div className='add-school-container'>
                         <h2>Add New School:</h2>
                         {/* <form className="add-school-form">
+                <div className='schools-page-container'>
+                    <div className='add-school-container'>
+                        <h2>Add New School</h2>
+                        <form className="add-school-form">
                             <input
                                 className="school-name"
                                 type="text"
@@ -58,6 +102,14 @@ class SchoolsPage extends Component {
                             <input className='schoolCity' placeholder='city' name='newSchoolCity' onChange={this.handleSchoolInput}></input>
                             <button onClick={this.addSchool}><b>+ Add School +</b></button>
                         </div>
+                            <Select
+                                defaultValue={colorOptions[2]}
+                                label="Single select"
+                                options={colorOptions}
+                                styles={this.colorStyles}
+                            />
+                            <button>Save</button>
+                        </form>
                     </div>
                     <div className='schools-list'>
                         {this.state.schoolsList.map((school) => {

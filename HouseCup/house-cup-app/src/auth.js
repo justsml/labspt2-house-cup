@@ -3,9 +3,8 @@ import React from 'react';
 import axios from 'axios';
 
 
-class Auth extends React.Component {
-  constructor(props) {
-    super(props);
+class Auth {
+  constructor() {
     this.auth0 = new auth0.WebAuth({
       domain: 'venky-yagatilee.auth0.com',
       clientID: '46Ngw5RelPCvdaCoKrqPvIWyvgFQBqvx',
@@ -62,6 +61,7 @@ class Auth extends React.Component {
         console.log(`Auth Results`, authResult)
         this.idToken = authResult.idToken;
         this.profile = authResult.idTokenPayload;
+        
             
         // set the time that the id token will expire at
         console.log(`profile`,this.profile);
