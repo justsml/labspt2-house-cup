@@ -7,7 +7,13 @@ import { Route } from 'react-router-dom';
 import LandingPage from './sub-components/landingPage'
 //publicPage import(s):
 import PublicPage from './sub-components/publicPage';
+
+
+//test data:
 import scoreboardTestData from './mock data/scoreboard';
+import testSchoolData from './mock data/schools';
+
+
 //Admin import(s):
 import AdminMainPage from './sub-components/adminMainPage';
 //Billings import(s):
@@ -32,6 +38,7 @@ import billingPage from './sub-components/billingPage';
 import About from './sub-components/About';
 
 import auth from './auth.js';
+import schoolsTestData from './mock data/schools';
 
 
 class App extends Component {
@@ -39,6 +46,7 @@ class App extends Component {
     super(props);
     this.state = {
       testData: scoreboardTestData,
+      testData2: schoolsTestData,
       userData: [],
       schoolData: [],
       houseData: [],
