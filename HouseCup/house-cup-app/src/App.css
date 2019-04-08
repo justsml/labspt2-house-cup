@@ -499,3 +499,12 @@ html {
   flex-direction: column;
   width: 100%;
 }
+
+
+/********************
+  Analytics Page - graphs
+*********************/
+.graphs {
+   max-width:100%;
+   padding: 0px;
+}  
