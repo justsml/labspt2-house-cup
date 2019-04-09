@@ -1,6 +1,6 @@
 const express = require("express");
+const { User, School, House } = require('../../Models');
 const router = express.Router();
-const { User, School } = require("../../Models");
 const sequelize = require("../../sequelize");
 const {
   inputValidation,
@@ -14,7 +14,7 @@ const {
 
 router.get("/", (req, res, next) => {
   User.findAll({
-    include: [School],
+    include: [{ model: School, include: [House]}],
     attributes: ["firstName", "lastName", "email"]
   })
     .then(allUsers => {
@@ -30,8 +30,9 @@ router.get("/", (req, res, next) => {
       }
     })
     .catch(err => {
-      console.log(err);
+      console.log(err, 'error!');
       next({ ...err, code: 500 });
+      // res.status(500).json({err})
     });
 });
 

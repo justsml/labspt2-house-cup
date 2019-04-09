@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
-import auth from '../Auth';
+import auth from '../auth';
 
 class sideMenu extends React.Component {
 
@@ -16,13 +16,15 @@ class sideMenu extends React.Component {
                 <header>
                     <h1>House Cup Tracker</h1>
                 </header>
-                <NavLink to="/admin" className='menu-button' activeClassName="activeMenu" style={{ textDecoration: "none", color: "inherit" }}>
-                    <h2>Dashboard</h2>
-                </NavLink>
-
+                
                 <NavLink to="/admin/schools" className='menu-button' activeClassName="activeMenu" style={{ textDecoration: "none", color: "inherit" }}>
                     <h2>Schools</h2>
                 </NavLink>
+
+                <NavLink to="/admin/houses" className='menu-button' activeClassName="activeMenu" style={{ textDecoration: "none", color: "inherit" }}>
+                    <h2>Houses</h2>
+                </NavLink>
+
 
                 <NavLink to="/admin/billing" className='menu-button' activeClassName="activeMenu" style={{ textDecoration: "none", color: "inherit" }}>
                     <h2>Billings</h2>

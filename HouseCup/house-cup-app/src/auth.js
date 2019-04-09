@@ -1,4 +1,6 @@
 import auth0 from 'auth0-js';
+import React from 'react';
+import axios from 'axios';
 
 
 class Auth {
@@ -11,6 +13,10 @@ class Auth {
       responseType: 'token id_token',
       scope: 'openid profile email'
     });
+    this.state = {
+      firstName: 'test',
+      lastName: '1',
+    }
 
     this.getProfile = this.getProfile.bind(this);
     this.handleAuthentication = this.handleAuthentication.bind(this);
@@ -19,6 +25,16 @@ class Auth {
     this.logout = this.logout.bind(this);
   }
 
+  componentDidMount() {
+    console.log('asdf');
+    // axios.post('http://localhost:5000/users/register', {
+    //   firstName: this.state.firstName,
+    //   lastName: this.state.lastName,
+    //   email: 
+    // })
+  }
+
+  
   getProfile() {
     return this.profile;
   }
@@ -50,10 +66,18 @@ class Auth {
         // set the time that the id token will expire at
         console.log(`profile`,this.profile);
         console.log(`idToken`, this.idToken);
+        console.log(this.state.firstName);
+        axios.get('http://localhost:5000/schools')
+          .then(response => {
+            // console.log(response.data.data.schools)
+            this.setState({schoolData: response.data.data.schools})
+          })
+          .catch(err => console.log(err));
         this.expiresAt = authResult.idTokenPayload.exp * 1000;
         resolve();
       });
     });
+    
   }
 
   logout() {
