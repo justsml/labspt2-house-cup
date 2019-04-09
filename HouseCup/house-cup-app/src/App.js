@@ -35,7 +35,7 @@ import Callback from './Callback.js';
 import SecuredRoute from './sub-components/SecuredRoute';
 //Auth0.js
 // import NavBar from './sub-components/NavBar';
-import billingPage from './sub-components/billingPage';
+import BillingPage from './sub-components/BillingPage';
 //About.js
 import About from './sub-components/About';
 
@@ -90,7 +90,7 @@ class App extends Component {
         <SecuredRoute exact path = '/admin/billing' component={billingPage}/>
         <SecuredRoute exact path = '/admin/settings' render={(props) => <SettingsPage/>}/>
         <SecuredRoute path='/about' component={About} />
-        <SecuredRoute path = '/admin/billing' component={billingPage}/>
+        <SecuredRoute path = '/admin/billing' component={BillingPage}/>
         <SecuredRoute exact path = '/admin/settings' render={(props) => <SettingsPage/>}/>
         <SecuredRoute exact path = '/admin/analytics' component={AdminAnalyticsPage} />
       </div>
