@@ -1,5 +1,5 @@
 const express = require('express');
-const { School, User } = require('../../Models');
+const { School, User, House } = require('../../Models');
 const router = express.Router();
 const { protectEndPoint } = require('../../auth/jwt');
 const houses = require('./houses');
@@ -8,6 +8,7 @@ router.get('/', async function(req, res) {
   const sequelize = User.sequelize;
   try {
     const schools = await School.findAll({
+<<<<<<< HEAD
       // include: [
       //   {
       //     model: User,
@@ -25,6 +26,26 @@ router.get('/', async function(req, res) {
       //     ],
       //   },
       // ],
+=======
+      include: [
+        House
+        // {
+        //   model: User,
+        //   attributes: [
+        //     [
+        //       sequelize.fn(
+        //         'concat',
+        //         sequelize.col('firstName'),
+        //         ' ',
+        //         sequelize.col('lastName')
+        //       ),
+        //       'name',
+        //     ],
+        //     'email',
+        //   ],
+        // },
+      ],
+>>>>>>> a9de6200b4c35e95b9131397c86f586607325788
     });
     return res.json({
       status: true,
@@ -53,11 +74,15 @@ router.get('/:id', async function(req, res) {
   }
 });
 
-router.post('/',  async function(req, res) {
+router.post('/', async function(req, res) {
   try {
     // const user = await User.findOne({
     //   where: {
+<<<<<<< HEAD
     //     email: req.user.email,
+=======
+    //     email: req.user.name,
+>>>>>>> a9de6200b4c35e95b9131397c86f586607325788
     //   },
     // });
 

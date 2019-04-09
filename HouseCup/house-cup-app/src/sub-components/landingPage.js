@@ -10,7 +10,7 @@ import { ReactComponent as IconCastle } from '../images/castle.svg';
 import { TweenMax, Linear } from "gsap/all";
 
 import schoolsTestData from '../mock data/schools';
-import auth from '../Auth';
+import auth from '../auth';
 
 class LandingPage extends React.Component {
     constructor(props) {
@@ -110,6 +110,15 @@ class LandingPage extends React.Component {
                                     <IconCastle className='castle' />
                                     <h2 className='school' >{school.name}</h2>
                                 </div>
+                            )
+                        })}
+                    </div>
+                    <h2 className='school-search'>Find your school's Public Page!</h2>
+                    <input className='school-search-inputt' placeholder='search for schools here'></input>
+                    <div>
+                        {this.props.schoolsSelected.map((x) => {
+                            return (
+                                <ul>-{x.name}</ul>
                             )
                         })}
                     </div>

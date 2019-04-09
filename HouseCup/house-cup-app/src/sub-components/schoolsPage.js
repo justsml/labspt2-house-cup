@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import schoolsTestData from '../mock data/schools';
 import SideMenu from './sideMenu';
+import schoolsTestData from '../mock data/schools';
+import axios from 'axios';
 import Select from 'react-select';
 import chroma from 'chroma-js';
 import colorOptions from './ColorOptions';
@@ -10,13 +11,20 @@ class SchoolsPage extends Component {
         super(props);
         this.state = {
             schoolsList: [],
-            houseList: []
+            houseList: [],
+            newSchoolName: '',
+            newSchoolCity: '',
         }
     }
     componentDidMount() {
         this.setState({
             schoolsList: schoolsTestData
-        })
+        });
+        // axios.get('')
+    }
+    handleSchoolInput = (e) => {
+        // console.log([e.target.value]);
+        this.setState({[e.target.name]: e.target.value})
     }
 
     dot = (color = '#ccc') => ({
@@ -60,6 +68,10 @@ class SchoolsPage extends Component {
         return (
             <div className='schools-page'>
                 <SideMenu {...this.props} />
+                <div className='schools-container'>
+                    <div className='add-school-container'>
+                        <h2>Add New School:</h2>
+                        {/* <form className="add-school-form">
                 <div className='schools-page-container'>
                     <div className='add-school-container'>
                         <h2>Add New School</h2>
@@ -83,23 +95,30 @@ class SchoolsPage extends Component {
                                 // onChange={props.handleInput}
                                 placeholder="House Name"
                             />
-                            <Select
+                            <button>Save</button>
+                        </form> */}
+                        <div className='add-school-inputs'>
+                            <input className='schoolName' placeholder='name' name='newSchoolName' onChange={this.handleSchoolInput}></input>
+                            <input className='schoolCity' placeholder='city' name='newSchoolCity' onChange={this.handleSchoolInput}></input>
+                            <button onClick={this.addSchool}><b>+ Add School +</b></button>
+                        </div>
+                            {/* <Select
                                 defaultValue={colorOptions[2]}
                                 label="Single select"
                                 options={colorOptions}
                                 styles={this.colorStyles}
                             />
-                            <button>Save</button>
-                        </form>
+                            <button>Save</button> */}
+                        
                     </div>
                     <div className='schools-list'>
                         {this.state.schoolsList.map((school) => {
                             return (
-                                <div>
-                                    <h2>{school.name}</h2>
-                                    <div>{school.houses.map((house) => {
+                                <div className='school-card'>
+                                    <h2 className='school-name'>{school.name}</h2>
+                                    <div className='house-list'>{school.houses.map((house) => {
                                         return (
-                                            <h3>{house}</h3>
+                                            <h3 className='house'>{house}</h3>
                                         )
                                     })}</div>
                                 </div>
