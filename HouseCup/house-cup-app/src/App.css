@@ -149,6 +149,7 @@ html {
   display: flex;
   flex-direction: column;
   width: 100%;
+  overflow: hidden;
 }
 .landing-page .landing-page-block-3 .checkout {
   margin: 50px 0 80px 0;
@@ -165,7 +166,7 @@ html {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin-left: 400px;
+  margin-left: 200px;
 }
 .landing-page .landing-page-block-3 .schools-list .school-box .school {
   margin-top: 0;
@@ -499,12 +500,89 @@ html {
   flex-direction: column;
   width: 100%;
 }
-
-
-/********************
-  Analytics Page - graphs
-*********************/
-.graphs {
-   max-width:100%;
-   padding: 0px;
-}  
+@media (max-width: 800px) {
+  display: flex;
+  flex-direction: column;
+  .landing-page-block {
+    display: flex;
+    flex-direction: column;
+  }
+  .landing-page-block-1 {
+    min-height: 750px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .landing-page-block-1 .jumbo-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 50px;
+  }
+  .landing-page-block-1 .jumbo-container .jumbo-1 {
+    font-size: 2rem;
+    color: #DA2E05;
+    font-family: 'BigJohnPRO-Regular';
+  }
+  .landing-page-block-1 .jumbo-container .jumbo-title {
+    font-size: 4rem;
+    margin: 0;
+    font-family: 'BigJohnPRO-Bold';
+    font-weight: 100;
+    color: #323232;
+  }
+  .landing-page-block-1 .landing-img {
+    width: 400px;
+  }
+  .landing-page-block-2 {
+    align-items: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .landing-page-block-2 .feature {
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 50px;
+  }
+  .landing-page-block-2 .icon {
+    width: 60px;
+    fill: white;
+  }
+  .landing-page-block-2 .feature-txt {
+    margin-left: 20px;
+    margin-top: 40px;
+    font-size: 2.6rem;
+    font-weight: 300;
+    font-family: 'BigJohnPRO-Regular';
+    color: #F1EFEA;
+  }
+  .landing-page-block-3 {
+    align-items: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .landing-page-block-3 .schools-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .landing-page-block-4 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .landing-page-block-4 .review-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .landing-page-block-4 .review-user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
