@@ -21,6 +21,14 @@ const Payment = styled.div`
       font-size:16px;
       text-align:center;
     }
+        @media (max-width:800px) {
+         flex-direction:column;
+         max-width:90%;
+         height: 150px;
+         padding:40px;
+
+                
+      }
 `;
 
 export default Payment;
