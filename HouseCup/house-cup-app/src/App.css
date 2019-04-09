@@ -717,7 +717,7 @@ button:hover {
           width: 75%;
         }
         .schools-page .schools-container .schools-list {
-          border: 5px solid blue;
+          /* border: 5px solid blue; */
           display: flex;
           flex-wrap: wrap;
           justify-content: space-evenly;
@@ -743,7 +743,7 @@ button:hover {
             text-decoration: underline;
           }
           .schools-page .schools-container .schools-list .school-card .house-list {
-            border: 1px solid red;
+            /* border: 1px solid red; */
             border-radius: 10px;
             display: flex;
             flex-direction: column;

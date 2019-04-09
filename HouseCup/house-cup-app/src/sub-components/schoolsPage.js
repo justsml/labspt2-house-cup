@@ -71,45 +71,20 @@ class SchoolsPage extends Component {
                 <div className='schools-container'>
                     <div className='add-school-container'>
                         <h2>Add New School:</h2>
-                        {/* <form className="add-school-form">
-                <div className='schools-page-container'>
-                    <div className='add-school-container'>
-                        <h2>Add New School</h2>
-                        <form className="add-school-form">
-                            <input
-                                className="school-name"
-                                type="text"
-                                name="school"
-                                // value={value}
-                                // onChange={props.handleInput}
-                                placeholder="School Name"
-                            />
-                            <button>Save</button>
-                        </form>
-                        <form className="add-House-form">
-                            <input
-                                className="house-name"
-                                type="text"
-                                name="house"
-                                // value={value}
-                                // onChange={props.handleInput}
-                                placeholder="House Name"
-                            />
-                            <button>Save</button>
-                        </form> */}
                         <div className='add-school-inputs'>
                             <input className='schoolName' placeholder='name' name='newSchoolName' onChange={this.handleSchoolInput}></input>
                             <input className='schoolCity' placeholder='city' name='newSchoolCity' onChange={this.handleSchoolInput}></input>
                             <button onClick={this.addSchool}><b>+ Add School +</b></button>
                         </div>
-                            <Select
+                            {/* had too temporarily comment out lines 81-87 for Sprint fufillment 4/7/19. */}
+                            {/* @Louis what is this for?? */}
+                            {/* <Select
                                 defaultValue={colorOptions[2]}
                                 label="Single select"
                                 options={colorOptions}
                                 styles={this.colorStyles}
                             />
-                            <button>Save</button>
-                        </form>
+                            <button>Save</button> */}
                     </div>
                     <div className='schools-list'>
                         {this.state.schoolsList.map((school) => {
