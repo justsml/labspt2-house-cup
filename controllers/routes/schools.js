@@ -1,5 +1,5 @@
 const express = require('express');
-const { School, User } = require('../../Models');
+const { School, User, House } = require('../../Models');
 const router = express.Router();
 const { protectEndPoint } = require('../../auth/jwt');
 const houses = require('./houses');
@@ -9,21 +9,22 @@ router.get('/', async function(req, res) {
   try {
     const schools = await School.findAll({
       include: [
-        {
-          model: User,
-          attributes: [
-            [
-              sequelize.fn(
-                'concat',
-                sequelize.col('firstName'),
-                ' ',
-                sequelize.col('lastName')
-              ),
-              'name',
-            ],
-            'email',
-          ],
-        },
+        House
+        // {
+        //   model: User,
+        //   attributes: [
+        //     [
+        //       sequelize.fn(
+        //         'concat',
+        //         sequelize.col('firstName'),
+        //         ' ',
+        //         sequelize.col('lastName')
+        //       ),
+        //       'name',
+        //     ],
+        //     'email',
+        //   ],
+        // },
       ],
     });
     return res.json({
@@ -53,17 +54,17 @@ router.get('/:id', async function(req, res) {
   }
 });
 
-router.post('/',  async function(req, res) {
+router.post('/', async function(req, res) {
   try {
-    const user = await User.findOne({
-      where: {
-        email: req.user.email,
-      },
-    });
+    // const user = await User.findOne({
+    //   where: {
+    //     email: req.user.name,
+    //   },
+    // });
 
     const newSchool = await School.create({
       ...req.body,
-      userId: user.id,
+      // userId: user.id,
     });
 
     const newSchool = await user.addSchool(req.body);
