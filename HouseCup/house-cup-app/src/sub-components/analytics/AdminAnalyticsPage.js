@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import Chart from "react-google-charts";
 import Graph from '../Styles/Graphs.js';
+import SideMenu from '../sideMenu.js';
 
 export default class AdminAnalyticsPage extends Component {
   constructor(props) {
     super(props);
      this.state ={
+       years: ['2008-09', '2009-2010', '2010-2011','2011-12','2012-13','2013-14', '2014-15', '2015-16'],
        data:[
         ['x', 'H1', 'H2', 'H3', 'H4'],
         [0, 0,  0, 0,  0],
@@ -43,21 +45,37 @@ export default class AdminAnalyticsPage extends Component {
     })
   }
 
-  componentDidMount() {
+componentDidMount() {
     window.addEventListener('resize', this.renderGraphs);
+ }
+ 
+ componentUpdate() {
+   window.addEventListener('resize', this.renderGraphs);
  }
   render() {
     return (
-      <div className="graphs">
-       <Graph>
-         <Chart 
-          chartType="LineChart"
-          data={this.state.data}
-          options={this.state.options}
-          width={"100%"}
-          height={"600px"}
-          />
-      </Graph>    
+      <div className="analytics">
+        <SideMenu />
+        <div className="graphs">
+          <Graph>
+            <form className="select" onSubmit={this.handleSubmit}>
+              <select value={this.state.value} onChange={this.handleChange}>
+                    <option value="grapefruit">Grapefruit</option>
+                    <option value="lime">Lime</option>
+                    <option value="coconut">Coconut</option>
+                    <option value="mango">Mango</option>
+                </select>      
+            </form>
+            <Chart 
+                chartType="LineChart"
+                data={this.state.data}
+                options={this.state.options}
+                className="chart"
+                width={"800px"}
+                height={"480px"}
+            />
+          </Graph>    
+        </div>
       </div>
     )
   }
