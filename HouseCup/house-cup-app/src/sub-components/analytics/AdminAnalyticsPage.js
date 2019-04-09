@@ -71,7 +71,7 @@ componentDidMount() {
                 data={this.state.data}
                 options={this.state.options}
                 className="chart"
-                width={"800px"}
+                max-width={"100%"}
                 height={"480px"}
             />
           </Graph>    
