@@ -57,15 +57,15 @@ componentDidMount() {
       <div className="analytics">
         <SideMenu />
         <div className="graphs">
-          <Graph>
-            <form className="select" onSubmit={this.handleSubmit}>
+          <form className="select" onSubmit={this.handleSubmit}>
               <select value={this.state.value} onChange={this.handleChange}>
-                    <option value="grapefruit">Grapefruit</option>
-                    <option value="lime">Lime</option>
-                    <option value="coconut">Coconut</option>
-                    <option value="mango">Mango</option>
+                    <option value="2015-16">2015-16</option>
+                    <option value="2015-16">2015-16</option>
+                    <option value="2016-17">2016-17</option>
+                    <option value="2017-18">2017-18</option>
                 </select>      
             </form>
+          <Graph>
             <Chart 
                 chartType="LineChart"
                 data={this.state.data}
