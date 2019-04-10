@@ -4,6 +4,10 @@ import Dumbledore from '../images/dumbledore.jpg';
 import { ReactComponent as IconPhone } from '../images/icon-phone.svg';
 import { ReactComponent as IconChart } from '../images/icon-chart.svg';
 import { ReactComponent as IconTeacher } from '../images/icon-teacher.svg';
+import { ReactComponent as IconCastle } from '../images/castle.svg';
+
+//GSAP import
+import { TweenMax, Linear } from "gsap/all";
 
 import schoolsTestData from '../mock data/schools';
 import auth from '../auth';
@@ -21,9 +25,19 @@ class LandingPage extends React.Component {
     componentDidMount() {
         this.setState({
             schoolsList: schoolsTestData
-        })
-        
+        });
+        TweenMax.fromTo(".school-box", 2, { x: -1680 }, {
+            x: "+=2600", //move each box 500px to right
+            ease: Linear.easeNone,
+            modifiers: {
+                x: function (x) {
+                    return x % 2600; //force x value to be between 0 and 500 using modulus
+                }
+            },
+            repeat: -1
+        });
     }
+
     handleInput = e => {
         this.setState({
             [e.target.name]: e.target.value
@@ -74,9 +88,8 @@ class LandingPage extends React.Component {
                     <img src={LandingImg} alt="loginImg" className="landing-img" />
                 </div>
                 <div className='landing-page-block landing-page-block-2'>
-                    <div className='feature-1 feature'>
+                    <div className='feature-1 feature' >
                         <IconPhone className='icon' />
-                        {/* <svg src={IconPhone} alt="dumbledore" className="icon icon-phone" /> */}
                         <span className='feature-txt'>View your house scoreboard anytime, anywhere</span>
                     </div>
                     <div className='feature-2 feature'>
@@ -90,10 +103,13 @@ class LandingPage extends React.Component {
                 </div>
                 <div className='landing-page-block landing-page-block-3'>
                     <h2 className='checkout'>Check out the top-tier schools we work with</h2>
-                    <div className='schools-list'>
+                    <div className='schools-list' >
                         {this.state.schoolsList.map((school) => {
                             return (
-                                <h2 className='school'>{school.name}</h2>
+                                <div className={`school-box school-box-${school.id}`} >
+                                    <IconCastle className='castle' />
+                                    <h2 className='school' >{school.name}</h2>
+                                </div>
                             )
                         })}
                     </div>
@@ -122,7 +138,9 @@ class LandingPage extends React.Component {
                 </div>
             </div>
         )
+
     }
+
 }
 
 export default LandingPage;
