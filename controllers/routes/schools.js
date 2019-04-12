@@ -8,25 +8,6 @@ router.get('/', async function(req, res) {
   const sequelize = User.sequelize;
   try {
     const schools = await School.findAll({
-<<<<<<< HEAD
-      // include: [
-      //   {
-      //     model: User,
-      //     attributes: [
-      //       [
-      //         sequelize.fn(
-      //           'concat',
-      //           sequelize.col('firstName'),
-      //           ' ',
-      //           sequelize.col('lastName')
-      //         ),
-      //         'name',
-      //       ],
-      //       'email',
-      //     ],
-      //   },
-      // ],
-=======
       include: [
         House
         // {
@@ -45,7 +26,6 @@ router.get('/', async function(req, res) {
         //   ],
         // },
       ],
->>>>>>> a9de6200b4c35e95b9131397c86f586607325788
     });
     return res.json({
       status: true,
@@ -78,11 +58,7 @@ router.post('/', async function(req, res) {
   try {
     // const user = await User.findOne({
     //   where: {
-<<<<<<< HEAD
-    //     email: req.user.email,
-=======
     //     email: req.user.name,
->>>>>>> a9de6200b4c35e95b9131397c86f586607325788
     //   },
     // });
 
@@ -103,6 +79,7 @@ router.post('/', async function(req, res) {
     next({ ...err, code: 500 });
   }
 });
+
 
 // Add school routes above this  line
 // nested route
