@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import SideMenu from './sideMenu';
+import SideMenu from './SideMenu';
 import schoolsTestData from '../mock data/schools';
-import axios from 'axios';
 import Select from 'react-select';
 import chroma from 'chroma-js';
 import colorOptions from './ColorOptions';

@@ -1,7 +1,6 @@
 import React from 'react';
-import SideMenu from './sideMenu';
+import SideMenu from './SideMenu';
 import axios from 'axios';
-import auth from '../auth';
 
 class AdminMainPage extends React.Component {
     constructor(props) {

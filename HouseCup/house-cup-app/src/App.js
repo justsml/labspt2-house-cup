@@ -4,28 +4,19 @@ import axios from 'axios';
 
 import { Route } from 'react-router-dom';
 //landingPage imports:
-import LandingPage from './sub-components/landingPage'
-//publicPage import(s):
-import PublicPage from './sub-components/publicPage';
-
+import LandingPage from './sub-components/LandingPage'
 
 //test data:
 import scoreboardTestData from './mock data/scoreboard';
-import testSchoolData from './mock data/schools';
-
 
 //Admin import(s):
-import AdminMainPage from './sub-components/adminMainPage';
-
-//Billings import(s):
-// import BillingPage from './sub-components/billingPage';
+import AdminMainPage from './sub-components/AdminMainPage';
 
 //Settings import(s):
-import SettingsPage from './sub-components/settingsPage';
+import SettingsPage from './sub-components/SettingsPage';
 
 //SignupPage import
-import SignupPage from './sub-components/signupPage';
-import SchoolsPage from './sub-components/schoolsPage';
+import SchoolsPage from './sub-components/SchoolsPage';
 
 //adminAnalyticsPage
 import AdminAnalyticsPage from './sub-components/analytics/AdminAnalyticsPage';
@@ -36,11 +27,10 @@ import Callback from './Callback.js';
 import SecuredRoute from './sub-components/SecuredRoute';
 //Auth0.js
 // import NavBar from './sub-components/NavBar';
-import BillingPage from './sub-components/billingPage';
+import BillingPage from './sub-components/BillingPage';
 //About.js
 import About from './sub-components/About';
 
-import auth from './auth.js';
 import schoolsTestData from './mock data/schools';
 
 

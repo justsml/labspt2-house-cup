@@ -10,7 +10,7 @@ import { ReactComponent as IconCastle } from '../images/castle.svg';
 import { TweenMax, Linear } from "gsap/all";
 
 import schoolsTestData from '../mock data/schools';
-import auth from '../auth';
+import auth from '../Auth';
 
 class LandingPage extends React.Component {
     constructor(props) {
@@ -20,22 +20,14 @@ class LandingPage extends React.Component {
             password: "",
             schoolsList: [],
         };
+        this.myElements = [];
     }
 
     componentDidMount() {
         this.setState({
             schoolsList: schoolsTestData
         });
-        TweenMax.fromTo(".school-box", 2, { x: -1680 }, {
-            x: "+=2600", //move each box 500px to right
-            ease: Linear.easeNone,
-            modifiers: {
-                x: function (x) {
-                    return x % 2600; //force x value to be between 0 and 500 using modulus
-                }
-            },
-            repeat: -1
-        });
+        TweenMax.fromTo(this.myElements, 2, { x: -200 }, { x: 800, ease: Linear.easeNone, repeat: -1 });
     }
 
     handleInput = e => {
@@ -102,11 +94,15 @@ class LandingPage extends React.Component {
                     </div>
                 </div>
                 <div className='landing-page-block landing-page-block-3'>
-                    <h2 className='checkout'>Check out the top-tier schools we work with</h2>
+                    <h2 className='checkout' >Check out the top-tier schools we work with</h2>
                     <div className='schools-list' >
                         {this.state.schoolsList.map((school) => {
                             return (
-                                <div className={`school-box school-box-${school.id}`} >
+                                <div
+                                    key={school.id}
+                                    className={`school-box school-box-${school.id}`}
+                                    ref={div => this.myElements[school.id - 1] = div}
+                                >
                                     <IconCastle className='castle' />
                                     <h2 className='school' >{school.name}</h2>
                                 </div>

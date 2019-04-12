@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
-import auth from '../auth';
+import auth from '../Auth';
 
-class sideMenu extends React.Component {
+class SideMenu extends React.Component {
 
     logout = () => {
         auth.logout();
@@ -43,4 +43,4 @@ class sideMenu extends React.Component {
     }
 }
 
-export default sideMenu;
+export default SideMenu;

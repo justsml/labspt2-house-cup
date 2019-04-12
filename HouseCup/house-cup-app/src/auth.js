@@ -1,5 +1,4 @@
 import auth0 from 'auth0-js';
-import React from 'react';
 import axios from 'axios';
 
 
