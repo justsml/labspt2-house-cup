@@ -8,25 +8,13 @@ router.get('/', async function(req, res) {
   const sequelize = User.sequelize;
   try {
     const schools = await School.findAll({
-      include: [
-        House
-        // {
-        //   model: User,
-        //   attributes: [
-        //     [
-        //       sequelize.fn(
-        //         'concat',
-        //         sequelize.col('firstName'),
-        //         ' ',
-        //         sequelize.col('lastName')
-        //       ),
-        //       'name',
-        //     ],
-        //     'email',
-        //   ],
-        // },
-      ],
+      include: [{ model: User, include:[House] }],
+      attributes: [
+          [ sequelize.fn( 'concat',  sequelize.col('firstName'), ' ', sequelize.col('lastName') ),'name', 'email']
+                ],         
+    
     });
+
     return res.json({
       status: true,
       data: {
@@ -54,21 +42,20 @@ router.get('/:id', async function(req, res) {
   }
 });
 
-router.post('/', async function(req, res) {
+router.post('/',  protectEndPoint, async function(req, res) {
   try {
-    // const user = await User.findOne({
-    //   where: {
-    //     email: req.user.name,
-    //   },
-    // });
-
+    const user = await User.findOne({
+      where: {
+        email: req.user.email,
+      },
+    });
+    console.log(`Line 52`, req.user.email);
     const newSchool = await School.create({
       ...req.body,
-      // userId: user.id,
+      userId: user.id,
     });
 
-    const newSchool = await user.addSchool(req.body);
-    res.status(201).json({
+   res.status(201).json({
       status: true,
       data: {
         newSchool,

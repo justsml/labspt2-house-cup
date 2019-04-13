@@ -6,24 +6,24 @@ const router = express.Router({
 const { protectEndPoint } = require('../../auth/jwt');
 const _ = require('lodash');
 
-router.get('/', async function(req, res, next) {
+router.get('/', protectEndPoint, async function(req, res, next) {
   try {
-    // const school = await School.findByPk(req.params.id);
-    // const user = await User.findOne({
-    //   where: {
-    //     email: req.User.email,
-    //   },
-    // });
+    const school = await School.findByPk(req.params.id);
+    const user = await User.findOne({
+      where: {
+        email: req.user.email,
+      },
+    });
 
-    // if (Number(school.userId) !== Number(user.id)) {
-    //   return res.status(403).json({
-    //     message: 'You are not authorized to make changes to this school. ',
-    //   });
-    // }
-    // const houses = await school.getHouses();
-    // res.json(houses);
+    if (Number(school.userId) !== Number(user.id)) {
+      return res.status(403).json({
+        message: 'You are not authorized to make changes to this school. ',
+      });
+    }
+    const houses = await school.getHouses();
+    res.json(houses);
     const houses = await House.findAll({
-      // attributes: ["name", "points", "color"]
+      attributes: ["name", "points", "color"]
     });
     return res.json({
         status: true,
@@ -54,22 +54,22 @@ router.get('/:houseId', async function(req, res) {
   res.json(house);
 });
 
-router.post('/', async function(req, res, next) {
+router.post('/', protectEndPoint, async function(req, res, next) {
   try {
-    // const school = await School.findByPk(req.params.id);
-    // const user = await User.findOne({
-    //   where: {
-    //     email: req.user.email,
-    //   },
-    // });
+    const school = await School.findByPk(req.params.id);
+    const user = await User.findOne({
+      where: {
+        email: req.user.email,
+      },
+    });
 
-    // if (Number(school.userId) !== Number(user.id)) {
-    //   return res.status(403).json({
-    //     message: 'You are not authorized to make changes to this school. ',
-    //   });
-    // }
-    // const newHouse = await school.createHouse(req.body);
-    // res.json(newHouse);
+    if (Number(school.userId) !== Number(user.id)) {
+      return res.status(403).json({
+        message: 'You are not authorized to make changes to this school. ',
+      });
+    }
+    const newHouse = await school.createHouse(req.body);
+    res.json(newHouse);
 
     const newHouse = await House.findOrCreate({
       where: {
