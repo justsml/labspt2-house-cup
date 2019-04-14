@@ -4,6 +4,7 @@ const router = express.Router();
 const { protectEndPoint } = require('../../auth/jwt');
 const houses = require('./houses');
 
+
 router.get('/', async function(req, res) {
   const sequelize = User.sequelize;
   try {
@@ -65,6 +66,33 @@ router.post('/',  protectEndPoint, async function(req, res) {
     console.log(err);
     next({ ...err, code: 500 });
   }
+});
+
+//Delete schools
+router.delete('/:id', protectEndPoint,  async function(req, res, next) {
+  const school = await School.findByPk(req.params.id, {
+    include: [ {
+      model: House
+      
+    },   
+        ],
+  });
+  
+  const loggedInUser = await User.findOne({
+    where: {   email: req.user.email },
+  });
+
+  if (!loggedInUser) return next({ code: 403 });
+
+  if (Number(loggedInUser.id) !== Number(_.get(school, 'school.user.id'))) {
+    return res.status(403).json({
+      message: 'You are not authorized to make changes to this school. ',
+    });
+  }
+  await school.destroy();
+  res.status(200).json({msg:`The school with ${req.params.id} has been deleted`});
+    //  res.status(200).json(school);
+  next();
 });
 
 
