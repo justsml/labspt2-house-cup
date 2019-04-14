@@ -6,9 +6,9 @@ POST http://localhost:5000/users/register HTTP/1.1
 Content-Type: application/json
 
 {
-  "firstName": "ash",
-  "lastName": "s",
-  "email": "ash@aol.com",
+  "firstName": "venky",
+  "lastName": "venky",
+  "email": "venky@aol.com",
   "password": "12345"
 }
 
@@ -18,67 +18,67 @@ POST http://localhost:5000/users/login HTTP/1.1
 Content-Type: application/json
 
 {
-  "email": "ash@aol.com",
+  "email": "venky@aol.com",
   "password": "12345"
 }
 
 ###
 
 GET http://localhost:5000/schools HTTP/1.1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzaEBhb2wuY29tIiwiaWF0IjoxNTU1MjI1MDA4LCJleHAiOjE1NTUyMjg2MDgsImp0aSI6Ijc5MDQxMWEwLTVlODItMTFlOS05MjNhLWRiYTcyZDM0OGI0ZCJ9.8T31J4ZlcZo87ooH4ZCQ3RKE7CRx7thC0L0JXsWgDtQ
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZlbmt5QGFvbC5jb20iLCJpYXQiOjE1NTUyNTY4NjYsImV4cCI6MTU1NTI2MDQ2NiwianRpIjoiYTVkZjEyNzAtNWVjYy0xMWU5LWJmNDItNzc4ZWYzNzFiOGY3In0.GYisOHnSdFL4sZN-Ge3iAqq4FWAAUXYz7TldNjI0o64
 
 ###
 POST http://localhost:5000/schools HTTP/1.1
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzaEBhb2wuY29tIiwiaWF0IjoxNTU1MjI1MDA4LCJleHAiOjE1NTUyMjg2MDgsImp0aSI6Ijc5MDQxMWEwLTVlODItMTFlOS05MjNhLWRiYTcyZDM0OGI0ZCJ9.8T31J4ZlcZo87ooH4ZCQ3RKE7CRx7thC0L0JXsWgDtQ
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZlbmt5QGFvbC5jb20iLCJpYXQiOjE1NTUyNTY4NjYsImV4cCI6MTU1NTI2MDQ2NiwianRpIjoiYTVkZjEyNzAtNWVjYy0xMWU5LWJmNDItNzc4ZWYzNzFiOGY3In0.GYisOHnSdFL4sZN-Ge3iAqq4FWAAUXYz7TldNjI0o64
 
 {
-  "name": "School4",
-  "city": "Middle Earth"
+  "name": "High-Middle School",
+  "city": "Middle-East"
 }
 ###
 
-PUT http://localhost:5000/schools/1 HTTP/1.1
+PUT http://localhost:5000/schools/6 HTTP/1.1
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzaEBhb2wuY29tIiwiaWF0IjoxNTU1MjI1MDA4LCJleHAiOjE1NTUyMjg2MDgsImp0aSI6Ijc5MDQxMWEwLTVlODItMTFlOS05MjNhLWRiYTcyZDM0OGI0ZCJ9.8T31J4ZlcZo87ooH4ZCQ3RKE7CRx7thC0L0JXsWgDtQ
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZlbmt5QGFvbC5jb20iLCJpYXQiOjE1NTUyNTY4NjYsImV4cCI6MTU1NTI2MDQ2NiwianRpIjoiYTVkZjEyNzAtNWVjYy0xMWU5LWJmNDItNzc4ZWYzNzFiOGY3In0.GYisOHnSdFL4sZN-Ge3iAqq4FWAAUXYz7TldNjI0o64
 
 {
-  "name": "Changed Name"
+  "name": "High-Middle-Elementary"
 }
 
 ###
 
-DELETE http://localhost:5000/schools/3 HTTP/1.1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzaEBhb2wuY29tIiwiaWF0IjoxNTU1MjI1MDA4LCJleHAiOjE1NTUyMjg2MDgsImp0aSI6Ijc5MDQxMWEwLTVlODItMTFlOS05MjNhLWRiYTcyZDM0OGI0ZCJ9.8T31J4ZlcZo87ooH4ZCQ3RKE7CRx7thC0L0JXsWgDtQ
+DELETE http://localhost:5000/schools/6 HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZlbmt5QGFvbC5jb20iLCJpYXQiOjE1NTUyNTY4NjYsImV4cCI6MTU1NTI2MDQ2NiwianRpIjoiYTVkZjEyNzAtNWVjYy0xMWU5LWJmNDItNzc4ZWYzNzFiOGY3In0.GYisOHnSdFL4sZN-Ge3iAqq4FWAAUXYz7TldNjI0o64
 
 ###
 
 #eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZlbmthdEBhb2wuY29tIiwiaWF0IjoxNTUxOTI2OTUxLCJleHAiOjE1NTE5MzA1NTEsImp0aSI6Ijk2MzQzYzkwLTQwODMtMTFlOS04MzBhLTIxYjI1Y2JhNTM5MyJ9.gndkUhxSc_eupks143OxTsxoxk8vZvzwuf9QRFuZw6s
 
 
-GET http://localhost:5000/schools/1/houses HTTP/1.1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzaEBhb2wuY29tIiwiaWF0IjoxNTU1MjI1MDA4LCJleHAiOjE1NTUyMjg2MDgsImp0aSI6Ijc5MDQxMWEwLTVlODItMTFlOS05MjNhLWRiYTcyZDM0OGI0ZCJ9.8T31J4ZlcZo87ooH4ZCQ3RKE7CRx7thC0L0JXsWgDtQ
+GET http://localhost:5000/schools/5/houses HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZlbmt5QGFvbC5jb20iLCJpYXQiOjE1NTUyNTY4NjYsImV4cCI6MTU1NTI2MDQ2NiwianRpIjoiYTVkZjEyNzAtNWVjYy0xMWU5LWJmNDItNzc4ZWYzNzFiOGY3In0.GYisOHnSdFL4sZN-Ge3iAqq4FWAAUXYz7TldNjI0o64
 
 ###
 
-GET http://localhost:5000/schools/1/houses/1 HTTP/1.1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzaEBhb2wuY29tIiwiaWF0IjoxNTUzMTMxODkyLCJleHAiOjE1NTMxMzU0OTIsImp0aSI6IjBmMDViOGIwLTRiNzktMTFlOS04OWNhLWEzYjEzNmM2NGM2OSJ9.refNrg38gfMBXB_64-7XvZeFjB7aX0SlvwBN8lnhdqU
+GET http://localhost:5000/schools/5/houses/1 HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZlbmt5QGFvbC5jb20iLCJpYXQiOjE1NTUyNTY4NjYsImV4cCI6MTU1NTI2MDQ2NiwianRpIjoiYTVkZjEyNzAtNWVjYy0xMWU5LWJmNDItNzc4ZWYzNzFiOGY3In0.GYisOHnSdFL4sZN-Ge3iAqq4FWAAUXYz7TldNjI0o64
 
 ###
 
-POST http://localhost:5000/schools/1/houses HTTP/1.1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzaEBhb2wuY29tIiwiaWF0IjoxNTU1MjI1MDA4LCJleHAiOjE1NTUyMjg2MDgsImp0aSI6Ijc5MDQxMWEwLTVlODItMTFlOS05MjNhLWRiYTcyZDM0OGI0ZCJ9.8T31J4ZlcZo87ooH4ZCQ3RKE7CRx7thC0L0JXsWgDtQ
+POST http://localhost:5000/schools/5/houses HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZlbmt5QGFvbC5jb20iLCJpYXQiOjE1NTUyNTY4NjYsImV4cCI6MTU1NTI2MDQ2NiwianRpIjoiYTVkZjEyNzAtNWVjYy0xMWU5LWJmNDItNzc4ZWYzNzFiOGY3In0.GYisOHnSdFL4sZN-Ge3iAqq4FWAAUXYz7TldNjI0o64
 Content-Type: application/json
 
 {
-  "name": "Slytherin",
-  "color": "red"
+  "name": "House-AB",
+  "color": "Maroon"
 }
 
 ###
 
 PUT http://localhost:5000/schools/1/houses/1 HTTP/1.1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzaEBhb2wuY29tIiwiaWF0IjoxNTU1MjI1MDA4LCJleHAiOjE1NTUyMjg2MDgsImp0aSI6Ijc5MDQxMWEwLTVlODItMTFlOS05MjNhLWRiYTcyZDM0OGI0ZCJ9.8T31J4ZlcZo87ooH4ZCQ3RKE7CRx7thC0L0JXsWgDtQ
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZlbmt5QGFvbC5jb20iLCJpYXQiOjE1NTUyNTY4NjYsImV4cCI6MTU1NTI2MDQ2NiwianRpIjoiYTVkZjEyNzAtNWVjYy0xMWU5LWJmNDItNzc4ZWYzNzFiOGY3In0.GYisOHnSdFL4sZN-Ge3iAqq4FWAAUXYz7TldNjI0o64
 Content-Type: application/json
 
 {
@@ -88,6 +88,6 @@ Content-Type: application/json
 ###
 
 DELETE  http://localhost:5000/schools/1/houses/2 HTTP/1.1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzaEBhb2wuY29tIiwiaWF0IjoxNTU1MjI1MDA4LCJleHAiOjE1NTUyMjg2MDgsImp0aSI6Ijc5MDQxMWEwLTVlODItMTFlOS05MjNhLWRiYTcyZDM0OGI0ZCJ9.8T31J4ZlcZo87ooH4ZCQ3RKE7CRx7thC0L0JXsWgDtQ
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZlbmt5QGFvbC5jb20iLCJpYXQiOjE1NTUyNTY4NjYsImV4cCI6MTU1NTI2MDQ2NiwianRpIjoiYTVkZjEyNzAtNWVjYy0xMWU5LWJmNDItNzc4ZWYzNzFiOGY3In0.GYisOHnSdFL4sZN-Ge3iAqq4FWAAUXYz7TldNjI0o64
 
 ###
