@@ -101,13 +101,13 @@ class SchoolsPage extends Component {
                             <input className='schoolCity' placeholder='city' name='newSchoolCity' onChange={this.handleSchoolInput}></input>
                             <button onClick={this.addSchool}><b>+ Add School +</b></button>
                         </div>
-                            {/* <Select
+                            <Select
                                 defaultValue={colorOptions[2]}
                                 label="Single select"
                                 options={colorOptions}
                                 styles={this.colorStyles}
                             />
-                            <button>Save</button> */}
+                            <button>Save</button>
                         
                     </div>
                     <div className='schools-list'>

@@ -27,7 +27,7 @@ class LandingPage extends React.Component {
         this.setState({
             schoolsList: schoolsTestData
         });
-        TweenMax.fromTo(this.myElements, 2, { x: -200 }, { x: 800, ease: Linear.easeNone, repeat: -1 });
+        // TweenMax.fromTo(this.myElements, 2, { x: -200 }, { x: 800, ease: Linear.easeNone, repeat: -1 });
     }
 
     handleInput = e => {
@@ -110,7 +110,7 @@ class LandingPage extends React.Component {
                         })}
                     </div>
                     <h2 className='school-search'>Find your school's Public Page!</h2>
-                    <input className='school-search-inputt' placeholder='search for schools here'></input>
+                    <input className='school-search-input' placeholder='search for schools here'></input>
                     <div>
                         {this.props.schoolsSelected.map((x) => {
                             return (

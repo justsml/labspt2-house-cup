@@ -58,11 +58,7 @@ router.post('/', async function(req, res) {
   try {
     // const user = await User.findOne({
     //   where: {
-<<<<<<< HEAD
-    //     email: req.user.email,
-=======
     //     email: req.user.name,
->>>>>>> a9de6200b4c35e95b9131397c86f586607325788
     //   },
     // });
 
