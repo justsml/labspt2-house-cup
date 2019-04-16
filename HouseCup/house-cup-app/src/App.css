@@ -519,8 +519,8 @@ html {
   width: 100%;
 }
 @media (max-width: 800px) {
-  /* display: flex;
-  flex-direction: column; */
+  display: flex;
+  flex-direction: column;
   .landing-page-block {
     display: flex;
     flex-direction: column;

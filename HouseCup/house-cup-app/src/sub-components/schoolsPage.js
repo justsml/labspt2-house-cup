@@ -98,7 +98,7 @@ class SchoolsPage extends Component {
                         </form> */}
                         <div className='add-school-inputs'>
                             <input className='schoolName' placeholder='name' name='newSchoolName' onChange={this.handleSchoolInput}></input>
-                            <input className='schoolCity' placeholder='city' name='newSchoolCity' onChange={this.handleSchoolInput}></input>
+                            {/* <input className='schoolCity' placeholder='city' name='newSchoolCity' onChange={this.handleSchoolInput}></input> */}
                             <button onClick={this.addSchool}><b>+ Add School +</b></button>
                         </div>
                             <Select
