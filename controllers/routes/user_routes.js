@@ -37,8 +37,10 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/:id", (req, res) => {
-  const { id } = req.body;
-  Users.findById(id)
+  console.log('hello!', req.params.id);
+  const  id  = req.params.id;
+  // Users.findById(id)
+  User.findOne({where: {email: id} })
     .then(user => {
       if (user) {
         res.status(200).json({
@@ -48,7 +50,8 @@ router.get("/:id", (req, res) => {
           }
         });
       } else {
-        next({ code: 404 });
+        // next({ code: 404 });
+        console.error('get request by id failure!');
       }
     })
     .catch(err => {

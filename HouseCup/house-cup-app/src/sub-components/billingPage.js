@@ -9,7 +9,7 @@ const BillingPage = props => {
             {/* side page component goes here  */}
                 <SideMenu />
             {/* <div className='payment-section'> */}
-                <Payment >
+                <Payment className="payment">
                 <h1>House Cup Tracker</h1>
                 <span className='payment-premium-ad'>
                     For {props.premiumPrice} upgrade to a <b>premium</b> account with unlimited Houses and historical analytics.

@@ -5,27 +5,64 @@ import axios from 'axios';
 import Select from 'react-select';
 import chroma from 'chroma-js';
 import colorOptions from './ColorOptions';
+import auth from '../auth.js';
 
 class SchoolsPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
             schoolsList: [],
-            houseList: [],
+            authProfile: [],
+            authPassword: '',
             newSchoolName: '',
             newSchoolCity: '',
         }
     }
     componentDidMount() {
+        // this.setState({
+        //     schoolsList: schoolsTestData
+        // });
+        // auth.getProfile();
         this.setState({
-            schoolsList: schoolsTestData
+            authProfile: auth.getProfile()
         });
-        // axios.get('')
+        this.setState({
+            authPassword: auth.getIdToken()
+        });
+        console.log(this.props.match.params);
+        const userID = this.state.authProfile.email;
+        this.fetchUser(userID);
+    }
+    fetchUser = id => {
+        axios.get(`http://localhost:5000/users/${id}`)
+            .then(response => {
+                console.log('success!', response);
+                this.setState({
+                })
+            })
+            .catch(err => {
+                console.log('error!', err);
+                console.error(err);
+            })
     }
     handleSchoolInput = (e) => {
         // console.log([e.target.value]);
         this.setState({[e.target.name]: e.target.value})
     }
+    addSchool = e => {
+        axios.post('http://localhost:5000/users/register', {
+            email: this.state.authProfile.email,
+            password: this.state.authPassword,
+        })
+            .then(response => {
+                console.log(response);
+                // this.setState({
+                //     schoolsList: response.data.data
+                // })
+            })
+    }
+
+
 
     dot = (color = '#ccc') => ({
         alignItems: 'center',

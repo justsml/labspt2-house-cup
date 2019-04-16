@@ -6,13 +6,13 @@ function inputValidation(req, res, next) {
   const { firstName, lastName, email, password } = req.body;
   const missingFields = [];
 
-  if (!firstName) {
-    missingFields.push('firstName');
-  }
+  // if (!firstName) {
+  //   missingFields.push('firstName');
+  // }
 
-  if (!lastName) {
-    missingFields.push('lastName');
-  }
+  // if (!lastName) {
+  //   missingFields.push('lastName');
+  // }
 
   if (!email) {
     missingFields.push('email');

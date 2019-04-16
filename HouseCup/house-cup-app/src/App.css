@@ -577,7 +577,7 @@ button:hover {
    justify-content: space-between;
 }  
 /**************
- checkout button
+ checkout button - billing pay button
 ***************/ 
 .StripeCheckout span {
    background-color: rgb(224, 30, 89) !important;
@@ -601,6 +601,9 @@ button:hover {
   border-color: #F16C3D!important;
   padding: 4px 12px!important;
   box-shadow: none!important;
+  width: 180px !important;
+  height: 35px !important;
+  margin-top: 30px !important;
   }
   
   .StripeCheckout:hover,
@@ -620,7 +623,13 @@ button:hover {
 }
 
 .chart {
-  width:100%;
+  max-width:100%;
+}
+
+@media(max-width:800px) {
+   .analytics {
+    flex-direction: column;
+   }
 }
 
 /* tablet break */
@@ -850,3 +859,21 @@ button:hover {
       width: 100%;
     }
 } */
+
+
+/***********************
+  Billing page - responsive for tablet
+************************/  
+@media (max-width:800px) {
+    .billing-page {
+       flex-direction:column;
+    }
+
+    .bLuJyq {
+        width: 80%;
+        margin: 0 auto;
+        padding:0px
+    }
+
+    
+}
