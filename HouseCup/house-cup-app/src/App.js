@@ -10,7 +10,7 @@ import LandingPage from './sub-components/LandingPage'
 import scoreboardTestData from './mock data/scoreboard';
 
 //Admin import(s):
-import AdminMainPage from './sub-components/AdminMainPage';
+import Houses from './sub-components/HousesPage';
 
 //Settings import(s):
 import SettingsPage from './sub-components/SettingsPage';
@@ -76,7 +76,7 @@ class App extends Component {
         <Route exact path='/' render={(props) => <LandingPage {...props} schoolsSelected={this.state.schoolData} />} />
         <Route exact path = '/callback' render={  (props) => <Callback />  }/>                                                       
         <Route exact path = '/admin/schools' render={(props) => <SchoolsPage {...props} houseList={this.state.testData}/> }/>
-        <Route exact path = '/admin/houses' render={(props) => <AdminMainPage {...props} houseList={this.state.testData}/> }/>
+        <Route exact path = '/admin/schools/:id' render={(props) => <Houses {...props} houseList={this.state.testData}/> }/>
         <SecuredRoute exact path = '/analytics' render={(props) => <AdminAnalyticsPage  />}/>
         <SecuredRoute exact path = '/admin/billing' component={BillingPage}/>
         <SecuredRoute exact path = '/admin/settings' render={(props) => <SettingsPage/>}/>
