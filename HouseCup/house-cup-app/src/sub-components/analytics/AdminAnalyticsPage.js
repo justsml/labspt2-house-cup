@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Chart from "react-google-charts";
 import Graph from '../Styles/Graphs.js';
-import SideMenu from '../sideMenu.js';
+import SideMenu from '../SideMenu.js';
 import Select from 'react-select';
 import axios from 'axios';
 

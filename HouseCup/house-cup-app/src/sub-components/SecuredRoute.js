@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import auth from '../auth';
-import LandingPage from './landingPage';
+import auth from '../Auth';
+import LandingPage from './LandingPage';
 
 function SecuredRoute(props) {
   const { component: Component, path } = props;

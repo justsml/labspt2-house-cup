@@ -1,6 +1,6 @@
 import React from 'react';
 import Checkout from '../Checkout';
-import SideMenu from './sideMenu';
+import SideMenu from './SideMenu';
 import Payment from './Styles/Payment.js';
 
 const BillingPage = props => {
