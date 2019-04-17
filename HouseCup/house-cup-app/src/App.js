@@ -4,28 +4,19 @@ import axios from 'axios';
 
 import { Route } from 'react-router-dom';
 //landingPage imports:
-import LandingPage from './sub-components/landingPage'
-//publicPage import(s):
-import PublicPage from './sub-components/publicPage';
-
+import LandingPage from './sub-components/LandingPage'
 
 //test data:
 import scoreboardTestData from './mock data/scoreboard';
-import testSchoolData from './mock data/schools';
-
 
 //Admin import(s):
-import AdminMainPage from './sub-components/adminMainPage';
-
-//Billings import(s):
-// import BillingPage from './sub-components/billingPage';
+import Houses from './sub-components/HousesPage';
 
 //Settings import(s):
-import SettingsPage from './sub-components/settingsPage';
+import SettingsPage from './sub-components/SettingsPage';
 
 //SignupPage import
-import SignupPage from './sub-components/signupPage';
-import SchoolsPage from './sub-components/schoolsPage';
+import SchoolsPage from './sub-components/SchoolsPage';
 
 //adminAnalyticsPage
 import AdminAnalyticsPage from './sub-components/analytics/AdminAnalyticsPage';
@@ -40,7 +31,6 @@ import BillingPage from './sub-components/BillingPage';
 //About.js
 import About from './sub-components/About';
 
-import auth from './auth.js';
 import schoolsTestData from './mock data/schools';
 
 
@@ -86,7 +76,7 @@ class App extends Component {
         <Route exact path='/' render={(props) => <LandingPage {...props} schoolsSelected={this.state.schoolData} />} />
         <Route exact path = '/callback' render={  (props) => <Callback />  }/>                                                       
         <Route exact path = '/admin/schools' render={(props) => <SchoolsPage {...props} houseList={this.state.testData}/> }/>
-        <Route exact path = '/admin/houses' render={(props) => <AdminMainPage {...props} houseList={this.state.testData}/> }/>
+        <Route exact path = '/admin/schools/:id' render={(props) => <Houses {...props} houseList={this.state.testData}/> }/>
         <SecuredRoute exact path = '/analytics' render={(props) => <AdminAnalyticsPage  />}/>
         <SecuredRoute exact path = '/admin/billing' component={BillingPage}/>
         <SecuredRoute exact path = '/admin/settings' render={(props) => <SettingsPage/>}/>

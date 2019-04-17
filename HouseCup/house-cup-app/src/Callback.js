@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
-import auth from './auth';
+import auth from './Auth';
 
 class Callback extends Component {
   async componentDidMount() {
