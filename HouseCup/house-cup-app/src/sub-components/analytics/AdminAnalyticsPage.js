@@ -72,6 +72,7 @@ componentDidMount() {
                 chartType="LineChart"
                 data={this.state.data}
                 options={this.state.options}
+                loader={<div>Loading Chart</div>}
                 className="chart"
                 max-width={"100%"}
                 height={"480px"}

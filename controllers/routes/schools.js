@@ -39,31 +39,9 @@ async function ensureOwner(req, res, next) {
 router.get('/', async function(req, res) {
   try {
     const schools = await School.findAll({
-<<<<<<< HEAD
-      include: [
-        House
-        // {
-        //   model: User,
-        //   attributes: [
-        //     [
-        //       sequelize.fn(
-        //         'concat',
-        //         sequelize.col('firstName'),
-        //         ' ',
-        //         sequelize.col('lastName')
-        //       ),
-        //       'name',
-        //     ],
-        //     'email',
-        //   ],
-        // },
-      ],
-    });
-=======
       include: [{ model: User, attributes:["firstName", "lastName", "email", "id"] }, House],
     })
 
->>>>>>> a7fc5a1c130a03aae0048abd92441b6434e38900
     return res.json({
       status: true,
       data: {
@@ -93,21 +71,12 @@ router.get('/:id', async function(req, res) {
 
 router.post('/', protectEndPoint, async function(req, res) {
   try {
-<<<<<<< HEAD
-    // const user = await User.findOne({
-    //   where: {
-    //     email: req.user.name,
-    //   },
-    // });
-
-=======
     const user = await User.findOne({
       where: {
         email: req.user.email,
       },
     })
     console.log(`Line 52`, req.user.email)
->>>>>>> a7fc5a1c130a03aae0048abd92441b6434e38900
     const newSchool = await School.create({
       ...req.body,
       userId: user.id,
