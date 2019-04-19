@@ -23,8 +23,12 @@ class SchoolsPage extends Component {
             schoolsList: schoolsTestData
         });
         axios.get('http://localhost:5000/schools')
-            .then(response => this.setState({ schoolList: response.data.data.schools }))
+            .then(response => { 
+                this.setState({ schoolsList: response.data.data.schools })
+                console.log(this.state.schoolsList);
+             })
             .catch(err => console.log(err))
+        // this.props.getId(this.state)    
     }
 
     addSchool = (e) => {
@@ -60,6 +64,7 @@ class SchoolsPage extends Component {
                                 <div className='school-card'>
                                     <NavLink  to={`/admin/schools/${school.id}`} className='menu-button' activeClassName="activeMenu" style={{ textDecoration: "none", color: "inherit" }}>
                                         <h2 className='school-name'>{school.name}</h2>
+                                        <h4 className='school-name'>{school.city}</h4>
                                     </NavLink>
                                 </div>
                             )

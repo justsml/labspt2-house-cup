@@ -17,9 +17,18 @@ class Houses extends React.Component {
     }
 
     componentDidMount() {
-        this.setState({
-            houseList: this.props.houseList
-        });
+        // this.setState({
+        //     houseList: this.props.houseList
+        // });
+        axios.get(`http://localhost:5000/schools/${this.props.match.params.id}/houses`)
+        .then(response => { 
+            this.setState({ 
+                schoolsList: response.data 
+            });
+            console.log(response.data);
+            
+         })
+        .catch(err => console.log(err))
     }
     //House point system
     pickTicker = e => {
@@ -96,6 +105,7 @@ class Houses extends React.Component {
     };
 
     render() {
+        
         return (
             <div className='admin-main-page'>
                 <SideMenu {...this.props} />
@@ -115,11 +125,11 @@ class Houses extends React.Component {
                     <div className='housecards'>
                         {this.state.houseList.map((eachHouse) => {
                             return (
-                                <div
-                                    className='housecard'
-                                    id={`housecard-${eachHouse.id}`}
-                                    key={eachHouse.id}
-                                >
+                                
+                                <div className='housecard'
+                                     id={`housecard-${eachHouse.id}`}
+                                     key={eachHouse.id}>  
+                                    console.log(`house page line 132:`,{eachHouse});
                                     <div className='housecard-inner'>
                                         <div
                                             className='housecard-front'

@@ -43,6 +43,7 @@ class App extends Component {
       userData: [],
       schoolData: [],
       houseData: [],
+      schoolId: ''
     }
   }
 
@@ -56,7 +57,7 @@ class App extends Component {
 
     axios.get('http://localhost:5000/schools')
       .then(response => {
-        // console.log(response.data.data.schools)
+        console.log(response.data.data.schools)
         this.setState({schoolData: response.data.data.schools})
       })
       .catch(err => console.log(err));
@@ -69,20 +70,30 @@ class App extends Component {
 
       })
   }
-
+  
+  getId = id => {
+    this.setState({
+       schoolId: id
+    })
+  }
   render() {
+
     return (
       <div className="App">
         <Route exact path='/' render={(props) => <LandingPage {...props} schoolsSelected={this.state.schoolData} />} />
         <Route exact path = '/callback' render={  (props) => <Callback />  }/>                                                       
-        <Route exact path = '/admin/schools' render={(props) => <SchoolsPage {...props} houseList={this.state.testData}/> }/>
+        <Route exact path = '/admin/schools' render={(props) =>
+             <SchoolsPage {...props} 
+                          schools={this.state.schoolData} 
+                        
+                          houseList={this.state.testData}/> }/>
         <Route exact path = '/admin/schools/:id' render={(props) => <Houses {...props} houseList={this.state.testData}/> }/>
-        <SecuredRoute exact path = '/analytics' render={(props) => <AdminAnalyticsPage  />}/>
+        {/* <SecuredRoute exact path = '/analytics' render={(props) => <AdminAnalyticsPage  />}/> */}
         <SecuredRoute exact path = '/admin/billing' component={BillingPage}/>
         <SecuredRoute exact path = '/admin/settings' render={(props) => <SettingsPage/>}/>
         <SecuredRoute path='/about' component={About} />
         <SecuredRoute exact path = '/admin/settings' render={(props) => <SettingsPage/>}/>
-        <SecuredRoute exact path = '/admin/analytics' component={AdminAnalyticsPage} />
+        <SecuredRoute exact path = '/admin/analytics' id={3} component={AdminAnalyticsPage} />
       </div>
 
     );

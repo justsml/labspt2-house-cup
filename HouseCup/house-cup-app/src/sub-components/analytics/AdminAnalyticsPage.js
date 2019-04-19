@@ -17,6 +17,7 @@ export default class AdminAnalyticsPage extends Component {
         { label: "2019", value: 5 },
         
       ],
+      incomingData: props,
        data:[
         ['x', 'H1', 'H2', 'H3', 'H4'],
         [0, 0,  0, 0,  0],
@@ -60,14 +61,16 @@ componentDidMount() {
    window.addEventListener('resize', this.renderGraphs);
  }
   render() {
+    
     return (
       <div className="analytics">
         <SideMenu />
         <div className="graphs">
-          <form className="select" onSubmit={this.handleSubmit}>
+           <form className="select" onSubmit={this.handleSubmit}>
              <Select options={this.state.years} />      
             </form>
-          <Graph>
+            <div>{this.state.incomingData}</div>
+          {/* <Graph>
             <Chart 
                 chartType="LineChart"
                 data={this.state.data}
@@ -77,8 +80,9 @@ componentDidMount() {
                 max-width={"100%"}
                 height={"480px"}
             />
-          </Graph>    
+          </Graph>     */}
         </div>
+     
       </div>
     )
   }
