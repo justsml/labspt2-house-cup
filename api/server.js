@@ -39,9 +39,9 @@ School.hasMany(House, {
 */
 
 sequelize.sync();
-const userRouter = require('../controllers/routes/user_routes');
-const schoolsRouter = require('../controllers/routes/schools');
-const housesRouter = require('../controllers/routes/houses');
+const userRouter = require('../controllers/routes/users_routes');
+// const schoolsRouter = require('../controllers/routes/schools');
+// const housesRouter = require('../controllers/routes/houses');
 const { errorHandler } = require('../middleware/index');
 const server = express();
 
@@ -52,11 +52,11 @@ server.use(logger('tiny'));
 server.use(cors());
 
 server.use('/users', userRouter);
-server.use('/schools', schoolsRouter);
+// server.use('/schools', schoolsRouter);
 // nest houses router inside schools router since houses belong to schools
 // we can identify which school the house belongs to just by looking at the URL
 // For example to create a new house in school no.1 we would make a post request to /schools/1/houses
-server.use('/schools/:id/houses', housesRouter);
+// server.use('/schools/:id/houses', housesRouter);
 
 server.get('/', (req, res) => {
   res.send(`Server is up and running now.`);
