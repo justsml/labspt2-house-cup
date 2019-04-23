@@ -19,6 +19,7 @@ function protectEndPoint(req, res, next) {
       }
       console.log(`jwt protected`, decodedToken);
       req.user = decodedToken;
+      console.log(decodedToken);
       next();
     });
   } else {

@@ -1,7 +1,8 @@
 const express = require('express')
 const { School, User, House } = require('../../Models')
 const router = express.Router()
-const { protectEndPoint } = require('../../auth/jwt')
+const  {jwtCheck}  = require('../../auth/Express-jwt.js')
+
 
 // This middleware ensures that only the owner of the school can make updates
 // async function because we wanna use await
@@ -9,10 +10,11 @@ async function ensureOwner(req, res, next) {
   // get the user object from database by matching  the auth token
   const user = await User.findOne({
     where: {
-      email: req.user.email,
+      user_id: req.user.sub
     },
   })
-
+   
+  
   // get the school with the id specified in params
   const school = await School.findByPk(req.params.id)
 
@@ -39,9 +41,9 @@ async function ensureOwner(req, res, next) {
 router.get('/', async function(req, res) {
   try {
     const schools = await School.findAll({
-      include: [{ model: User, attributes:["firstName", "lastName", "email", "id"] }, House],
-    })
-
+      include: [{ model: User, attributes:["name", "email", "id"] }, House],
+    }) // attributes:["firstName", "lastName", "email", "id"]
+  
     return res.json({
       status: true,
       data: {
@@ -69,14 +71,15 @@ router.get('/:id', async function(req, res) {
   }
 })
 
-router.post('/', protectEndPoint, async function(req, res) {
+router.post('/', jwtCheck, async function(req, res) {
   try {
     const user = await User.findOne({
       where: {
-        email: req.user.email,
+        user_id: req.user.sub,
       },
     })
-    console.log(`Line 52`, req.user.email)
+    console.log(`Line 52`, req.user);
+    // console.log(`Line 53`, user);
     const newSchool = await School.create({
       ...req.body,
       userId: user.id,
@@ -99,7 +102,7 @@ router.post('/', protectEndPoint, async function(req, res) {
 // the ensureOwner middleware gives us the school and user object from the db so we
 // don't have to make the queries in this function
 // async function for await usage
-router.put('/:id', protectEndPoint, ensureOwner, async (req, res, next) => {
+router.put('/:id', jwtCheck, ensureOwner, async (req, res, next) => {
   // wrap the code in try..catch block to catch any errors
   try {
     // every sequelize model has a handy update method which accepts an object
@@ -116,7 +119,7 @@ router.put('/:id', protectEndPoint, ensureOwner, async (req, res, next) => {
 
 // Delete a particular school
 // middleware setup same as above - protectEndPoint and then ensureOwner
-router.delete('/:id', protectEndPoint, ensureOwner, async (req, res, next) => {
+router.delete('/:id', jwtCheck, ensureOwner, async (req, res, next) => {
   // error catching
   try {
     // sequelize models have a handy destroy method, we don't even need to pass any arguments to it!

@@ -1,3 +1,4 @@
+    
 import React from 'react';
 import LandingImg from '../images/realestate.png';
 import Dumbledore from '../images/dumbledore.jpg';
@@ -10,7 +11,7 @@ import { ReactComponent as IconCastle } from '../images/castle.svg';
 import { TweenMax, Linear } from "gsap/all";
 
 import schoolsTestData from '../mock data/schools';
-import auth from '../Auth';
+import auth from '../utils/Auth';
 
 class LandingPage extends React.Component {
     constructor(props) {
@@ -134,9 +135,6 @@ class LandingPage extends React.Component {
                 </div>
             </div>
         )
-
     }
-
 }
-
 export default LandingPage;

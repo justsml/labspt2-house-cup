@@ -12,7 +12,10 @@ class Houses extends React.Component {
         super(props);
         this.state = {
             incrementTicker: 0,
-            houseList: []
+            houseList: [],
+            name: '',
+            color:'',
+            pointTotal: ''
         }
     }
 
@@ -26,9 +29,32 @@ class Houses extends React.Component {
                 schoolsList: response.data 
             });
             console.log(response.data);
+            console.log(this.props.houseList);
             
          })
         .catch(err => console.log(err))
+    }
+
+    //Add House
+    addHouse = (e) => {
+        e.preventDefault();
+        axios.post(`http://localhost:5000/schools/${this.props.match.params.id}/houses`, {
+            name: this.state.name,
+            color: this.state.color,
+            pointTotal: this.state.points
+        });
+        this.setState({
+            name: '',
+            color:'', 
+            pointTotal: ''
+        })
+        console.log(`school ${this.state.newSchoolName} added!`);
+    }
+    //Handle-Input
+    handleInput = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+       })
     }
     //House point system
     pickTicker = e => {
@@ -112,15 +138,33 @@ class Houses extends React.Component {
                 <div className='housecard-container'>
                     <div className='newSchoolInputs'>
                         <h2>Add House</h2>
-                        <input placeholder='name' name='newHouseName' onChange={this.handleSchoolInput}></input>
-                        <input placeholder='point' name='newHousePoint' onChange={this.handleSchoolInput}></input>
-                        <Select
-                            defaultValue={colorOptions[2]}
-                            label="Single select"
-                            options={colorOptions}
-                            styles={this.colorStyles}
-                        />
-                        <button onClick={this.addHouse}><b>+ Add House +</b></button>
+                        <form onSubmit={this.addHouse}>
+                            <input type="text"
+                                placeholder='name' 
+                                name='name'
+                                value={this.state.name}
+                                    onChange={this.handleInput} />
+                            <input type="text"
+                                placeholder='points'
+                                name='pointTotal' 
+                                value={this.state.pointTotal}
+                                onChange={this.handleInput} />
+                            <input type="text"
+                                placeholder='Color'
+                                name='color' 
+                                value={this.state.color}
+                                onChange={this.handleInput} />    
+                            {/* The following code needs to be checked-- Needs attention */}
+                            {/* <Select
+                                defaultValue={colorOptions[2]}
+                                label="Single select"
+                                name="color"
+                                value={this.state.color}
+                                options={colorOptions}
+                                styles={this.colorStyles}
+                            /> */}
+                            <button type='submit'><b>+ Add House +</b></button>
+                        </form>  
                     </div>
                     <div className='housecards'>
                         {this.state.houseList.map((eachHouse) => {
