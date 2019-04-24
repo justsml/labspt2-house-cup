@@ -8,7 +8,7 @@ import { ReactComponent as IconTeacher } from '../images/icon-teacher.svg';
 import { ReactComponent as IconCastle } from '../images/castle.svg';
 
 //GSAP import
-import { TweenMax, Linear } from "gsap/all";
+// import { TweenMax, Linear } from "gsap/all";
 
 import schoolsTestData from '../mock data/schools';
 import auth from '../utils/Auth';
