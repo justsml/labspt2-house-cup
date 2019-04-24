@@ -1,18 +1,33 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
-import auth from './auth';
+import auth from './utils/Auth.js';
+import axios from 'axios';
+
 
 class Callback extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-
+ 
+  async componentDidMount() {
+    try {
+    await auth.handleAuthentication();
+    await this.sendUsers();
+    this.props.history.replace('/admin/schools');
+    } catch(error) {
+       console.log(`Error from callback.js:`, error);
     }
   }
-  async componentDidMount() {
-    await auth.handleAuthentication();
-    this.props.history.replace('/admin/schools/:id');
-  }
+
+    sendUsers = () => {
+      const { getAccessToken } = auth;
+      const headers = { Authorization: `Bearer ${getAccessToken()}` };
+      console.log(`Callback.js line 22`, headers);
+      axios.post('http://localhost:5000/users/register', {}, {headers})
+          .then( user => {
+              console.log(user);
+          }).catch(err => {
+              console.log(err);
+          })
+    }
+
   render() {
     return (
       <p>Loading profile...</p>

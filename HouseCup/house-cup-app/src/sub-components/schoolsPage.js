@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import SideMenu from './sideMenu';
-import schoolsTestData from '../mock data/schools';
 import axios from 'axios';
-import Select from 'react-select';
-import chroma from 'chroma-js';
-import colorOptions from './ColorOptions';
-import auth from '../auth.js';
+import { NavLink } from "react-router-dom";
+//components
+import SideMenu from './SideMenu';
+import auth from '../utils/Auth.js';
+
+
+//testdata; delete later
+import schoolsTestData from '../mock data/schools';
 
 class SchoolsPage extends Component {
     constructor(props) {
@@ -16,6 +18,7 @@ class SchoolsPage extends Component {
             authPassword: '',
             newSchoolName: '',
             newSchoolCity: '',
+            newSchoolDescription: '',
         }
     }
     componentDidMount() {
@@ -26,25 +29,13 @@ class SchoolsPage extends Component {
         this.setState({
             authProfile: auth.getProfile()
         });
-        this.setState({
-            authPassword: auth.getIdToken()
-        });
-        console.log(this.props.match.params);
-        console.log(this.state.authProfile.email);
-        axios.get(`https://labspt2-housecup.herokuapp.com/schools/${this.state.authProfile.email}`)
-            .then(response => {
-                console.log('success!', response);
-                this.setState({
-                })
-            })
-            .catch(err => {
-                console.log('error!', err);
-                console.error(err);
-            })
-    }
-    handleSchoolInput = (e) => {
-        // console.log([e.target.value]);
-        this.setState({[e.target.name]: e.target.value})
+        axios.get('http://localhost:5000/schools')
+            .then(response => { 
+                this.setState({ schoolsList: response.data.data.schools })
+                console.log(this.state.schoolsList);
+             })
+            .catch(err => console.log(err))
+        // this.props.getId(this.state)    
     }
     addUser = e => {
         axios.post('http://localhost:5000/users/register', {
@@ -61,42 +52,38 @@ class SchoolsPage extends Component {
 
 
 
-    dot = (color = '#ccc') => ({
-        alignItems: 'center',
-        display: 'flex',
+    addSchool = (e) => {
+            e.preventDefault();
+            const newSchool = {
+                name:this.state.newSchoolName,
+                city:this.state.newSchoolCity
+            }
+            console.log(newSchool);
+            if(newSchool) {
+            axios.post('http://localhost:5000/schools', newSchool,
+            {
+                headers: { 'Authorization': `Bearer ${auth.getIdToken()}` }
+            }
+            ).then( school => {
+                console.log(`Line 46 Schoolspage`, school);
+            }).catch(err => {
+                console.log(err);
+            })
+          } else {
+              console.log(`Please add newSchool`);
+          }
+            console.log(`school ${this.state.newSchoolName} added!`);
+            console.log(auth.getIdToken());
 
-        ':before': {
-            backgroundColor: color,
-            borderRadius: 10,
-            content: '" "',
-            display: 'block',
-            marginRight: 8,
-            height: 10,
-            width: 10,
-        },
-    });
+            this.setState({
+                newSchoolName:'',
+                newSchoolCity: ''
+            });
+    }
 
-    colorStyles = {
-        control: styles => ({ ...styles, backgroundColor: 'white' }),
-        option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-            const color = chroma(data.color);
-            return {
-                ...styles,
-                backgroundColor: isDisabled
-                    ? null
-                    : isSelected ? data.color : isFocused ? color.alpha(0.1).css() : null,
-                color: isDisabled
-                    ? '#ccc'
-                    : isSelected
-                        ? chroma.contrast(color, 'white') > 2 ? 'white' : 'black'
-                        : data.color,
-                cursor: isDisabled ? 'not-allowed' : 'default',
-            };
-        },
-        input: styles => ({ ...styles, ...this.dot() }),
-        placeholder: styles => ({ ...styles, ...this.dot() }),
-        singleValue: (styles, { data }) => ({ ...styles, ...this.dot(data.color) }),
-    };
+    handleSchoolInput = (e) => {
+        this.setState({ [e.target.name]: e.target.value })
+    }
 
     render() {
         return (
@@ -106,30 +93,29 @@ class SchoolsPage extends Component {
                     <div className='add-school-container'>
                         <h2>Add New School:</h2>
                         <div className='add-school-inputs'>
-                            <input className='schoolName' placeholder='name' name='newSchoolName' onChange={this.handleSchoolInput}></input>
-                            <input className='schoolCity' placeholder='city' name='newSchoolCity' onChange={this.handleSchoolInput}></input>
-                            <button onClick={this.addSchool}><b>+ Add School +</b></button>
+                           <form onSubmit={this.addSchool}>
+                            <input className='schoolName' 
+                                   placeholder='name' name='newSchoolName'
+                                   value={this.state.newSchoolName}
+                                   onChange={this.handleSchoolInput} />
+                            <input className='schoolCity'
+                                   placeholder='city' 
+                                   name='newSchoolCity'
+                                   value={this.state.newSchoolCity}
+                                   onChange={this.handleSchoolInput}></input>
+                            {/* <input className='schoolDescription' placeholder='description' name='newSchoolDescription' onChange={this.handleSchoolInput}></input> */}
+                            <button><b>+ Add School +</b></button>
+                            </form> 
                         </div>
-                            {/* had too temporarily comment out lines 81-87 for Sprint fufillment 4/7/19. */}
-                            {/* @Louis what is this for?? */}
-                            {/* <Select
-                                defaultValue={colorOptions[2]}
-                                label="Single select"
-                                options={colorOptions}
-                                styles={this.colorStyles}
-                            />
-                            <button>Save</button> */}
                     </div>
                     <div className='schools-list'>
                         {this.state.schoolsList.map((school) => {
                             return (
                                 <div className='school-card'>
-                                    <h2 className='school-name'>{school.name}</h2>
-                                    <div className='house-list'>{school.houses.map((house) => {
-                                        return (
-                                            <h3 className='house'>{house}</h3>
-                                        )
-                                    })}</div>
+                                    <NavLink  to={`/admin/schools/${school.id}`} className='menu-button' activeClassName="activeMenu" style={{ textDecoration: "none", color: "inherit" }}>
+                                        <h2 className='school-name'>{school.name}</h2>
+                                        <h4 className='school-name'>{school.city}</h4>
+                                    </NavLink>
                                 </div>
                             )
                         })}

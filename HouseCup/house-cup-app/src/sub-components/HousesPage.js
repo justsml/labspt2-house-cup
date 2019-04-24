@@ -1,45 +1,62 @@
 import React from 'react';
-import SideMenu from './sideMenu';
+import SideMenu from './SideMenu';
 import axios from 'axios';
-import auth from '../auth';
 
-class AdminMainPage extends React.Component {
+//import for react select
+import Select from 'react-select';
+import chroma from 'chroma-js';
+import colorOptions from './ColorOptions';
+
+class Houses extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             incrementTicker: 0,
             houseList: [],
-            newSchoolName: '',
-            newSchoolCity: '',
-            newSchoolUserID: '',
+            name: '',
+            color:'',
+            pointTotal: ''
         }
     }
-    
+
     componentDidMount() {
+        // this.setState({
+        //     houseList: this.props.houseList
+        // });
+        axios.get(`http://localhost:5000/schools/${this.props.match.params.id}/houses`)
+        .then(response => { 
+            this.setState({ 
+                schoolsList: response.data 
+            });
+            console.log(response.data);
+            console.log(this.props.houseList);
+            
+         })
+        .catch(err => console.log(err))
+    }
+
+    //Add House
+    addHouse = (e) => {
+        e.preventDefault();
+        axios.post(`http://localhost:5000/schools/${this.props.match.params.id}/houses`, {
+            name: this.state.name,
+            color: this.state.color,
+            pointTotal: this.state.points
+        });
         this.setState({
-            houseList: this.props.houseList
-        });
-        axios.get('http://localhost:5000/schools')
-            .then(response => this.setState({schoolList: response.data.data.schools}))
-            .catch(err => console.log(err))
-    }
-
-    
-    handleSchoolInput = (e) => {
-        // console.log([e.target.value]);
-        this.setState({[e.target.name]: e.target.value})
-      }
-
-    addSchool = newHouse => {
-        axios.post('http://localhost:5000/schools', {
-            name: this.state.newSchoolName,
-            city: this.state.newSchoolCity,
-            userId: this.state.newSchoolUserID
-        });
+            name: '',
+            color:'', 
+            pointTotal: ''
+        })
         console.log(`school ${this.state.newSchoolName} added!`);
-        
     }
-
+    //Handle-Input
+    handleInput = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+       })
+    }
+    //House point system
     pickTicker = e => {
         var activeNum = document.getElementsByClassName(`active-number`);
         if (activeNum.length > 0) {
@@ -75,26 +92,88 @@ class AdminMainPage extends React.Component {
         element.classList.toggle("flip");
     }
 
+    //react select vars
+    dot = (color = '#ccc') => ({
+        alignItems: 'center',
+        display: 'flex',
+
+        ':before': {
+            backgroundColor: color,
+            borderRadius: 10,
+            content: '" "',
+            display: 'block',
+            marginRight: 8,
+            height: 10,
+            width: 10,
+        },
+    });
+    //color styles
+    colorStyles = {
+        control: styles => ({ ...styles, backgroundColor: 'white' }),
+        option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+            const color = chroma(data.color);
+            return {
+                ...styles,
+                backgroundColor: isDisabled
+                    ? null
+                    : isSelected ? data.color : isFocused ? color.alpha(0.1).css() : null,
+                color: isDisabled
+                    ? '#ccc'
+                    : isSelected
+                        ? chroma.contrast(color, 'white') > 2 ? 'white' : 'black'
+                        : data.color,
+                cursor: isDisabled ? 'not-allowed' : 'default',
+            };
+        },
+        input: styles => ({ ...styles, ...this.dot() }),
+        placeholder: styles => ({ ...styles, ...this.dot() }),
+        singleValue: (styles, { data }) => ({ ...styles, ...this.dot(data.color) }),
+    };
+
     render() {
+        
         return (
             <div className='admin-main-page'>
                 <SideMenu {...this.props} />
                 <div className='housecard-container'>
                     <div className='newSchoolInputs'>
-                        <h2>Add School</h2>
-                        <input placeholder='name' name='newSchoolName' onChange={this.handleSchoolInput}></input>
-                        <input placeholder='city' name='newSchoolCity' onChange={this.handleSchoolInput}></input>
-                        <input placeholder='userID' name='newSchoolUserID' onChange={this.handleSchoolInput}></input>
-                        <button onClick={this.addSchool}><b>+ Add House +</b></button>
+                        <h2>Add House</h2>
+                        <form onSubmit={this.addHouse}>
+                            <input type="text"
+                                placeholder='name' 
+                                name='name'
+                                value={this.state.name}
+                                    onChange={this.handleInput} />
+                            <input type="text"
+                                placeholder='points'
+                                name='pointTotal' 
+                                value={this.state.pointTotal}
+                                onChange={this.handleInput} />
+                            <input type="text"
+                                placeholder='Color'
+                                name='color' 
+                                value={this.state.color}
+                                onChange={this.handleInput} />    
+                            {/* The following code needs to be checked-- Needs attention */}
+                            {/* <Select
+                                defaultValue={colorOptions[2]}
+                                label="Single select"
+                                name="color"
+                                value={this.state.color}
+                                options={colorOptions}
+                                styles={this.colorStyles}
+                            /> */}
+                            <button type='submit'><b>+ Add House +</b></button>
+                        </form>  
                     </div>
                     <div className='housecards'>
                         {this.state.houseList.map((eachHouse) => {
                             return (
-                                <div
-                                    className='housecard'
-                                    id={`housecard-${eachHouse.id}`}
-                                    key={eachHouse.id}
-                                >
+                                
+                                <div className='housecard'
+                                     id={`housecard-${eachHouse.id}`}
+                                     key={eachHouse.id}>  
+                                    console.log(`house page line 132:`,{eachHouse});
                                     <div className='housecard-inner'>
                                         <div
                                             className='housecard-front'
@@ -154,4 +233,4 @@ class AdminMainPage extends React.Component {
     }
 }
 
-export default AdminMainPage;
+export default Houses;

@@ -102,6 +102,8 @@ function findUser(req, res, next) {
     });
 }
 
+
+
 function checkPassword(req, res, next) {
   const { password } = req.body;
   const hashPassword = req.userDocument.password;
@@ -128,4 +130,4 @@ module.exports = {
   findUser,
   checkPassword,
   provideAccess,
-};
+  };
