@@ -30,11 +30,8 @@ class SchoolsPage extends Component {
             authPassword: auth.getIdToken()
         });
         console.log(this.props.match.params);
-        const userID = this.state.authProfile.email;
-        this.fetchUser(userID);
-    }
-    fetchUser = id => {
-        axios.get(`http://localhost:5000/users/${id}`)
+        console.log(this.state.authProfile.email);
+        axios.get(`https://labspt2-housecup.herokuapp.com/schools/${this.state.authProfile.email}`)
             .then(response => {
                 console.log('success!', response);
                 this.setState({
@@ -49,7 +46,7 @@ class SchoolsPage extends Component {
         // console.log([e.target.value]);
         this.setState({[e.target.name]: e.target.value})
     }
-    addSchool = e => {
+    addUser = e => {
         axios.post('http://localhost:5000/users/register', {
             email: this.state.authProfile.email,
             password: this.state.authPassword,

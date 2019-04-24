@@ -56,20 +56,21 @@ class App extends Component {
   }
 
   componentDidMount = e => {
-    axios.get('http://localhost:5000/users')
+    axios.get('https://labspt2-housecup.herokuapp.com/users')
       .then(response => {
         // console.log(response.data.data.allUsers)
         this.setState({userData: response.data.data.allUsers})
       })
       .catch(err => console.log(err));
 
-    axios.get('http://localhost:5000/schools')
+    axios.get('https://labspt2-housecup.herokuapp.com/schools')
       .then(response => {
         // console.log(response.data.data.schools)
         this.setState({schoolData: response.data.data.schools})
       })
+
       .catch(err => console.log(err));
-    axios.get('http://localhost:5000/houses')
+    axios.get('https://labspt2-housecup.herokuapp.com/houses')
       .then(response => {
         // console.log(response.data.data.houses)
         this.setState({houseData: response.data.data.houses})

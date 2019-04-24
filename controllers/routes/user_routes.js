@@ -37,10 +37,10 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/:id", (req, res) => {
-  console.log('hello!', req.params.id);
-  const  id  = req.params.id;
+  console.log('hello!', req.params);
+  const { id }  = req.params;
   // Users.findById(id)
-  User.findOne({where: {email: id} })
+  User.findOne({where: {email: id, isAdmin: true} })
     .then(user => {
       if (user) {
         res.status(200).json({
