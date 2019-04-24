@@ -72,10 +72,13 @@ router.get('/:id', async function(req, res) {
 })
 
 router.post('/', jwtCheck, async function(req, res) {
+    console.log(`Line 75:`,req.body);
   try {
+    // req.body.user_id = req.user.sub;    
+    // const userId = req.body.user_id;
     const user = await User.findOne({
       where: {
-        user_id: req.user.sub,
+        user_id: req.user.sub
       },
     })
     console.log(`Line 52`, req.user);

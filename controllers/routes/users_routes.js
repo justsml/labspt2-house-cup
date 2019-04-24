@@ -71,6 +71,7 @@ router.post( "/register",
         res
           .status(400)
           .json({ msg: `User with user_id ${userId} already registered.` });
+          console.log(`User already registered`)
       } else {
         req.user = user;
         User.create(userObj)
