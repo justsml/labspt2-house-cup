@@ -10,7 +10,7 @@ Content-Type: application/json,
 {
   "name": "venkatesh",
   "email": "venky@aol.com",
-  
+  "user_id": "0001"
   
 }
 

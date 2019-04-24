@@ -22,17 +22,15 @@ class SchoolsPage extends Component {
         }
     }
     componentDidMount() {
-        // this.setState({
-        //     schoolsList: schoolsTestData
-        // });
-        // auth.getProfile();
-        this.setState({
-            authProfile: auth.getProfile()
-        });
-        axios.get('http://localhost:5000/schools')
-            .then(response => { 
+       axios.get('http://localhost:5000/schools')
+            .then(response => {
+                if(response) { 
+                    console.log(response.data.data.schools)
                 this.setState({ schoolsList: response.data.data.schools })
-                console.log(this.state.schoolsList);
+                console.log(`Line 30`,this.state.schoolsList);
+                } else {
+                    console.log(`There is no response from the server`);
+                }
              })
             .catch(err => console.log(err))
         // this.props.getId(this.state)    
@@ -54,27 +52,25 @@ class SchoolsPage extends Component {
 
     addSchool = (e) => {
             e.preventDefault();
+            const { getAccessToken } = auth;
             const newSchool = {
                 name:this.state.newSchoolName,
                 city:this.state.newSchoolCity
             }
             console.log(newSchool);
             if(newSchool) {
-            axios.post('http://localhost:5000/schools', newSchool,
-            {
-                headers: { 'Authorization': `Bearer ${auth.getIdToken()}` }
-            }
-            ).then( school => {
-                console.log(`Line 46 Schoolspage`, school);
-            }).catch(err => {
-                console.log(err);
-            })
+            const headers = { Authorization: `Bearer ${getAccessToken()}` };    
+            axios.post('http://localhost:5000/schools', newSchool, {headers} )
+                 .then( school => {
+                        console.log(`Line 46 Schoolspage`, school);
+                     }).catch(err => {
+                        console.log(err);
+                    });
           } else {
               console.log(`Please add newSchool`);
           }
             console.log(`school ${this.state.newSchoolName} added!`);
-            console.log(auth.getIdToken());
-
+           
             this.setState({
                 newSchoolName:'',
                 newSchoolCity: ''
