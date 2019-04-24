@@ -39,7 +39,7 @@ School.hasMany(House, {
 */
 
 sequelize.sync();
-const userRouter = require('../controllers/routes/user_routes');
+const userRouter = require('../controllers/routes/users_routes');
 const schoolsRouter = require('../controllers/routes/schools');
 const housesRouter = require('../controllers/routes/houses');
 const { errorHandler } = require('../middleware/index');

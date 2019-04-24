@@ -3,6 +3,8 @@ import axios from 'axios';
 import { NavLink } from "react-router-dom";
 //components
 import SideMenu from './SideMenu';
+import auth from '../utils/Auth.js';
+
 
 //testdata; delete later
 import schoolsTestData from '../mock data/schools';
@@ -23,17 +25,41 @@ class SchoolsPage extends Component {
             schoolsList: schoolsTestData
         });
         axios.get('http://localhost:5000/schools')
-            .then(response => this.setState({ schoolList: response.data.data.schools }))
+            .then(response => { 
+                this.setState({ schoolsList: response.data.data.schools })
+                console.log(this.state.schoolsList);
+             })
             .catch(err => console.log(err))
+        // this.props.getId(this.state)    
     }
 
     addSchool = (e) => {
-        axios.post('http://localhost:5000/schools', {
-            name: this.state.newSchoolName,
-            city: this.state.newSchoolCity,
-            userId: this.state.newSchoolUserID
-        });
-        console.log(`school ${this.state.newSchoolName} added!`);
+            e.preventDefault();
+            const newSchool = {
+                name:this.state.newSchoolName,
+                city:this.state.newSchoolCity
+            }
+            console.log(newSchool);
+            if(newSchool) {
+            axios.post('http://localhost:5000/schools', newSchool,
+            {
+                headers: { 'Authorization': `Bearer ${auth.getIdToken()}` }
+            }
+            ).then( school => {
+                console.log(`Line 46 Schoolspage`, school);
+            }).catch(err => {
+                console.log(err);
+            })
+          } else {
+              console.log(`Please add newSchool`);
+          }
+            console.log(`school ${this.state.newSchoolName} added!`);
+            console.log(auth.getIdToken());
+
+            this.setState({
+                newSchoolName:'',
+                newSchoolCity: ''
+            });
     }
 
     handleSchoolInput = (e) => {
@@ -48,10 +74,19 @@ class SchoolsPage extends Component {
                     <div className='add-school-container'>
                         <h2>Add New School:</h2>
                         <div className='add-school-inputs'>
-                            <input className='schoolName' placeholder='name' name='newSchoolName' onChange={this.handleSchoolInput}></input>
-                            <input className='schoolCity' placeholder='city' name='newSchoolCity' onChange={this.handleSchoolInput}></input>
-                            <input className='schoolDescription' placeholder='description' name='newSchoolDescription' onChange={this.handleSchoolInput}></input>
-                            <button onClick={this.addSchool}><b>+ Add School +</b></button>
+                           <form onSubmit={this.addSchool}>
+                            <input className='schoolName' 
+                                   placeholder='name' name='newSchoolName'
+                                   value={this.state.newSchoolName}
+                                   onChange={this.handleSchoolInput} />
+                            <input className='schoolCity'
+                                   placeholder='city' 
+                                   name='newSchoolCity'
+                                   value={this.state.newSchoolCity}
+                                   onChange={this.handleSchoolInput}></input>
+                            {/* <input className='schoolDescription' placeholder='description' name='newSchoolDescription' onChange={this.handleSchoolInput}></input> */}
+                            <button><b>+ Add School +</b></button>
+                            </form> 
                         </div>
                     </div>
                     <div className='schools-list'>
@@ -60,6 +95,7 @@ class SchoolsPage extends Component {
                                 <div className='school-card'>
                                     <NavLink  to={`/admin/schools/${school.id}`} className='menu-button' activeClassName="activeMenu" style={{ textDecoration: "none", color: "inherit" }}>
                                         <h2 className='school-name'>{school.name}</h2>
+                                        <h4 className='school-name'>{school.city}</h4>
                                     </NavLink>
                                 </div>
                             )

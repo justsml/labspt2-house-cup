@@ -9,6 +9,7 @@
     "dom": "^0.0.3",
     "dotenv": "^7.0.0",
     "gsap": "^2.1.2",
+    "history": "^4.9.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-google-charts": "^3.0.11",

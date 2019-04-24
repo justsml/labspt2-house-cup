@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link, withRouter} from 'react-router-dom';
-import auth from '../auth';
+import auth from '../utils/Auth.js';
 
 function NavBar(props) {
   const signOut = () => {

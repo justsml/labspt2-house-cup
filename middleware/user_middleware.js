@@ -102,6 +102,8 @@ function findUser(req, res, next) {
     });
 }
 
+
+
 function checkPassword(req, res, next) {
   const { password } = req.body;
   const hashPassword = req.userDocument.password;
@@ -114,7 +116,6 @@ function checkPassword(req, res, next) {
 
 function provideAccess(req, res, next) {
   const { email } = req.body;
-
   const token = generateToken(email);
   if (!token) res.status(400).json({ msg: `Access Denied` });
   res.status(200).json({ token: token });
@@ -129,4 +130,4 @@ module.exports = {
   findUser,
   checkPassword,
   provideAccess,
-};
+  };
