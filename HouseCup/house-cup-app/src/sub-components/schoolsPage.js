@@ -32,7 +32,7 @@ class SchoolsPage extends Component {
                 }
              })
             .catch(err => console.log(err))
-        // this.props.getId(this.state)    
+         
     }
 
     addSchool = (e) => {
@@ -47,7 +47,12 @@ class SchoolsPage extends Component {
             const headers = { Authorization: `Bearer ${getAccessToken()}` };    
             axios.post('http://localhost:5000/schools', newSchool, {headers} )
                  .then( school => {
-                        console.log(`Line 46 Schoolspage`, school);
+                        console.log(`Line 50 Schoolspage`, school);
+                        let newSchool = school.data.data.newSchool;
+                        console.log(`52`,newSchool);
+                        this.setState({
+                            schoolsList: [...this.state.schoolsList, newSchool]
+                        })
                      }).catch(err => {
                         console.log(err);
                     });

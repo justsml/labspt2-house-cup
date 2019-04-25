@@ -62,7 +62,7 @@ handleAuthentication () {
 
   setSession (authResult)  {
     // Set the time that the Access Token will expire at
-    let expires = authResult.idTokenPayload.exp * 10000000000000000000 + new Date().getTime();
+    let expires = authResult.idTokenPayload.exp * 10000000 + new Date().getTime();
     // this.expiresAt = JSON.stringify( authResult.expiresIn * 1000 + new Date().getTime());
     //Save token returned by auth0 to auth
     this.profile = authResult.idTokenPayload;
@@ -73,7 +73,7 @@ handleAuthentication () {
     console.log(this.profile);
     //Set authFlag in local storage to true
     localStorage.setItem(this.authFlag, 'true');
-    localStorage.setItem("Profile", JSON.stringify(this.profile));
+    // localStorage.setItem("Profile", JSON.stringify(this.profile));  Removed the profile info from local storage.
   }
 
   logout () {

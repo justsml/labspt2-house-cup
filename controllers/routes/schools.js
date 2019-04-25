@@ -41,7 +41,7 @@ async function ensureOwner(req, res, next) {
 router.get('/', async function(req, res) {
   try {
     const schools = await School.findAll({
-      include: [{ model: User, attributes:["name", "email", "id"] }, House],
+      include: [{ model: User, attributes:["user_id"] }, House],
     }) // attributes:["firstName", "lastName", "email", "id"]
   
     return res.json({
@@ -72,32 +72,29 @@ router.get('/:id', async function(req, res) {
 })
 
 router.post('/', jwtCheck, async function(req, res) {
-    console.log(`Line 75:`,req.body);
+    console.log(`Line 75:`,req.user);
   try {
-    // req.body.user_id = req.user.sub;    
-    // const userId = req.body.user_id;
-    const user = await User.findOne({
-      where: {
-        user_id: req.user.sub
-      },
-    })
-    console.log(`Line 52`, req.user);
-    // console.log(`Line 53`, user);
-    const newSchool = await School.create({
-      ...req.body,
-      userId: user.id,
-    })
+      const user = await User.findOne({
+                      where: {
+                        user_id: req.user.sub
+                      },
+               })
+              
+            const newSchool = await School.create({
+                          ...req.body,
+                          userId: user.id,
+                        })
 
-    res.status(201).json({
-      status: true,
-      data: {
-        newSchool,
-      },
-    })
+              res.status(201).json({
+                  status: true,
+                  data: {
+                    newSchool,
+                  },
+              })
   } catch (err) {
-    console.log(err)
-    next({ ...err, code: 500 })
-  }
+          console.log(err)
+      next({ ...err, code: 500 })
+    }
 })
 
 // Edit details of a particular school
