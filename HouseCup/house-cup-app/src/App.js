@@ -27,7 +27,6 @@ import About from './sub-components/About';
 import schoolsTestData from './mock data/schools';
 import auth from './utils/Auth.js';
 
-
  
 class App extends Component {
     constructor(props) {
@@ -43,9 +42,7 @@ class App extends Component {
 
           }
     }
-     
   
- 
   componentDidMount = () => {
    
      this.setState({
@@ -63,7 +60,7 @@ class App extends Component {
 
     axios.get('http://localhost:5000/schools')
       .then(response => {
-        console.log(response.data.data.schools)
+        // console.log(response.data.data.schools)
         this.setState({schoolData: response.data.data.schools})
       })
       .catch(err => console.log(err));
@@ -101,7 +98,7 @@ class App extends Component {
              <SchoolsPage {...props} 
                           schools={this.state.schoolData} 
                            houseList={this.state.testData}/> }/>
-        <Route exact path = '/admin/schools/:id' render={(props) => <Houses {...props} houseList={this.state.testData}/> }/>
+        <Route exact path = '/admin/schools/:id' render={(props) => <Houses {...props} /> }/>
         {/* <SecuredRoute exact path = '/analytics' render={(props) => <AdminAnalyticsPage  />}/> */}
         <SecuredRoute exact path = '/admin/billing' component={BillingPage}/>
         <SecuredRoute exact path = '/admin/settings' render={(props) => <SettingsPage/>}/>

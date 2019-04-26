@@ -6,13 +6,15 @@ import axios from 'axios';
 import Select from 'react-select';
 import chroma from 'chroma-js';
 import colorOptions from './ColorOptions';
+import auth from '../utils/Auth.js';
+
 
 class Houses extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             incrementTicker: 0,
-            houseList: [],
+            houseList: [ ],
             name: '',
             color:'',
             pointTotal: ''
@@ -25,11 +27,12 @@ class Houses extends React.Component {
         // });
         axios.get(`http://localhost:5000/schools/${this.props.match.params.id}/houses`)
         .then(response => { 
-            this.setState({ 
-                schoolsList: response.data 
-            });
+            if(response) {
+            this.setState({  houseList: response.data  });
             console.log(response.data);
-            console.log(this.props.houseList);
+            } else {
+                console.log(`There is no houses data from the db`);
+            }
             
          })
         .catch(err => console.log(err))
@@ -38,17 +41,35 @@ class Houses extends React.Component {
     //Add House
     addHouse = (e) => {
         e.preventDefault();
-        axios.post(`http://localhost:5000/schools/${this.props.match.params.id}/houses`, {
-            name: this.state.name,
-            color: this.state.color,
-            pointTotal: this.state.points
-        });
-        this.setState({
-            name: '',
-            color:'', 
-            pointTotal: ''
-        })
-        console.log(`school ${this.state.newSchoolName} added!`);
+        const {getAccessToken} = auth;
+        const headers = {Authorization : `Bearer ${getAccessToken()}`}
+
+        const newHouse = {
+                name: this.state.name,
+                color: this.state.color,
+                pointTotal: this.state.points
+           }
+
+         if(newHouse) { 
+                axios.post(`http://localhost:5000/schools/${this.props.match.params.id}/houses`,
+                           newHouse, {headers})
+                     .then( house => {
+                        console.log(`Line 48 house from db`, house.data);
+                        this.setState({
+                            houseList: [...this.state.houseList, house.data]
+                        })
+                     })
+                     .catch(err => {
+                        console.log(err);
+                     });
+
+                this.setState({
+                    name: '',
+                    color:'', 
+                    pointTotal: ''
+                });
+         }
+        console.log(`House ${this.state.name} added!`);
     }
     //Handle-Input
     handleInput = (event) => {
@@ -166,67 +187,66 @@ class Houses extends React.Component {
                             <button type='submit'><b>+ Add House +</b></button>
                         </form>  
                     </div>
-                    <div className='housecards'>
-                        {this.state.houseList.map((eachHouse) => {
-                            return (
-                                
-                                <div className='housecard'
-                                     id={`housecard-${eachHouse.id}`}
-                                     key={eachHouse.id}>  
-                                    console.log(`house page line 132:`,{eachHouse});
-                                    <div className='housecard-inner'>
-                                        <div
-                                            className='housecard-front'
-                                            id={`housecard-front-${eachHouse.id}`}
-                                            onClick={this.toggleFlip.bind(this, eachHouse.id)}
-
-                                        >
-                                            <h2 className='house-name'>{eachHouse.name}</h2>
-                                            <h3 className='point-total'>{eachHouse.pointTotal}</h3>
-                                            <h2 className='points-txt'>Points</h2>
+        <div className='housecards'>
+            {this.state.houseList.map((eachHouse) => {
+                return (
+                    
+                    <div className='housecard'
+                            id={`housecard-${eachHouse.id}`}
+                            key={eachHouse.id}>  
+                        {/* console.log(`house page line 132:`,{eachHouse}); */}
+                        <div className='housecard-inner'>
+                            <div
+                                className='housecard-front'
+                                id={`housecard-front-${eachHouse.id}`}
+                                onClick={this.toggleFlip.bind(this, eachHouse.id)}>
+                                <p className='house-color'>{eachHouse.color}</p>
+                                <h2 className='house-name'>{eachHouse.name}</h2>
+                                <h3 className='point-total'>{eachHouse.points}</h3>
+                                <h2 className='points-txt'>Points</h2>
+                            </div>
+                            <div className='housecard-back'>
+                                <div className='point-increment-area'>
+                                    <span className='choose'>Choose Point</span>
+                                    <div className='increment-number-container'>
+                                        <div className='row-1'>
+                                            <span className='increment-number' id='1' onClick={this.pickTicker.bind(this)}>1</span>
+                                            <span className='increment-number' id='2' onClick={this.pickTicker.bind(this)}>2</span>
+                                            <span className='increment-number' id='3' onClick={this.pickTicker.bind(this)}>3</span>
+                                            <span className='increment-number' id='4' onClick={this.pickTicker.bind(this)}>4</span>
+                                            <span className='increment-number' id='5' onClick={this.pickTicker.bind(this)}>5</span>
                                         </div>
-                                        <div className='housecard-back'>
-                                            <div className='point-increment-area'>
-                                                <span className='choose'>Choose Point</span>
-                                                <div className='increment-number-container'>
-                                                    <div className='row-1'>
-                                                        <span className='increment-number' id='1' onClick={this.pickTicker.bind(this)}>1</span>
-                                                        <span className='increment-number' id='2' onClick={this.pickTicker.bind(this)}>2</span>
-                                                        <span className='increment-number' id='3' onClick={this.pickTicker.bind(this)}>3</span>
-                                                        <span className='increment-number' id='4' onClick={this.pickTicker.bind(this)}>4</span>
-                                                        <span className='increment-number' id='5' onClick={this.pickTicker.bind(this)}>5</span>
-                                                    </div>
-                                                    <div className='row-2'>
-                                                        <span className='increment-number' id='6' onClick={this.pickTicker.bind(this)}>6</span>
-                                                        <span className='increment-number' id='7' onClick={this.pickTicker.bind(this)}>7</span>
-                                                        <span className='increment-number' id='8' onClick={this.pickTicker.bind(this)}>8</span>
-                                                        <span className='increment-number' id='9' onClick={this.pickTicker.bind(this)}>9</span>
-                                                        <span className='increment-number' id='10' onClick={this.pickTicker.bind(this)}>10</span>
-                                                    </div>
-                                                    <div className='increment-number-ticker'>
-                                                        {/* <button className='down-ticker' onClick={this.incrementChangeDown}>↓</button> */}
-                                                    </div>
-                                                </div>
-                                                <div className='points-button-container'>
-                                                    <button className='add-points-button points-button' onClick={this.addPoint.bind(this, eachHouse.id)}>Add</button>
-                                                    <button className='minus-points-button points-button' onClick={this.dropPoint.bind(this, eachHouse.id)}>Drop</button>
-                                                </div>
-                                            </div>
-                                            <div className='text-area' onClick={this.toggleFlip.bind(this, eachHouse.id)}
-                                            >
-                                                <h3
-                                                    className='point-total'
-                                                >
-                                                    {eachHouse.pointTotal}
-                                                </h3>
-                                                <h2 className='points-txt'>Points</h2>
-                                            </div>
+                                        <div className='row-2'>
+                                            <span className='increment-number' id='6' onClick={this.pickTicker.bind(this)}>6</span>
+                                            <span className='increment-number' id='7' onClick={this.pickTicker.bind(this)}>7</span>
+                                            <span className='increment-number' id='8' onClick={this.pickTicker.bind(this)}>8</span>
+                                            <span className='increment-number' id='9' onClick={this.pickTicker.bind(this)}>9</span>
+                                            <span className='increment-number' id='10' onClick={this.pickTicker.bind(this)}>10</span>
+                                        </div>
+                                        <div className='increment-number-ticker'>
+                                            {/* <button className='down-ticker' onClick={this.incrementChangeDown}>↓</button> */}
                                         </div>
                                     </div>
+                                    <div className='points-button-container'>
+                                        <button className='add-points-button points-button' onClick={this.addPoint.bind(this, eachHouse.id)}>Add</button>
+                                        <button className='minus-points-button points-button' onClick={this.dropPoint.bind(this, eachHouse.id)}>Drop</button>
+                                    </div>
                                 </div>
-                            )
-                        })}
+                                <div className='text-area' onClick={this.toggleFlip.bind(this, eachHouse.id)}
+                                >
+                                    <h3
+                                        className='point-total'
+                                    >
+                                        {eachHouse.pointTotal}
+                                    </h3>
+                                    <h2 className='points-txt'>Points</h2>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                )
+            })}
+        </div>
                 </div>
             </div>
         )
