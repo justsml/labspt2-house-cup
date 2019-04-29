@@ -45,12 +45,11 @@ class App extends Component {
   
   componentDidMount = () => {
    
-     this.setState({
-      authProfile:auth.getProfile(),
-      authIdToken:auth.getIdToken()
-    })
-    // console.log(this.state.authProfile);
-    // console.log(this.state.authIdToken)
+    const { silentAuth } = auth;
+    if (localStorage.getItem('isLoggedIn') === 'true') {
+      silentAuth();
+    }
+    
     axios.get('http://localhost:5000/users')
       .then(response => {
         // console.log(response.data.data.allUsers)
@@ -74,7 +73,7 @@ class App extends Component {
       });  
       
         
-  //  console.log(this.state.name)
+  
        
   }
   
@@ -84,10 +83,7 @@ class App extends Component {
     })
   }
 
-  componentWillMount =() => {
-    
-  }
-  
+ 
   render() {
     
     return (
