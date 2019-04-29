@@ -35,18 +35,18 @@ class SchoolsPage extends Component {
             .catch(err => console.log(err))
         // this.props.getId(this.state)    
     }
-    addUser = e => {
-        axios.post('http://localhost:5000/users/register', {
-            email: this.state.authProfile.email,
-            password: this.state.authPassword,
-        })
-            .then(response => {
-                console.log(response);
-                // this.setState({
-                //     schoolsList: response.data.data
-                // })
-            })
-    }
+    // addUser = e => {
+    //     axios.post('http://localhost:5000/users/register', {
+    //         email: this.state.authProfile.email,
+    //         password: this.state.authPassword,
+    //     })
+    //         .then(response => {
+    //             console.log(response);
+    //             // this.setState({
+    //             //     schoolsList: response.data.data
+    //             // })
+    //         })
+    // }
 
 
 
@@ -64,7 +64,7 @@ class SchoolsPage extends Component {
                  .then( school => {
                         console.log(`Line 46 Schoolspage`, school);
                      }).catch(err => {
-                        console.log(err);
+                        console.log('error', err);
                     });
           } else {
               console.log(`Please add newSchool`);

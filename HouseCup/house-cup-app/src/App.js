@@ -58,23 +58,24 @@ class App extends Component {
       .then(response => {
         // console.log(response.data.data.allUsers)
         this.setState({userData: response.data.data.allUsers})
+        console.log('success', response);
       })
       .catch(err => console.log(err));
 
-    axios.get('https://labspt2-housecup.herokuapp.com/schools')
+    axios.get('http://localhost:5000/schools')
       .then(response => {
         console.log(response.data.data.schools)
         this.setState({schoolData: response.data.data.schools})
       })
 
       .catch(err => console.log(err));
-    axios.get('https://labspt2-housecup.herokuapp.com/houses')
+    axios.get('http://localhost:5000/houses')
       .then(response => {
         // console.log(response.data.data.houses)
         this.setState({houseData: response.data.data.houses})
       })
       .catch(err => {
-            console.log(err)
+            console.log(err) 
       });  
       
         

@@ -10,7 +10,7 @@ async function ensureOwner(req, res, next) {
   // get the user object from database by matching  the auth token
   const user = await User.findOne({
     where: {
-      user_id: req.user.sub
+      userId: req.user.sub
     },
   })
    
