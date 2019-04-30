@@ -5,10 +5,6 @@ import { NavLink } from "react-router-dom";
 import SideMenu from './SideMenu';
 import auth from '../utils/Auth.js';
 
-
-//testdata; delete later
-import schoolsTestData from '../mock data/schools';
-
 class SchoolsPage extends Component {
     constructor(props) {
         super(props);
@@ -25,15 +21,15 @@ class SchoolsPage extends Component {
        axios.get('http://localhost:5000/schools')
             .then(response => {
                 if(response) { 
-                    console.log(response.data.data.schools)
+                    // console.log(response.data.data.schools)
                 this.setState({ schoolsList: response.data.data.schools })
-                console.log(`Line 30`,this.state.schoolsList);
+                   // console.log(`Line 30`,this.state.schoolsList);
                 } else {
                     console.log(`There is no response from the server`);
                 }
              })
             .catch(err => console.log(err))
-        // this.props.getId(this.state)    
+         
     }
     // addUser = e => {
     //     axios.post('http://localhost:5000/users/register', {
@@ -62,7 +58,12 @@ class SchoolsPage extends Component {
             const headers = { Authorization: `Bearer ${getAccessToken()}` };    
             axios.post('http://localhost:5000/schools', newSchool, {headers} )
                  .then( school => {
-                        console.log(`Line 46 Schoolspage`, school);
+                        console.log(`Line 50 Schoolspage`, school);
+                        let newSchool = school.data.data.newSchool;
+                        console.log(`52`,newSchool);
+                        this.setState({
+                            schoolsList: [...this.state.schoolsList, newSchool]
+                        })
                      }).catch(err => {
                         console.log('error', err);
                     });
