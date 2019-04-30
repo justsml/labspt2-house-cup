@@ -53,7 +53,7 @@ handleAuthentication () {
         if (!authResult || !authResult.idToken) {
           return reject(err);
         }
-        console.log(`Auth Results`, authResult)
+        // console.log(`Auth Results`, authResult)
         this.setSession(authResult);
         resolve();
       });
@@ -70,7 +70,7 @@ handleAuthentication () {
     this.accessToken = authResult.accessToken;
     this.loginFlag = !this.loginFlag;
     this.expiresAt = expires;
-    console.log(this.profile);
+    // console.log(this.profile);
     //Set authFlag in local storage to true
     localStorage.setItem(this.authFlag, 'true');
     // localStorage.setItem("Profile", JSON.stringify(this.profile));  Removed the profile info from local storage.

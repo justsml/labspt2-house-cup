@@ -1,7 +1,7 @@
 const express = require('express')
 const { School, User, House } = require('../../Models')
 const router = express.Router()
-const  {jwtCheck}  = require('../../auth/Express-jwt.js')
+const  {jwtCheck}  = require('../../auth/Express-jwt.js');
 
 
 // This middleware ensures that only the owner of the school can make updates

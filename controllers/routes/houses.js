@@ -1,11 +1,10 @@
 const express = require('express');
 const { School, User, House } = require('../../Models');
-
 // we need the mergeParams set to true because the school id in the params is being set
 // from server.js and by default we don't have access to that param, mergeParams makes sure
 // that we get the params from the other handlers
 const router = express.Router({mergeParams: true,});
-const { protectEndPoint } = require('../../auth/jwt');
+const  {jwtCheck} = require('../../auth/Express-jwt.js');
 // we need the "get" function from lodash
 const _ = require('lodash');
 
@@ -17,10 +16,8 @@ router.get('/', async function(req, res, next) {
   try {
     // find the school referenced by the ID
     const school = await School.findByPk(req.params.id);
-
     // if the school doesn't exist send a 404
     if(!school) return next({ code: 404 });
-
     // since we already established that schools have many houses - we can make use of the "getHouses"
     // function that sequelize has created for us - this will perform the necessary join
     const houses = await school.getHouses();
@@ -38,7 +35,6 @@ router.get('/', async function(req, res, next) {
     next(err);
   }
 });
-
 // get details of just one house in a school
 router.get('/:houseId', async function(req, res) {
   // first find the house by primary key, while getting the house let's also
@@ -66,7 +62,7 @@ router.get('/:houseId', async function(req, res) {
 
 // create a new house in that particular school
 // again, we have the hidden "id" parameter from the parent route
-router.post('/', protectEndPoint, async function(req, res, next) {
+router.post('/', jwtCheck, async function(req, res, next) {
   try {
     // find the school by primary key using the forwared "id" magic parameter
     const school = await School.findByPk(req.params.id);
@@ -77,7 +73,7 @@ router.post('/', protectEndPoint, async function(req, res, next) {
     // get the details of the currently logged in user
     const user = await User.findOne({
       where: {
-        email: req.user.email,
+        user_id: req.user.sub,
       },
     });
 
@@ -121,7 +117,7 @@ router.post('/', protectEndPoint, async function(req, res, next) {
 // even though the house ID is globally unique, we still need the user to specify the school Id and the house ID
 // in the URL for uniformity
 // again we have the hidden "id" paramater available to us
-router.put('/:houseId', protectEndPoint, async function(req, res, next) {
+router.put('/:houseId', jwtCheck , async function(req, res, next) {
   // find the particular house with the primary key
   const house = await House.findByPk(req.params.houseId, {
     include: [
@@ -167,7 +163,7 @@ router.put('/:houseId', protectEndPoint, async function(req, res, next) {
 
 // delete a particular house from a school
 // again hidden "id" parameter is available for us to query the school
-router.delete('/:houseId', protectEndPoint, async function(req, res, next) {
+router.delete('/:houseId',jwtCheck, async function(req, res, next) {
   // find the house by primary key
   const house = await House.findByPk(req.params.houseId, {
     include: [
