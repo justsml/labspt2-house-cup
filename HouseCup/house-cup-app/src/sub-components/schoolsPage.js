@@ -5,11 +5,6 @@ import { NavLink } from "react-router-dom";
 import SideMenu from './SideMenu';
 import auth from '../utils/Auth.js';
 
-
-//testdata; delete later
-import schoolsTestData from '../mock data/schools';
-import { runInThisContext } from 'vm';
-
 class SchoolsPage extends Component {
     constructor(props) {
         super(props);
@@ -25,10 +20,10 @@ class SchoolsPage extends Component {
     componentDidMount() {
         axios.get('http://localhost:5000/schools')
             .then(response => {
-                if (response) {
-                    console.log(response.data.data.schools)
-                    this.setState({ schoolsList: response.data.data.schools })
-                    console.log(`Line 30`, this.state.schoolsList);
+                if(response) { 
+                    // console.log(response.data.data.schools)
+                this.setState({ schoolsList: response.data.data.schools })
+                   // console.log(`Line 30`,this.state.schoolsList);
                 } else {
                     console.log(`There is no response from the server`);
                 }
