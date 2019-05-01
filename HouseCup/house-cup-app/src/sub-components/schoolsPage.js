@@ -56,6 +56,7 @@ class SchoolsPage extends Component {
             console.log(newSchool);
             if(newSchool) {
             const headers = { Authorization: `Bearer ${getAccessToken()}` };    
+            console.log(headers);
             axios.post('http://localhost:5000/schools', newSchool, {headers} )
                  .then( school => {
                         console.log(`Line 50 Schoolspage`, school);
@@ -113,6 +114,11 @@ class SchoolsPage extends Component {
                                         <h2 className='school-name'>{school.name}</h2>
                                         <h4 className='school-name'>{school.city}</h4>
                                     </NavLink>
+                                    <button>
+                                        <NavLink to={`/admin/schools/${school.id}/update`}>
+                                            Update:
+                                        </NavLink>
+                                    </button>
                                 </div>
                             )
                         })}

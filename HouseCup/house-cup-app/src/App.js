@@ -26,6 +26,8 @@ import BillingPage from './sub-components/billingPage';
 import About from './sub-components/About';
 import schoolsTestData from './mock data/schools';
 import auth from './utils/Auth.js';
+//ModifySchool.js
+import ModifySchoolPage from './sub-components/ModifySchool';
 
  
 class App extends Component {
@@ -101,6 +103,7 @@ class App extends Component {
                           schools={this.state.schoolData} 
                            houseList={this.state.testData}/> }/>
         <Route exact path = '/admin/schools/:id' render={(props) => <Houses {...props} /> }/>
+        <Route exact path = '/admin/schools/:id/update' render={(props) => <ModifySchoolPage {...props}></ModifySchoolPage> }></Route>
         {/* <SecuredRoute exact path = '/analytics' render={(props) => <AdminAnalyticsPage  />}/> */}
         <SecuredRoute exact path = '/admin/billing' component={BillingPage}/>
         <SecuredRoute exact path = '/admin/settings' render={(props) => <SettingsPage/>}/>
