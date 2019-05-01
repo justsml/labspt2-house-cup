@@ -20,10 +20,10 @@ class SchoolsPage extends Component {
     componentDidMount() {
         axios.get('http://localhost:5000/schools')
             .then(response => {
-                if(response) { 
+                if (response) {
                     // console.log(response.data.data.schools)
-                this.setState({ schoolsList: response.data.data.schools })
-                   // console.log(`Line 30`,this.state.schoolsList);
+                    this.setState({ schoolsList: response.data.data.schools })
+                    // console.log(`Line 30`,this.state.schoolsList);
                 } else {
                     console.log(`There is no response from the server`);
                 }
@@ -69,9 +69,9 @@ class SchoolsPage extends Component {
     }
 
     newSchoolToggle = e => {
-        this.setState({
-            newSchool: true
-        })
+        this.setState(preState => ({
+            newSchool: !preState.newSchool
+        }))
     }
 
     render() {
@@ -79,21 +79,26 @@ class SchoolsPage extends Component {
             <div className='schools-page'>
                 <SideMenu {...this.props} />
                 <div className='schools-container'>
-                    <div className='add-school-container'>
-                        <h2 className={this.state.newSchool ? 'new-school-toggle' : 'no-new-school'} onClick={this.newSchoolToggle}>Add New School</h2>
+                    <div className={ this.state.newSchool ? 'new-school new-school-expand' : 'new-school new-school-collapse'} onClick={this.newSchoolToggle.bind(this)}>
+                        <h2 className='new-school-txt'>Add New School</h2>
                         <div className='add-school-inputs'>
-                            <form onSubmit={this.addSchool}>
-                                <input className={this.state.newSchool ? 'new-school-toggle' : 'hidden'}
+                            <form 
+                            className={this.state.newSchool ? 'new-school-form' : 'hidden'}
+                            onSubmit={this.addSchool} 
+                            onClick={event => event.stopPropagation()}>
+                                <input
+                                    className='new-school-input'
                                     placeholder='name' name='newSchoolName'
                                     value={this.state.newSchoolName}
                                     onChange={this.handleSchoolInput} />
-                                <input className={this.state.newSchool ? 'new-school-toggle' : 'hidden'}
+                                <input
+                                    className='new-school-input'
                                     placeholder='city'
                                     name='newSchoolCity'
                                     value={this.state.newSchoolCity}
                                     onChange={this.handleSchoolInput}></input>
                                 {/* <input className='schoolDescription' placeholder='description' name='newSchoolDescription' onChange={this.handleSchoolInput}></input> */}
-                                <button className={this.state.newSchool ? 'new-school-toggle' : 'hidden'}><b>+ Add School +</b></button>
+                                <button className='new-school-button'>+</button>
                             </form>
                         </div>
                     </div>
