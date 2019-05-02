@@ -4,40 +4,13 @@ import Graph from '../Styles/Graphs.js';
 import SideMenu from '../SideMenu.js';
 import Select from 'react-select';
 import auth from '../../utils/Auth.js';
+import dummyData from './dummy.js';
 import axios from 'axios';
 
 export default class AdminAnalyticsPage extends Component {
   constructor(props) {
     super(props);
-     this.state ={
-       years:[
-        { label: "2015", value: 1 },
-        { label: "2016", value: 2 },
-        { label: "2017", value: 3 },
-        { label: "2018", value: 4 },
-        { label: "2019", value: 5 },
-        
-      ],
-      incomingData: props.houseData,
-       data:[
-        ['x', 'H1', 'H2', 'H3', 'H4'],
-        [0, 0,  0, 0,  0],
-        [1, 10, 5,  4,  6],
-        [2, 23, 15,  20,  26],
-      
-      ],
-      options:{
-        hAxis: {
-          title: 'Time in Months' ,
-        },
-        vAxis: {
-          title: 'Points',
-        },
-        series: {
-          1: { curveType: 'function' },
-        },
-      }
-     }
+     this.state = dummyData
   }
   
   renderGraphs = () => {
@@ -72,7 +45,7 @@ componentDidMount() {
            <form className="select" onSubmit={this.handleSubmit}>
              <Select options={this.state.years} />      
             </form>
-            {/* <div>{this.state.incomingData}</div> */}
+           
           <Graph>
             <Chart 
                 chartType="LineChart"
