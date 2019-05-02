@@ -1,51 +1,37 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import auth from '../utils/Auth.js';
-import LandingPage from './LandingPage';
 
-function SecuredRoute({ component: Component, ...rest }) {
-  // const { component: Component, path } = props;
-  const {id, path} = {...rest};
- 
-  return (
-    <Route
-      path={path}
-      render={(props) => {
-        if (!auth.isAuthenticated()) {
-          auth.login();
-          return <LandingPage />;
-        }
-        return <Component id={id} />;
-      }}
-    />
-  );
-}
+const SecuredRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={(props) => {
+            if (!auth.isAuthenticated()) {
+              auth.login();
+              return <div />;
+            }
+            return <Component {...props}/>;
+          }}/>
+
+);
+
 export default SecuredRoute;
+
 // function SecuredRoute(props) {
-//   const { component: Component, path } = props;
+//   const { component: Component, path, data } = props;
 //   return (
-//     <Route
+//     <Route 
 //       path={path}
-//       render={() => {
+//       data={data}
+//       render={(props) => {
 //         if (!auth.isAuthenticated()) {
 //           auth.login();
-//           return <LandingPage />;
+//           return <div />;
 //         }
-//         return <Component />;
+//         return <Component {...props}/>;
 //       }}
 //     />
 //   );
 // }
 
-// const SecretRoute = ({ component: Component, ...rest }) => (
-//   <Route {...rest} render={(props) => (
-//     AuthService.isAuthenticated === true
-//       ? <Component {...props} />
-//       : <Redirect to={{
-//           pathname: '/login',
-//           state: { from: props.location }
-//         }} />
-//   )} />
-// );
+
 
 

@@ -103,14 +103,14 @@ router.post('/', jwtCheck, async function(req, res) {
 // don't have to make the queries in this function
 // async function for await usage
 router.put('/:id', jwtCheck, ensureOwner, async (req, res, next) => {
-  // wrap the code in try..catch block to catch any errors
+         // wrap the code in try..catch block to catch any errors
   try {
-    // every sequelize model has a handy update method which accepts an object
-    // we can directly pass the body to the update method, sequelize automagically strips off unwanted properties
-    // and updates the right values in the db
+       // every sequelize model has a handy update method which accepts an object
+      // we can directly pass the body to the update method, sequelize automatically strips off unwanted properties
+     // and updates the right values in the db
     const updatedSchool = await req.school.update(req.body)
 
-    // just send back the updated object back to user
+  // just send back the updated object back to user
     res.status(200).json(updatedSchool)
   } catch (err) {
     next({ ...err, code: 500 })

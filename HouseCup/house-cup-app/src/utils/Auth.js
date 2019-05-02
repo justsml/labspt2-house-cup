@@ -68,19 +68,25 @@ handleAuthentication () {
     this.profile = authResult.idTokenPayload;
     this.idToken = authResult.idToken;
     this.accessToken = authResult.accessToken;
-    this.loginFlag = !this.loginFlag;
+    // this.loginFlag = !this.loginFlag;
     this.expiresAt = expires;
     // console.log(this.profile);
     //Set authFlag in local storage to true
-    localStorage.setItem(this.authFlag, 'true');
+    // localStorage.setItem(this.authFlag, 'true');
+    localStorage.setItem('isLoggedIn', 'true');
     // localStorage.setItem("Profile", JSON.stringify(this.profile));  Removed the profile info from local storage.
   }
 
   logout () {
     //Set authFlag in local storage to false
-    localStorage.setItem(this.authFlag, JSON.stringify(false));
-    localStorage.removeItem("Profile");
-    this.loginFlag = !this.loginFlag;
+    // localStorage.setItem(this.authFlag, JSON.stringify(false));
+    // localStorage.removeItem("Profile");
+    // this.loginFlag = !this.loginFlag;
+    this.accessToken = null;
+    this.idToken = null;
+    this.profile = null;
+    this.expiresAt = 0;
+    localStorage.removeItem('isLoggedIn');
     this.auth0.logout({
       returnTo: 'http://localhost:3000',
       clientID: '46Ngw5RelPCvdaCoKrqPvIWyvgFQBqvx',
@@ -103,6 +109,7 @@ handleAuthentication () {
       }
     });
   }
+  
 }
 
 const auth = new Auth();

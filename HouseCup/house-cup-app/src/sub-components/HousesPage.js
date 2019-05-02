@@ -21,15 +21,12 @@ class Houses extends React.Component {
         }
     }
 
-    componentDidMount() {
-        // this.setState({
-        //     houseList: this.props.houseList
-        // });
-        axios.get(`http://localhost:5000/schools/${this.props.match.params.id}/houses`)
+ componentDidMount() {
+    axios.get(`http://localhost:5000/schools/${this.props.match.params.id}/houses`)
         .then(response => { 
             if(response) {
             this.setState({  houseList: response.data  });
-            console.log(response.data);
+           
             } else {
                 console.log(`There is no houses data from the db`);
             }
@@ -150,9 +147,10 @@ class Houses extends React.Component {
         placeholder: styles => ({ ...styles, ...this.dot() }),
         singleValue: (styles, { data }) => ({ ...styles, ...this.dot(data.color) }),
     };
-
+    
+    
     render() {
-        
+      
         return (
             <div className='admin-main-page'>
                 <SideMenu {...this.props} />
@@ -224,7 +222,7 @@ class Houses extends React.Component {
                                             <span className='increment-number' id='10' onClick={this.pickTicker.bind(this)}>10</span>
                                         </div>
                                         <div className='increment-number-ticker'>
-                                            {/* <button className='down-ticker' onClick={this.incrementChangeDown}>↓</button> */}
+                                            <button className='down-ticker' onClick={this.incrementChangeDown}>↓</button>
                                         </div>
                                     </div>
                                     <div className='points-button-container'>

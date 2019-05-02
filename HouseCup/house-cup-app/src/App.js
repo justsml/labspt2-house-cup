@@ -14,7 +14,6 @@ import SettingsPage from './sub-components/SettingsPage';
 import SchoolsPage from './sub-components/SchoolsPage';
 //adminAnalyticsPage
 import AdminAnalyticsPage from './sub-components/analytics/AdminAnalyticsPage';
-// import AnalyticsPage from './sub-components/analytics/AnalyticsPage';
 //CallbackPage for Auth0.js
 import Callback from './Callback.js';
 //Secured Route
@@ -47,12 +46,11 @@ class App extends Component {
   
   componentDidMount = () => {
    
-     this.setState({
-      authProfile:auth.getProfile(),
-      authIdToken:auth.getIdToken()
-    })
-    // console.log(this.state.authProfile);
-    // console.log(this.state.authIdToken)
+    const { silentAuth } = auth;
+    if (localStorage.getItem('isLoggedIn') === 'true') {
+      silentAuth();
+    }
+    
     axios.get('http://localhost:5000/users')
       .then(response => {
         // console.log(response.data.data.allUsers)
@@ -74,44 +72,53 @@ class App extends Component {
         this.setState({houseData: response.data.data.houses})
       })
       .catch(err => {
-            console.log(err) 
-      });  
-      
-        
-  //  console.log(this.state.name)
+          console.log(err)
+      });    
        
   }
   
-  getId = id => {
-    this.setState({
-       schoolId: id
-    })
-  }
-
-  componentWillMount =() => {
     
-  }
-  
-  render() {
-    
+  render() {    
     return (
       <div className="App">
-        <Route exact path='/' render={(props) => <LandingPage {...props} schoolsSelected={this.state.schoolData} />} />
-        <Route exact path = '/callback' render={  (props) => <Callback />  }/>                                                       
-        <Route exact path = '/admin/schools' render={(props) =>
-             <SchoolsPage {...props} 
-                          schools={this.state.schoolData} 
-                           houseList={this.state.testData}/> }/>
-        <Route exact path = '/admin/schools/:id' render={(props) => <Houses {...props} /> }/>
-        <Route exact path = '/admin/schools/:id/update' render={(props) => <ModifySchoolPage {...props}></ModifySchoolPage> }></Route>
-        {/* <SecuredRoute exact path = '/analytics' render={(props) => <AdminAnalyticsPage  />}/> */}
-        <SecuredRoute exact path = '/admin/billing' component={BillingPage}/>
-        <SecuredRoute exact path = '/admin/settings' render={(props) => <SettingsPage/>}/>
-        <SecuredRoute path='/about' component={About} />
-        <SecuredRoute exact path = '/admin/settings' render={(props) => <SettingsPage/>}/>
-        <SecuredRoute exact path = '/admin/analytics' id={3} component={AdminAnalyticsPage} />
-      </div>
 
+        <Route exact 
+               path='/' 
+               render={(props) =>
+                <LandingPage {...props}
+                            schoolsSelected={this.state.schoolData} />} />
+        <Route exact
+               path = '/callback' 
+               render={  (props) => <Callback />  }/>                                                       
+        <Route exact
+               path = '/admin/schools'
+               render={(props) =>
+           <SchoolsPage {...props} 
+                        schools={this.state.schoolData} 
+                        houseList={this.state.testData}
+                        /> 
+          }/>
+       <Route   exact 
+                path = '/admin/schools/:id'
+                render={(props) => <Houses {...props} /> }/>
+        <SecuredRoute exact 
+                      path = '/admin/billing'
+                      component={BillingPage}/>
+        <SecuredRoute exact 
+                      path = '/admin/settings' 
+                      render={(props) => <SettingsPage/>}/>
+        <SecuredRoute path='/about'
+                      component={About} />
+        <SecuredRoute exact 
+                      path = '/admin/settings'
+                      render={(props) => <SettingsPage/>}/>
+        <SecuredRoute exact 
+                      path = '/admin/analytics' 
+                      HouseData={this.state.houseData}
+                      component={AdminAnalyticsPage} />
+
+
+      </div>
     );
   }
 
