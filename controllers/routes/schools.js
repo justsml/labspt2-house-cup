@@ -10,7 +10,7 @@ async function ensureOwner(req, res, next) {
   // get the user object from database by matching  the auth token
   const user = await User.findOne({
     where: {
-      user_id: req.user.sub
+      userId: req.user.sub
     },
   })
    
@@ -58,7 +58,7 @@ router.get('/', async function(req, res) {
 
 router.get('/:id', async function(req, res) {
   try {
-    const school = await School.findById(req.params.id)
+    const school = await School.findByPk(req.params.id)
     res.json({
       status: true,
       data: {
@@ -119,17 +119,55 @@ router.put('/:id', jwtCheck, ensureOwner, async (req, res, next) => {
 
 // Delete a particular school
 // middleware setup same as above - protectEndPoint and then ensureOwner
-router.delete('/:id', jwtCheck, ensureOwner, async (req, res, next) => {
-  // error catching
-  try {
-    // sequelize models have a handy destroy method, we don't even need to pass any arguments to it!
-    await req.school.destroy()
 
-    // send the details of deleted school back to user
-    res.status(200).json(req.school.toJSON())
-  } catch (err) {
-    next({ ...err, code: 500 })
-  }
+// router.delete('/:id', jwtCheck, async (req, res, next) => {
+//   // error catching
+//   try {
+    
+//     // sequelize models have a handy destroy method, we don't even need to pass any arguments to it!
+//     const school = await School.findByPk(req.params.id);
+//     console.log(school.dataValues);
+//     await School.destroy({
+//       where: {
+//         id: school.dataValues.id
+//       }
+//     });
+
+//     // send the details of deleted school back to user
+//     res.status(200).redirect('http://localhost:3000/admin/schools')
+    
+//   } catch (err) {
+//     next({...err, code: 500 })
+//   }
+// })
+
+
+router.delete('/:id', jwtCheck, (req, res, next) => {
+  // School.findOne({
+  //   where: {id: req.params.id},
+  //   include: [{model: House}]
+  // })
+  //   .then(response => {
+  //     console.log(response, 'Success! back end delete route: School.findByPk')
+  //     res.json(response)
+  //   })
+  //   .catch(err => {
+  //     console.log(err, 'Error! back end delete route: School.findByPk')
+  //     next({...err, code: 500 })
+  //   });
+
+  School.destroy({
+    where: { id: req.params.id }
+  })
+    .then(response => {
+      console.log(response, 'Success! back end delete route: School.destroy')
+      res.json(response)
+    })
+    .catch(err => {
+      console.log(err, 'Error! back end delete route: School.destroy')
+      next({...err, code: 500 })
+    })
+
 })
 
 // Add school routes above this  line

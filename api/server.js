@@ -8,16 +8,20 @@ const sequelize = require('../sequelize');
 
 School.belongsTo(User, {
   foreignKey: 'userId',
+  onDelete: 'CASCADE'
 });
 User.hasMany(School, {
   foreignKey: 'userId',
+  onDelete: 'CASCADE'
 });
 
 House.belongsTo(School, {
-  foreignKey: 'schoolId'
+  foreignKey: 'schoolId',
+  onDelete: 'CASCADE'
 });
 School.hasMany(House, {
-  foreignKey: 'schoolId'
+  foreignKey: 'schoolId',
+  onDelete: 'CASCADE'
 });
 
 // user.getSchools()
