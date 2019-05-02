@@ -67,8 +67,6 @@ componentDidMount() {
     
     return (
       <div className="analytics">
-        {console.log(`working...`)}
-        {console.log(this.state.incomingData)}
         <SideMenu />
         <div className="graphs">
            <form className="select" onSubmit={this.handleSubmit}>

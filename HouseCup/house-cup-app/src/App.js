@@ -73,22 +73,8 @@ class App extends Component {
        
   }
   
-  getId = id => {
-      this.setState({
-        schoolId: id
-      })
-  }
-
-  getHouseData = (arr) => {
-      this.setState({
-         houseData: arr,
-      })
-  }
-
- 
+    
   render() {    
-    const {isAuthenticated} = auth;
-    {console.log(this.state.houseData)}
     return (
       <div className="App">
         <Route exact 
@@ -107,11 +93,9 @@ class App extends Component {
                         houseList={this.state.testData}
                         /> 
           }/>
-        <Route exact 
-               path = '/admin/schools/:id'
-               render={(props) => <Houses  getHouseData={this.getHouseData}
-               {...props} /> }/>
-        {/* <SecuredRoute exact path = '/analytics' render={(props) => <AdminAnalyticsPage  />}/> */}
+       <Route   exact 
+                path = '/admin/schools/:id'
+                render={(props) => <Houses {...props} /> }/>
         <SecuredRoute exact 
                       path = '/admin/billing'
                       component={BillingPage}/>
@@ -123,7 +107,6 @@ class App extends Component {
         <SecuredRoute exact 
                       path = '/admin/settings'
                       render={(props) => <SettingsPage/>}/>
-        {/* <SecuredRoute exact path = '/admin/analytics'  component={AdminAnalyticsPage}/> */}
         <SecuredRoute exact 
                       path = '/admin/analytics' 
                       HouseData={this.state.houseData}

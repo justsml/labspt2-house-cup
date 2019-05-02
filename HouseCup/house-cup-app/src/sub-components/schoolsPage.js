@@ -31,14 +31,14 @@ class SchoolsPage extends Component {
          
     }
 
-    addSchool = (e) => {
+ addSchool = (e) => {
             e.preventDefault();
             const { getAccessToken } = auth;
             const newSchool = {
                 name:this.state.newSchoolName,
                 city:this.state.newSchoolCity
             }
-            console.log(newSchool);
+           
             if(newSchool) {
             const headers = { Authorization: `Bearer ${getAccessToken()}` };    
             axios.post('http://localhost:5000/schools', newSchool, {headers} )
