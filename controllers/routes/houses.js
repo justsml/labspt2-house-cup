@@ -8,13 +8,37 @@ const  {jwtCheck} = require('../../auth/Express-jwt.js');
 // we need the "get" function from lodash
 const _ = require('lodash');
 
+router.get('/schools/houses/data', jwtCheck, async function(req,res,next){
+      try {
 
+          const user = await User.findOne({
+                      where: {
+                        user_id: req.user.sub
+                      },
+                 });
+                //  console.log(`Houses line 19`, user.id)
+          const school = await School.findOne({
+                    where: {
+                      userId: user.id,
+                    }
+               });  
+              //  console.log(`houses`, school)
+         if(!school) return next({ code: 404 });   
+         const houses = await school.getHouses();
+        //  console.log(`Line28`, houses)
+         return res.status(200).json(houses);     
+
+      } catch(err) {
+        next(err);
+      }
+});
 // get all houses for a particular school
 // remember we have a hidden "id" parameter in this url, we don't see it here because it is a nested route
 // this is why we needed mergeParams set on the express Router
-router.get('/', async function(req, res, next) {
+router.get('/schools/:id/houses', async function(req, res, next) {
   try {
     // find the school referenced by the ID
+    console.log(`Line number 18`, req.params.id)
     const school = await School.findByPk(req.params.id);
     // if the school doesn't exist send a 404
     if(!school) return next({ code: 404 });
@@ -36,7 +60,7 @@ router.get('/', async function(req, res, next) {
   }
 });
 // get details of just one house in a school
-router.get('/:houseId', async function(req, res) {
+router.get('schools/:id/houses/:houseId', async function(req, res) {
   // first find the house by primary key, while getting the house let's also
   // include the school and the owner details for convenience
   const house = await House.findByPk(req.params.houseId, {
@@ -62,7 +86,7 @@ router.get('/:houseId', async function(req, res) {
 
 // create a new house in that particular school
 // again, we have the hidden "id" parameter from the parent route
-router.post('/', jwtCheck, async function(req, res, next) {
+router.post('/schools/:id/houses', jwtCheck, async function(req, res, next) {
   try {
     // find the school by primary key using the forwared "id" magic parameter
     const school = await School.findByPk(req.params.id);
