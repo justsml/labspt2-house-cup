@@ -14,7 +14,6 @@ import SettingsPage from './sub-components/SettingsPage';
 import SchoolsPage from './sub-components/SchoolsPage';
 //adminAnalyticsPage
 import AdminAnalyticsPage from './sub-components/analytics/AdminAnalyticsPage';
-// import AnalyticsPage from './sub-components/analytics/AnalyticsPage';
 //CallbackPage for Auth0.js
 import Callback from './Callback.js';
 //Secured Route
@@ -70,39 +69,66 @@ class App extends Component {
       })
       .catch(err => {
             console.log(err)
-      });  
-      
-        
-  
+      });    
        
   }
   
   getId = id => {
-    this.setState({
-       schoolId: id
-    })
+      this.setState({
+        schoolId: id
+      })
+  }
+
+  getHouseData = (arr) => {
+      this.setState({
+         houseData: arr,
+      })
   }
 
  
-  render() {
-    
+  render() {    
+    const {isAuthenticated} = auth;
+    {console.log(this.state.houseData)}
     return (
       <div className="App">
-        <Route exact path='/' render={(props) => <LandingPage {...props} schoolsSelected={this.state.schoolData} />} />
-        <Route exact path = '/callback' render={  (props) => <Callback />  }/>                                                       
-        <Route exact path = '/admin/schools' render={(props) =>
-             <SchoolsPage {...props} 
-                          schools={this.state.schoolData} 
-                           houseList={this.state.testData}/> }/>
-        <Route exact path = '/admin/schools/:id' render={(props) => <Houses {...props} /> }/>
+        <Route exact 
+               path='/' 
+               render={(props) =>
+                <LandingPage {...props}
+                            schoolsSelected={this.state.schoolData} />} />
+        <Route exact
+               path = '/callback' 
+               render={  (props) => <Callback />  }/>                                                       
+        <Route exact
+               path = '/admin/schools'
+               render={(props) =>
+           <SchoolsPage {...props} 
+                        schools={this.state.schoolData} 
+                        houseList={this.state.testData}
+                        /> 
+          }/>
+        <Route exact 
+               path = '/admin/schools/:id'
+               render={(props) => <Houses  getHouseData={this.getHouseData}
+               {...props} /> }/>
         {/* <SecuredRoute exact path = '/analytics' render={(props) => <AdminAnalyticsPage  />}/> */}
-        <SecuredRoute exact path = '/admin/billing' component={BillingPage}/>
-        <SecuredRoute exact path = '/admin/settings' render={(props) => <SettingsPage/>}/>
-        <SecuredRoute path='/about' component={About} />
-        <SecuredRoute exact path = '/admin/settings' render={(props) => <SettingsPage/>}/>
-        <SecuredRoute exact path = '/admin/analytics' id={3} component={AdminAnalyticsPage} />
+        <SecuredRoute exact 
+                      path = '/admin/billing'
+                      component={BillingPage}/>
+        <SecuredRoute exact 
+                      path = '/admin/settings' 
+                      render={(props) => <SettingsPage/>}/>
+        <SecuredRoute path='/about'
+                      component={About} />
+        <SecuredRoute exact 
+                      path = '/admin/settings'
+                      render={(props) => <SettingsPage/>}/>
+        {/* <SecuredRoute exact path = '/admin/analytics'  component={AdminAnalyticsPage}/> */}
+        <SecuredRoute exact 
+                      path = '/admin/analytics' 
+                      HouseData={this.state.houseData}
+                      component={AdminAnalyticsPage} />
       </div>
-
     );
   }
 
