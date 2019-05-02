@@ -14,20 +14,6 @@ button {
     outline: inherit;
 }
 
-button:hover,
-button:focus {
-    background: #0053ba;
-}
-
-button:focus {
-    outline: 1px solid #fff;
-    outline-offset: -4px;
-}
-
-button:active {
-    transform: scale(0.99);
-}
-
 //import fonts
 @font-face {
     font-family: 'BigJohnPRO-Bold';
@@ -433,6 +419,14 @@ html {
         }
     }
 
+    .activeMenu {
+        background-color: @theme-color-white;
+
+        h2 {
+            color: @theme-color-oranage;
+        }
+    }
+
     h2 {
         font-family: 'BigJohnPRO-Regular';
         font-size: 2.4rem;
@@ -619,12 +613,119 @@ html {
 }
 
 .schools-page {
-    display: flex;
-
-    .schools-page-container {
+    .schools-container {
         display: flex;
         flex-direction: column;
         width: 100%;
+        font-family: 'BigJohnPRO-Regular';
+
+        .schools-list {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            margin-top: 80px;
+            justify-content: space-evenly;
+
+            .school-card {
+                width: 260px;
+                height: 360px;
+                border-radius: 8px;
+                font-size: 2.8rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                color: @theme-color-white;
+                background-color: @theme-color-blue;
+            }
+        }
+
+        .new-school-collapse {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: @theme-color-tomato;
+            height: 55px;
+            width: 205px;
+            border-radius: 100px;
+            color: @theme-color-white;
+            font-size: 1.3rem;
+            opacity: 0.8;
+            transition-duration: 0.2s;
+            margin: 0 auto;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+
+        .new-school-expand {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin: 0 auto;
+
+            background-color: @theme-color-tomato;
+            height: 55px;
+            width: 870px;
+            border-radius: 100px;
+            color: @theme-color-white;
+            font-size: 1.3rem;
+            transition-duration: 0.2s;
+
+            .new-school-txt {
+                margin: 0 27px;
+            }
+
+            .add-school-inputs {
+                width: 70%;
+
+                .new-school-form {
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+
+                    .new-school-input {
+                        color: white;
+                        height: 30px;
+                        width: 40%;
+                        margin-bottom: 5px;
+                        margin-left: 20px;
+                        background-color: transparent;
+                        border: none;
+                        border-bottom: 1px solid white;
+                        padding: 0 10px;
+                        font-size: 1.5rem;
+
+                        &:focus {
+                            outline: none;
+                        }
+                    }
+
+                    input::placeholder {
+                        color: @theme-color-beige;
+                    }
+
+                    .new-school-button {
+                        width: 28px;
+                        height: 28px;
+                        display: flex;
+                        margin-left: 20px;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 2rem;
+                        background-color: @theme-color-yellow;
+                        border-radius: 100%;
+                        padding: none;
+                    }
+                }
+            }
+        }
+    }
+
+    .hidden {
+        display: none;
     }
 }
 
@@ -735,4 +836,306 @@ html {
 
         }
     }
+}
+
+
+//responsive design from Chris and VK
+.admin-main-page .housecard-container .housecards {
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.admin-main-page .housecard-container .housecards .housecard {
+    margin: auto;
+}
+
+
+/********************
+    Analytics Page - graphs
+  *********************/
+.graphs {
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    height: 80vh;
+    padding: 0px;
+}
+
+.select {
+    position: absolute;
+    right: 10%;
+    z-index: 2;
+    top: 6%;
+    width: 100px;
+}
+
+/*****************
+    Billing page
+  ******************/
+.billing-page {
+    display: flex;
+    justify-content: space-between;
+}
+
+/**************
+   checkout button - billing pay button
+  ***************/
+.StripeCheckout span {
+    background-color: rgb(224, 30, 89) !important;
+}
+
+.StripeCheckout span {
+    background: none transparent !important;
+    background-image: none !important;
+    font-size: 1em !important;
+    font-family: "Roboto" !important;
+    box-shadow: none !important;
+    font-weight: 400 !important;
+}
+
+.StripeCheckout {
+    background: #F16C3D !important;
+    background-image: none #F16C3D !important;
+    -webkit-border-radius: 2px !important;
+    -moz-border-radius: 2px !important;
+    border-radius: 2px !important;
+    border-color: #F16C3D !important;
+    padding: 4px 12px !important;
+    box-shadow: none !important;
+    width: 180px !important;
+    height: 35px !important;
+    margin-top: 30px !important;
+}
+
+.StripeCheckout:hover,
+.StripeCheckout span:hover {
+    background: #96AD57 !important;
+    background-image: none #96AD57 !important;
+    border-color: #96AD57 !important;
+}
+
+/************
+    Analytics
+  ************/
+.analytics {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.chart {
+    max-width: 100%;
+}
+
+@media(max-width:800px) {
+    .analytics {
+        flex-direction: column;
+    }
+}
+
+/* tablet break */
+@media (max-width: 800px) {
+    input {
+        margin: 2.5%;
+        /* border-radius: 20%; */
+        height: 25px;
+        width: 75%;
+    }
+
+    button {
+        border: 1px solid;
+        height: 25px;
+        width: 50%;
+        font-family: 'BigJohnPRO-Regular';
+        font-size: 1.5rem;
+        border-radius: 15px;
+    }
+
+    button:hover {
+        background-color: white;
+    }
+
+    .app {
+        max-width: 800px;
+        /* font-family: 'BigJohnPRO-Regular';
+      font-size: 2.4rem; */
+    }
+
+    .side-menu {
+        width: 100%;
+    }
+
+    .admin-main-page {
+        max-width: 800px;
+        display: flex;
+        /* flex-direction: row; */
+        flex-wrap: wrap;
+    }
+
+    .admin-main-page .housecard-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .admin-main-page .housecard-container .newSchoolInputs {
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-bottom: 5%;
+        /* border: 1px solid; */
+        background-color: #E2592D;
+        width: 75%;
+        /* max-width: 840px; */
+        height: 250px;
+        border-radius: 10px;
+    }
+
+    .admin-main-page .housecard-container .housecards {
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .admin-main-page .housecard-container .housecards .housecard {
+        margin: auto;
+    }
+}
+
+
+/* mobile break */
+@media (max-width: 500px) {
+    input {
+        margin: 2.5%;
+        /* border-radius: 20%; */
+        height: 25px;
+        min-width: 5px;
+    }
+
+    button {
+        border: 1px solid;
+        height: 25px;
+        width: 75%;
+        font-family: 'BigJohnPRO-Regular';
+        font-size: 1.25rem;
+        border-radius: 15px;
+    }
+
+    button:hover {
+        background-color: white;
+    }
+
+    .app {
+        max-width: 500px;
+    }
+
+    .side-menu {
+        width: 100%;
+    }
+
+    .admin-main-page {
+        max-width: 500px;
+        display: flex;
+        /* flex-direction: row; */
+        flex-wrap: wrap;
+        margin: auto;
+    }
+
+    .admin-main-page .housecard-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .admin-main-page .housecard-container .newSchoolInputs {
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-bottom: 5%;
+        /* border: 1px solid; */
+        background-color: grey;
+        width: 75%;
+        height: 200px;
+        border-radius: 10px;
+    }
+
+    .admin-main-page .housecard-container .housecards {
+        margin: auto;
+    }
+}
+
+/*SchoolsPage (C.Juelfs)*/
+.schools-page {
+    height: inherit;
+    display: flex;
+    flex-direction: row;
+}
+
+.schools-page .side-menu {
+    display: flex;
+    width: 20%;
+    align-items: center;
+    flex-direction: column;
+}
+
+.schools-page .schools-container {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-content: center;
+}
+
+.schools-page .schools-container .schools-list {
+    // border: 5px solid blue;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: center;
+    border-radius: 10px;
+}
+
+
+@media (max-width: 800px) {
+    .schools-page {
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+
+    .schools-page .side-menu {
+        width: 100%;
+    }
+
+    .schools-page .schools-container {
+        width: 100%;
+        margin-top: 30px;
+    }
+
+    .schools-page .schools-container .add-school-container {
+        width: 100%;
+    }
+
+    .schools-page .schools-container .add-school-container .add-school-inputs {
+        width: 100%;
+    }
+}
+
+@media (max-width:800px) {
+    .billing-page {
+        flex-direction: column;
+    }
+
+    .bLuJyq {
+        width: 80%;
+        margin: 0 auto;
+        padding: 0px
+    }
+
+
 }

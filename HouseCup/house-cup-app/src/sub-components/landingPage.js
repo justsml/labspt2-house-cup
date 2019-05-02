@@ -96,6 +96,8 @@ class LandingPage extends React.Component {
                 </div>
                 <div className='landing-page-block landing-page-block-3'>
                     <h2 className='checkout' >Check out the top-tier schools we work with</h2>
+                    <h2 className='school-search'>Or find your school's public page below</h2>
+                    <input className='school-search-input' placeholder='search for your school here'></input>
                     <div className='schools-list' >
                         {this.state.schoolsList.map((school) => {
                             return (
@@ -110,8 +112,6 @@ class LandingPage extends React.Component {
                             )
                         })}
                     </div>
-                    <h2 className='school-search'>Find your school's Public Page!</h2>
-                    <input className='school-search-input' placeholder='search for schools here'></input>
                     <div>
                         {this.props.schoolsSelected.map((x) => {
                             return (
