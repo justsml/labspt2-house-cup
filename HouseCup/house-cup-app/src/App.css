@@ -11,17 +11,6 @@ button {
   cursor: pointer;
   outline: inherit;
 }
-button:hover,
-button:focus {
-  background: #0053ba;
-}
-button:focus {
-  outline: 1px solid #fff;
-  outline-offset: -4px;
-}
-button:active {
-  transform: scale(0.99);
-}
 @font-face {
   font-family: 'BigJohnPRO-Bold';
   src: local('BigJohnPRO-Bold'), url('./font/BigJohnPRO-Bold.otf') format('opentype');
@@ -354,6 +343,12 @@ html {
 .side-menu .menu-button:hover h2 {
   color: #E2592D;
 }
+.side-menu .activeMenu {
+  background-color: #F1EFEA;
+}
+.side-menu .activeMenu h2 {
+  color: #E2592D;
+}
 .side-menu h2 {
   font-family: 'BigJohnPRO-Regular';
   font-size: 2.4rem;
@@ -510,15 +505,109 @@ html {
 .admin-main-page .housecard-container .flip .housecard-inner {
   transform: rotateY(180deg);
 }
-.schools-page {
-  display: flex;
-}
-.schools-page .schools-page-container {
+.schools-page .schools-container {
   display: flex;
   flex-direction: column;
   width: 100%;
+  font-family: 'BigJohnPRO-Regular';
+}
+.schools-page .schools-container .schools-list {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  margin-top: 80px;
+  justify-content: space-evenly;
+}
+.schools-page .schools-container .schools-list .school-card {
+  width: 260px;
+  height: 360px;
+  border-radius: 8px;
+  font-size: 2.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  color: #F1EFEA;
+  background-color: #5271c2;
+}
+.schools-page .schools-container .new-school-collapse {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #DA2E05;
+  height: 55px;
+  width: 205px;
+  border-radius: 100px;
+  color: #F1EFEA;
+  font-size: 1.3rem;
+  opacity: 0.8;
+  transition-duration: 0.2s;
+  margin: 0 auto;
+}
+.schools-page .schools-container .new-school-collapse:hover {
+  opacity: 1;
+}
+.schools-page .schools-container .new-school-expand {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 auto;
+  background-color: #DA2E05;
+  height: 55px;
+  width: 870px;
+  border-radius: 100px;
+  color: #F1EFEA;
+  font-size: 1.3rem;
+  transition-duration: 0.2s;
+}
+.schools-page .schools-container .new-school-expand .new-school-txt {
+  margin: 0 27px;
+}
+.schools-page .schools-container .new-school-expand .add-school-inputs {
+  width: 70%;
+}
+.schools-page .schools-container .new-school-expand .add-school-inputs .new-school-form {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.schools-page .schools-container .new-school-expand .add-school-inputs .new-school-form .new-school-input {
+  color: white;
+  height: 30px;
+  width: 40%;
+  margin-bottom: 5px;
+  margin-left: 20px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid white;
+  padding: 0 10px;
+  font-size: 1.5rem;
+}
+.schools-page .schools-container .new-school-expand .add-school-inputs .new-school-form .new-school-input:focus {
+  outline: none;
+}
+.schools-page .schools-container .new-school-expand .add-school-inputs .new-school-form input::placeholder {
+  color: #D0CAAD;
+}
+.schools-page .schools-container .new-school-expand .add-school-inputs .new-school-form .new-school-button {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  margin-left: 20px;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  background-color: #ECA00D;
+  border-radius: 100%;
+  padding: none;
+}
+.schools-page .hidden {
+  display: none;
 }
 @media (max-width: 800px) {
+  display: flex;
+  flex-direction: column;
   .landing-page-block {
     display: flex;
     flex-direction: column;
@@ -602,100 +691,89 @@ html {
     align-items: center;
   }
 }
-
 .admin-main-page .housecard-container .housecards {
   margin: auto;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-} 
+}
 .admin-main-page .housecard-container .housecards .housecard {
   margin: auto;
 }
-
-
 /********************
-  Analytics Page - graphs
-*********************/
+    Analytics Page - graphs
+  *********************/
 .graphs {
-   margin:0 auto;
-   width:100%; 
-   position:relative;
-   height:80vh;  
-   padding: 0px;
-}  
-
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  height: 80vh;
+  padding: 0px;
+}
 .select {
-    position: absolute;
-    right: 10%;
-    z-index: 2;
-    top: 6%;
-    width:100px;
+  position: absolute;
+  right: 10%;
+  z-index: 2;
+  top: 6%;
+  width: 100px;
 }
-
 /*****************
-  Billing page
-******************/
+    Billing page
+  ******************/
 .billing-page {
-   display:flex;
-   justify-content: space-between;
-}  
-/**************
- checkout button - billing pay button
-***************/ 
-.StripeCheckout span {
-   background-color: rgb(224, 30, 89) !important;
+  display: flex;
+  justify-content: space-between;
 }
-
+/**************
+   checkout button - billing pay button
+  ***************/
 .StripeCheckout span {
-  background: none transparent!important;
-  background-image: none!important;
-  font-size: 1em!important;
-  font-family: "Roboto"!important;
-  box-shadow: none!important;
-  font-weight: 400!important;
-  }
-  
-  .StripeCheckout {
-  background: #F16C3D!important;
-  background-image: none #F16C3D!important;
-  -webkit-border-radius: 2px!important;
-  -moz-border-radius: 2px!important;
-  border-radius: 2px!important;
-  border-color: #F16C3D!important;
-  padding: 4px 12px!important;
-  box-shadow: none!important;
+  background-color: #e01e59 !important;
+}
+.StripeCheckout span {
+  background: none transparent !important;
+  background-image: none !important;
+  font-size: 1em !important;
+  font-family: "Roboto" !important;
+  box-shadow: none !important;
+  font-weight: 400 !important;
+}
+.StripeCheckout {
+  background: #F16C3D !important;
+  background-image: none #F16C3D !important;
+  -webkit-border-radius: 2px !important;
+  -moz-border-radius: 2px !important;
+  border-radius: 2px !important;
+  border-color: #F16C3D !important;
+  padding: 4px 12px !important;
+  box-shadow: none !important;
   width: 180px !important;
   height: 35px !important;
   margin-top: 30px !important;
-  }
-  
-  .StripeCheckout:hover,
-  .StripeCheckout span:hover {
-  background: #96AD57!important;
-  background-image: none #96AD57!important;
-  border-color: #96AD57!important;
-  }
+}
+.StripeCheckout:hover,
+.StripeCheckout span:hover {
+  background: #96AD57 !important;
+  background-image: none #96AD57 !important;
+  border-color: #96AD57 !important;
+}
 /************
-  Analytics
-************/  
+    Analytics
+  ************/
 .analytics {
-  display:flex;
-  flex-direction:row;
-  align-items:center;
-  justify-content:flex-start;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
 }
-
 .chart {
-  max-width:100%;
+  max-width: 100%;
 }
-
-@media(max-width:800px) {
-   .analytics {
+@media (max-width: 800px) {
+  .analytics {
     flex-direction: column;
-   }
+  }
 }
-
 /* tablet break */
 @media (max-width: 800px) {
   input {
@@ -710,16 +788,15 @@ html {
     width: 50%;
     font-family: 'BigJohnPRO-Regular';
     font-size: 1.5rem;
-    border-radius: 15px;  
+    border-radius: 15px;
   }
   button:hover {
     background-color: white;
   }
-
   .app {
     max-width: 800px;
     /* font-family: 'BigJohnPRO-Regular';
-    font-size: 2.4rem; */
+      font-size: 2.4rem; */
   }
   .side-menu {
     width: 100%;
@@ -753,13 +830,11 @@ html {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-  } 
+  }
   .admin-main-page .housecard-container .housecards .housecard {
     margin: auto;
   }
 }
-
-
 /* mobile break */
 @media (max-width: 500px) {
   input {
@@ -774,12 +849,11 @@ html {
     width: 75%;
     font-family: 'BigJohnPRO-Regular';
     font-size: 1.25rem;
-    border-radius: 15px; 
+    border-radius: 15px;
   }
   button:hover {
     background-color: white;
   }
-
   .app {
     max-width: 500px;
   }
@@ -812,129 +886,60 @@ html {
   }
   .admin-main-page .housecard-container .housecards {
     margin: auto;
-  } 
+  }
 }
-
 /*SchoolsPage (C.Juelfs)*/
-    .schools-page {
-      height: inherit;
-      display: flex;
-      flex-direction: row;
-    }
-      .schools-page .side-menu {
-        display: flex;
-        width: 20%;
-        align-items: center;
-        flex-direction: column;
-      }
-      .schools-page .schools-container {
-        width: 80%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-content: center;
-      }
-        .schools-page .schools-container .add-school-container {
-          margin: auto;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-evenly;
-          align-items: center;
-          margin-bottom: 5%;
-          /* border: 1px solid; */
-          background-color: #E2592D;
-          width: 75%;
-          max-width: 840px;
-          height: 250px;
-          border-radius: 10px;
-        }
-        .schools-page .schools-container .add-school-container .add-school-inputs {
-          /* border: 2px solid green; */
-          display: flex;
-          flex-direction: column;
-          justify-content: space-evenly;
-          align-items: center;
-          width: 75%;
-        }
-        .schools-page .schools-container .schools-list {
-          border: 5px solid blue;
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: space-evenly;
-          align-content: center;
-          border-radius: 10px;
-        }
-          .schools-page .schools-container .schools-list .school-card {
-            border: 1px solid;
-            border-radius: 10px;
-            cursor: pointer;
-            background-color: transparent;
-            width: 360px;
-            height: 460px;
-            perspective: 1000px;
-            margin: 2%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-          }
-          .schools-page .schools-container .schools-list .school-card .school-name {
-            text-align: center;
-            font-size: 3.5rem;
-            text-decoration: underline;
-          }
-          .schools-page .schools-container .schools-list .school-card .house-list {
-            border: 1px solid red;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-evenly;
-            align-items: center;
-            width: 100%;
-            height: 75%;
-            font-size: 1.5rem;
-          }
+.schools-page {
+  height: inherit;
+  display: flex;
+  flex-direction: row;
+}
+.schools-page .side-menu {
+  display: flex;
+  width: 20%;
+  align-items: center;
+  flex-direction: column;
+}
+.schools-page .schools-container {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-content: center;
+}
+.schools-page .schools-container .schools-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-content: center;
+  border-radius: 10px;
+}
 @media (max-width: 800px) {
   .schools-page {
     flex-direction: column;
     justify-content: space-evenly;
   }
-    .schools-page .side-menu {
-      width: 100%;
-    }
-    .schools-page .schools-container {
-      width: 100%;
-      margin-top: 30px;
-    }
-    .schools-page .schools-container .add-school-container {
-      width: 100%;
-    }
-      .schools-page .schools-container .add-school-container .add-school-inputs {
-        width: 100%;
-      }
-}
-/* @media (max-width: 500px) {
+  .schools-page .side-menu {
+    width: 100%;
+  }
+  .schools-page .schools-container {
+    width: 100%;
+    margin-top: 30px;
+  }
   .schools-page .schools-container .add-school-container {
     width: 100%;
   }
-    .schools-page .schools-container .add-school-container .add-school-inputs {
-      width: 100%;
-    }
-} */
-
-
-/***********************
-  Billing page - responsive for tablet
-************************/  
-@media (max-width:800px) {
-    .billing-page {
-       flex-direction:column;
-    }
-
-    .bLuJyq {
-        width: 80%;
-        margin: 0 auto;
-        padding:0px
-    }
-
-    
+  .schools-page .schools-container .add-school-container .add-school-inputs {
+    width: 100%;
+  }
+}
+@media (max-width: 800px) {
+  .billing-page {
+    flex-direction: column;
+  }
+  .bLuJyq {
+    width: 80%;
+    margin: 0 auto;
+    padding: 0px;
+  }
 }
