@@ -21,11 +21,13 @@ import Callback from './Callback.js';
 import SecuredRoute from './sub-components/SecuredRoute';
 //Auth0.js
 // import NavBar from './sub-components/NavBar';
-import BillingPage from './sub-components/BillingPage';
+import BillingPage from './sub-components/billingPage';
 //About.js
 import About from './sub-components/About';
 import schoolsTestData from './mock data/schools';
 import auth from './utils/Auth.js';
+//ModifySchool.js
+import ModifySchoolPage from './sub-components/ModifySchool';
 
  
 class App extends Component {
@@ -55,6 +57,7 @@ class App extends Component {
       .then(response => {
         // console.log(response.data.data.allUsers)
         this.setState({userData: response.data.data.allUsers})
+        console.log('success', response);
       })
       .catch(err => console.log(err));
 
@@ -63,6 +66,7 @@ class App extends Component {
         // console.log(response.data.data.schools)
         this.setState({schoolData: response.data.data.schools})
       })
+
       .catch(err => console.log(err));
     axios.get('http://localhost:5000/houses')
       .then(response => {
@@ -70,7 +74,7 @@ class App extends Component {
         this.setState({houseData: response.data.data.houses})
       })
       .catch(err => {
-            console.log(err)
+            console.log(err) 
       });  
       
         
@@ -99,6 +103,7 @@ class App extends Component {
                           schools={this.state.schoolData} 
                            houseList={this.state.testData}/> }/>
         <Route exact path = '/admin/schools/:id' render={(props) => <Houses {...props} /> }/>
+        <Route exact path = '/admin/schools/:id/update' render={(props) => <ModifySchoolPage {...props}></ModifySchoolPage> }></Route>
         {/* <SecuredRoute exact path = '/analytics' render={(props) => <AdminAnalyticsPage  />}/> */}
         <SecuredRoute exact path = '/admin/billing' component={BillingPage}/>
         <SecuredRoute exact path = '/admin/settings' render={(props) => <SettingsPage/>}/>

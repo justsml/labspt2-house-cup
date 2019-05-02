@@ -10,6 +10,8 @@ class SchoolsPage extends Component {
         super(props);
         this.state = {
             schoolsList: [],
+            authProfile: [],
+            authPassword: '',
             houseList: [],
             newSchool: false,
             newSchoolName: '',
@@ -31,6 +33,20 @@ class SchoolsPage extends Component {
             .catch(err => console.log(err))
 
     }
+    // addUser = e => {
+    //     axios.post('http://localhost:5000/users/register', {
+    //         email: this.state.authProfile.email,
+    //         password: this.state.authPassword,
+    //     })
+    //         .then(response => {
+    //             console.log(response);
+    //             // this.setState({
+    //             //     schoolsList: response.data.data
+    //             // })
+    //         })
+    // }
+
+
 
     addSchool = (e) => {
         e.preventDefault();
@@ -110,6 +126,11 @@ class SchoolsPage extends Component {
                                         <h2 className='school-name'>{school.name}</h2>
                                         <h4 className='school-name'>{school.city}</h4>
                                     </NavLink>
+                                    <button>
+                                        <NavLink to={`/admin/schools/${school.id}/update`}>
+                                            Update:
+                                        </NavLink>
+                                    </button>
                                 </div>
                             )
                         })}
