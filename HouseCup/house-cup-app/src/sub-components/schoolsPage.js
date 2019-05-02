@@ -11,60 +11,67 @@ class SchoolsPage extends Component {
         this.state = {
             schoolsList: [],
             houseList: [],
+            newSchool: false,
             newSchoolName: '',
             newSchoolCity: '',
             newSchoolDescription: '',
         }
     }
     componentDidMount() {
-       axios.get('http://localhost:5000/schools')
+        axios.get('http://localhost:5000/schools')
             .then(response => {
-                if(response) { 
+                if (response) {
                     // console.log(response.data.data.schools)
-                this.setState({ schoolsList: response.data.data.schools })
-                   // console.log(`Line 30`,this.state.schoolsList);
+                    this.setState({ schoolsList: response.data.data.schools })
+                    // console.log(`Line 30`,this.state.schoolsList);
                 } else {
                     console.log(`There is no response from the server`);
                 }
-             })
+            })
             .catch(err => console.log(err))
-         
+
     }
 
     addSchool = (e) => {
-            e.preventDefault();
-            const { getAccessToken } = auth;
-            const newSchool = {
-                name:this.state.newSchoolName,
-                city:this.state.newSchoolCity
-            }
-            console.log(newSchool);
-            if(newSchool) {
-            const headers = { Authorization: `Bearer ${getAccessToken()}` };    
-            axios.post('http://localhost:5000/schools', newSchool, {headers} )
-                 .then( school => {
-                        console.log(`Line 50 Schoolspage`, school);
-                        let newSchool = school.data.data.newSchool;
-                        console.log(`52`,newSchool);
-                        this.setState({
-                            schoolsList: [...this.state.schoolsList, newSchool]
-                        })
-                     }).catch(err => {
-                        console.log(err);
-                    });
-          } else {
-              console.log(`Please add newSchool`);
-          }
-            console.log(`school ${this.state.newSchoolName} added!`);
-           
-            this.setState({
-                newSchoolName:'',
-                newSchoolCity: ''
-            });
+        e.preventDefault();
+        const { getAccessToken } = auth;
+        const newSchool = {
+            name: this.state.newSchoolName,
+            city: this.state.newSchoolCity
+        }
+        console.log(newSchool);
+        if (newSchool) {
+            const headers = { Authorization: `Bearer ${getAccessToken()}` };
+            axios.post('http://localhost:5000/schools', newSchool, { headers })
+                .then(school => {
+                    console.log(`Line 50 Schoolspage`, school);
+                    let newSchool = school.data.data.newSchool;
+                    console.log(`52`, newSchool);
+                    this.setState({
+                        schoolsList: [...this.state.schoolsList, newSchool]
+                    })
+                }).catch(err => {
+                    console.log(err);
+                });
+        } else {
+            console.log(`Please add newSchool`);
+        }
+        console.log(`school ${this.state.newSchoolName} added!`);
+
+        this.setState({
+            newSchoolName: '',
+            newSchoolCity: ''
+        });
     }
 
     handleSchoolInput = (e) => {
         this.setState({ [e.target.name]: e.target.value })
+    }
+
+    newSchoolToggle = e => {
+        this.setState(preState => ({
+            newSchool: !preState.newSchool
+        }))
     }
 
     render() {
@@ -72,29 +79,34 @@ class SchoolsPage extends Component {
             <div className='schools-page'>
                 <SideMenu {...this.props} />
                 <div className='schools-container'>
-                    <div className='add-school-container'>
-                        <h2>Add New School:</h2>
+                    <div className={ this.state.newSchool ? 'new-school new-school-expand' : 'new-school new-school-collapse'} onClick={this.newSchoolToggle.bind(this)}>
+                        <h2 className='new-school-txt'>Add New School</h2>
                         <div className='add-school-inputs'>
-                           <form onSubmit={this.addSchool}>
-                            <input className='schoolName' 
-                                   placeholder='name' name='newSchoolName'
-                                   value={this.state.newSchoolName}
-                                   onChange={this.handleSchoolInput} />
-                            <input className='schoolCity'
-                                   placeholder='city' 
-                                   name='newSchoolCity'
-                                   value={this.state.newSchoolCity}
-                                   onChange={this.handleSchoolInput}></input>
-                            {/* <input className='schoolDescription' placeholder='description' name='newSchoolDescription' onChange={this.handleSchoolInput}></input> */}
-                            <button><b>+ Add School +</b></button>
-                            </form> 
+                            <form 
+                            className={this.state.newSchool ? 'new-school-form' : 'hidden'}
+                            onSubmit={this.addSchool} 
+                            onClick={event => event.stopPropagation()}>
+                                <input
+                                    className='new-school-input'
+                                    placeholder='name' name='newSchoolName'
+                                    value={this.state.newSchoolName}
+                                    onChange={this.handleSchoolInput} />
+                                <input
+                                    className='new-school-input'
+                                    placeholder='city'
+                                    name='newSchoolCity'
+                                    value={this.state.newSchoolCity}
+                                    onChange={this.handleSchoolInput}></input>
+                                {/* <input className='schoolDescription' placeholder='description' name='newSchoolDescription' onChange={this.handleSchoolInput}></input> */}
+                                <button className='new-school-button'>+</button>
+                            </form>
                         </div>
                     </div>
                     <div className='schools-list'>
                         {this.state.schoolsList.map((school) => {
                             return (
                                 <div className='school-card'>
-                                    <NavLink  to={`/admin/schools/${school.id}`} className='menu-button' activeClassName="activeMenu" style={{ textDecoration: "none", color: "inherit" }}>
+                                    <NavLink to={`/admin/schools/${school.id}`} className='menu-button' activeClassName="activeMenu" style={{ textDecoration: "none", color: "inherit" }}>
                                         <h2 className='school-name'>{school.name}</h2>
                                         <h4 className='school-name'>{school.city}</h4>
                                     </NavLink>
