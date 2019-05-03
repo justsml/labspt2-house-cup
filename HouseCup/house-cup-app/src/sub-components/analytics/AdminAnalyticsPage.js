@@ -18,14 +18,20 @@ export default class AdminAnalyticsPage extends Component {
     super(props);
      this.state = {
         graphData: dummyData,
-        selectedOption: null,     
+        selectedOption: null,
+        data: null     
                     
       }
   }
 
 handleChange = (selectedOption) => {
-    this.setState({ selectedOption });
-    console.log(`Option selected:`, selectedOption);
+    const year = selectedOption["label"]
+    const yearData = this.state.graphData.data[year]
+    this.setState({ 
+        selectedOption: selectedOption,
+        data: yearData
+       });
+    console.log(`Option selected:`, selectedOption["label"]);
 }
 
 renderGraphs = () => {
@@ -60,6 +66,7 @@ componentDidMount() {
         <div className="graphs">
            <form className="select" onSubmit={this.handleSubmit}>
                 <Select value={selectedOption}
+                        defaultValue={{ label: "2019", value: "2019" }}
                         onChange={this.handleChange}
                         options={this.state.graphData.years} />     
             </form>
@@ -67,7 +74,7 @@ componentDidMount() {
           <Graph>
             <Chart 
                 chartType="LineChart"
-                data={this.state.graphData.data}
+                data={this.state.data}
                 options={this.state.graphData.options}
                 loader={<div>Loading Chart</div>}
                 className="chart"
