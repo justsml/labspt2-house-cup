@@ -18,8 +18,7 @@ export default class AdminAnalyticsPage extends Component {
     super(props);
      this.state = {
         graphData: dummyData,
-        selectedOption: null,
-        
+        selectedOption: null,     
                     
       }
   }
