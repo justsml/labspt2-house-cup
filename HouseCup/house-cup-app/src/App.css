@@ -389,12 +389,15 @@ html {
 .admin-main-page .new-house-expand .new-house-txt {
   margin: 0 27px;
 }
-.admin-main-page .new-house-expand .new-house-form {
+.admin-main-page .new-house-expand .add-house-inputs {
+  width: 70%;
+}
+.admin-main-page .new-house-expand .add-house-inputs .new-house-form {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
-.admin-main-page .new-house-expand .new-house-form .new-house-input {
+.admin-main-page .new-house-expand .add-house-inputs .new-house-form .new-house-input {
   color: white;
   height: 30px;
   width: 40%;
@@ -406,13 +409,13 @@ html {
   padding: 0 10px;
   font-size: 1.5rem;
 }
-.admin-main-page .new-house-expand .new-house-form .new-house-input:focus {
+.admin-main-page .new-house-expand .add-house-inputs .new-house-form .new-house-input:focus {
   outline: none;
 }
-.admin-main-page .new-house-expand .new-house-form input::placeholder {
+.admin-main-page .new-house-expand .add-house-inputs .new-house-form input::placeholder {
   color: #D0CAAD;
 }
-.admin-main-page .new-house-expand .new-house-form .new-house-button {
+.admin-main-page .new-house-expand .add-house-inputs .new-house-form .new-house-button {
   width: 28px;
   height: 28px;
   display: flex;

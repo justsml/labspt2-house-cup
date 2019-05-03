@@ -10,6 +10,8 @@ class SchoolsPage extends Component {
         super(props);
         this.state = {
             schoolsList: [],
+            authProfile: [],
+            authPassword: '',
             houseList: [],
             newSchool: false,
             newSchoolName: '',
@@ -31,37 +33,49 @@ class SchoolsPage extends Component {
             .catch(err => console.log(err))
 
     }
+    // addUser = e => {
+    //     axios.post('http://localhost:5000/users/register', {
+    //         email: this.state.authProfile.email,
+    //         password: this.state.authPassword,
+    //     })
+    //         .then(response => {
+    //             console.log(response);
+    //             // this.setState({
+    //             //     schoolsList: response.data.data
+    //             // })
+    //         })
+    // }
 
-    addSchool = (e) => {
-        e.preventDefault();
-        const { getAccessToken } = auth;
-        const newSchool = {
-            name: this.state.newSchoolName,
-            city: this.state.newSchoolCity
-        }
-        console.log(newSchool);
-        if (newSchool) {
-            const headers = { Authorization: `Bearer ${getAccessToken()}` };
-            axios.post('http://localhost:5000/schools', newSchool, { headers })
-                .then(school => {
-                    console.log(`Line 50 Schoolspage`, school);
-                    let newSchool = school.data.data.newSchool;
-                    console.log(`52`, newSchool);
-                    this.setState({
-                        schoolsList: [...this.state.schoolsList, newSchool]
-                    })
-                }).catch(err => {
-                    console.log(err);
-                });
-        } else {
-            console.log(`Please add newSchool`);
-        }
-        console.log(`school ${this.state.newSchoolName} added!`);
 
-        this.setState({
-            newSchoolName: '',
-            newSchoolCity: ''
-        });
+
+ addSchool = (e) => {
+            e.preventDefault();
+            const { getAccessToken } = auth;
+            const newSchool = {
+                name:this.state.newSchoolName,
+                city:this.state.newSchoolCity
+            }
+           
+            if(newSchool) {
+            const headers = { Authorization: `Bearer ${getAccessToken()}` };    
+            axios.post('http://localhost:5000/schools', newSchool, {headers} )
+                 .then( school => {
+                        let newSchool = school.data.data.newSchool;
+                        this.setState({
+                            schoolsList: [...this.state.schoolsList, newSchool]
+                        })
+                     }).catch(err => {
+                        console.log(err);
+                    });
+          } else {
+              console.log(`Please add newSchool`);
+          }
+            console.log(`school ${this.state.newSchoolName} added!`);
+           
+            this.setState({
+                newSchoolName:'',
+                newSchoolCity: ''
+            });
     }
 
     handleSchoolInput = (e) => {
@@ -110,6 +124,11 @@ class SchoolsPage extends Component {
                                         <h2 className='school-name'>{school.name}</h2>
                                         <h4 className='school-name'>{school.city}</h4>
                                     </NavLink>
+                                    <button>
+                                        <NavLink to={`/admin/schools/${school.id}/update`}>
+                                            Update:
+                                        </NavLink>
+                                    </button>
                                 </div>
                             )
                         })}

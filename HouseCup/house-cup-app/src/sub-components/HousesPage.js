@@ -28,21 +28,18 @@ class Houses extends React.Component {
         }))
     }
 
-    componentDidMount() {
-        // this.setState({
-        //     houseList: this.props.houseList
-        // });
-        axios.get(`http://localhost:5000/schools/${this.props.match.params.id}/houses`)
-            .then(response => {
-                if (response) {
-                    this.setState({ houseList: response.data });
-                    console.log(response.data);
-                } else {
-                    console.log(`There is no houses data from the db`);
-                }
-
-            })
-            .catch(err => console.log(err))
+ componentDidMount() {
+    axios.get(`http://localhost:5000/schools/${this.props.match.params.id}/houses`)
+        .then(response => { 
+            if(response) {
+            this.setState({  houseList: response.data  });
+           
+            } else {
+                console.log(`There is no houses data from the db`);
+            }
+            
+         })
+        .catch(err => console.log(err))
     }
 
     //Add House
@@ -157,9 +154,9 @@ class Houses extends React.Component {
         placeholder: styles => ({ ...styles, ...this.dot() }),
         singleValue: (styles, { data }) => ({ ...styles, ...this.dot(data.color) }),
     };
-
+    
+    
     render() {
-
         return (
             <div className='admin-main-page'>
                 <SideMenu {...this.props} />

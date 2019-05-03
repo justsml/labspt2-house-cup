@@ -473,46 +473,49 @@ html {
             margin: 0 27px;
         }
 
-        .new-house-form {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
+        .add-house-inputs {
+            width: 70%;
 
-            .new-house-input {
-                color: white;
-                height: 30px;
-                width: 40%;
-                margin-bottom: 5px;
-                margin-left: 20px;
-                background-color: transparent;
-                border: none;
-                border-bottom: 1px solid white;
-                padding: 0 10px;
-                font-size: 1.5rem;
+            .new-house-form {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
 
-                &:focus {
-                    outline: none;
+                .new-house-input {
+                    color: white;
+                    height: 30px;
+                    width: 40%;
+                    margin-bottom: 5px;
+                    margin-left: 20px;
+                    background-color: transparent;
+                    border: none;
+                    border-bottom: 1px solid white;
+                    padding: 0 10px;
+                    font-size: 1.5rem;
+
+                    &:focus {
+                        outline: none;
+                    }
+                }
+
+                input::placeholder {
+                    color: @theme-color-beige;
+                }
+
+                .new-house-button {
+                    width: 28px;
+                    height: 28px;
+                    display: flex;
+                    margin-left: 20px;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 2rem;
+                    background-color: @theme-color-yellow;
+                    border-radius: 100%;
+                    padding: none;
                 }
             }
-
-            input::placeholder {
-                color: @theme-color-beige;
-            }
-
-            .new-house-button {
-                width: 28px;
-                height: 28px;
-                display: flex;
-                margin-left: 20px;
-                justify-content: center;
-                align-items: center;
-                font-size: 2rem;
-                background-color: @theme-color-yellow;
-                border-radius: 100%;
-                padding: none;
-            }
         }
-
     }
 
     .hidden {

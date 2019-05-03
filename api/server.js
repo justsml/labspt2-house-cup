@@ -8,16 +8,20 @@ const sequelize = require('../sequelize');
 
 School.belongsTo(User, {
   foreignKey: 'userId',
+  onDelete: 'CASCADE'
 });
 User.hasMany(School, {
   foreignKey: 'userId',
+  onDelete: 'CASCADE'
 });
 
 House.belongsTo(School, {
-  foreignKey: 'schoolId'
+  foreignKey: 'schoolId',
+  onDelete: 'CASCADE'
 });
 School.hasMany(House, {
-  foreignKey: 'schoolId'
+  foreignKey: 'schoolId',
+  onDelete: 'CASCADE'
 });
 
 // user.getSchools()
@@ -56,7 +60,7 @@ server.use('/schools', schoolsRouter);
 // nest houses router inside schools router since houses belong to schools
 // we can identify which school the house belongs to just by looking at the URL
 // For example to create a new house in school no.1 we would make a post request to /schools/1/houses
-server.use('/schools/:id/houses', housesRouter);
+server.use('/', housesRouter);
 
 server.get('/', (req, res) => {
   res.send(`Server is up and running now.`);
