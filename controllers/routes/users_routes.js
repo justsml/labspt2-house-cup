@@ -61,7 +61,7 @@ router.get("/:id", (req, res) => {
 router.post( "/register",
   jwtCheck,
   (req, res) => {
-    console.log(`Line 64`, req.user.sub)
+    console.log(`Line 64`, req.user)
     req.body.user_id = req.user.sub;    
     const userId = req.body.user_id;
     const userObj = req.body;
