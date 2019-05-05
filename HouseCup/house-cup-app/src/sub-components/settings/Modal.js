@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Input from './Input.js';
-
+import '../../App.css';
 class Modal extends Component {
 
   render() {

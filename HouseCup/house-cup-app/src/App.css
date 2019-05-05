@@ -1,3 +1,4 @@
+@import url("//use.fontawesome.com/releases/v5.6.1/css/all.css'");
 html {
   font-size: 62.5%;
   /* Now 10px = 1rem! */
@@ -1039,7 +1040,7 @@ Setting page styles -- Below this line
   background: #3E363F;
   border-radius: 2px;
   padding: 20px;
-  width: 300px;
+  width: 320px;
 }
 
 .Input {
@@ -1052,56 +1053,70 @@ Setting page styles -- Below this line
 .Input input {
   outline: none;
   border: 0;
-  color: #FFFCE8;
+  color: #FFF;
   background: transparent;
   font-family: "Lato", sans-serif;
   flex: 1 0 auto;
-  font-size: 14px;
-  font-weight: 300;
+  font-size: 16px;
+  font-weight: 800;
 }
 .Input input:focus ~ label {
   opacity: 1;
 }
-.Input input[type='text'] ~ label::before {
-  content: "\f007";
-}
-.Input input[type='email'] ~ label::before {
-  content: "\f1fa";
-}
-.Input input[type='password'] ~ label::before {
-  content: "\f023";
-}
 .Input label {
-  font-family: FontAwesome;
   font-size: 13px;
+  font: '900 17px "Font Awesome 5 Free"';
   opacity: .1;
   transition: opacity .5s ease;
 }
 .Input label::before {
-  align-items: center;
-  color: #FFFCE8;
   display: flex;
-  height: 40px;
   justify-content: center;
-  width: 40px;
+  align-items: center;
+  color: #FFFCE8;  
+  height: 30px;  
+  width: 30px;
+  
+   
+}
+
+
+input[type='text'] ~ label::before {
+  
+  font-family: "Font Awesome 5 Free";
+  content: "\f007";
+  font-weight: 900;
+}
+ input[type='email'] ~ label::before {
+ 
+  font-family: "Font Awesome 5 Free";
+  content: "\f1fa";
+  font-weight: 900;
+}
+ input[type='password'] ~ label::before {
+  
+  font-family: "Font Awesome 5 Free";
+  content: "\f023";
+  font-weight: 900;
 }
 
 button {
+  display: flex;
+  justify-content: center;
   align-items: center;
+  width: 100%;
   background: #DD403A;
   border: 0;
   border-radius: 3px;
   color: white;
-  display: flex;
   font-family: "Lato", sans-serif;
   font-size: 13px;
   font-weight: 500;
-  justify-content: center;
+  text-transform: uppercase;  
   margin-top: 20px;
   outline: none;
-  padding: 10px 9px 10px 11px;
-  text-transform: uppercase;
-  width: 100%;
+  padding: 10px 9px 10px 11px;  
+  
 }
 
 button:hover {
@@ -1111,7 +1126,7 @@ button:active {
   transform: scale(0.99);
 }
 
-.example-enter {
+/* .example-enter {
   margin-top: 30px;
   opacity: .01;
 }
@@ -1129,4 +1144,4 @@ button:active {
   margin-top: -30px;
   opacity: .01;
   transition: opacity .3s ease, margin .5s ease;
-}
+} */
