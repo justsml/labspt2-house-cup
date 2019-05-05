@@ -9,7 +9,7 @@ import scoreboardTestData from './mock data/scoreboard';
 //Admin import(s):
 import Houses from './sub-components/HousesPage';
 //Settings import(s):
-import SettingsPage from './sub-components/SettingsPage';
+import SettingsPage from './sub-components/settings/SettingsPage';
 //SignupPage import
 import SchoolsPage from './sub-components/SchoolsPage';
 //adminAnalyticsPage
