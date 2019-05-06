@@ -10,8 +10,10 @@ const {
   findUser,
   checkPassword,
   provideAccess,
+  getTokenFromAuth0,
 } = require("../../middleware/user_middleware");
 const {jwtCheck} = require('../../auth/Express-jwt');
+const  request = require("request");
 
 
 router.get("/", (req, res, next) => {
@@ -95,6 +97,9 @@ router.post( "/register",
     });     
   }
 );
+
+// Update user details
+
 
 
 
