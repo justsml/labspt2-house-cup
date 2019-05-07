@@ -1,7 +1,7 @@
 const { User } = require('../Models');
 const bcrypt = require('bcryptjs');
 const { generateToken } = require('../auth/jwt');
-import request from 'request';
+const  request = require("request");
 
 function inputValidation(req, res, next) {
   const { firstName, lastName, email, password } = req.body;
@@ -138,9 +138,10 @@ function getTokenFromAuth0(req,res,next) {
 
     request(options, function (error, response, body) {
         if (error) throw new Error(error);
-          console.log(body);
-          next();
+          console.log(`Line 141`, body);
+         
         });
+        next();
 }
 
 module.exports = {

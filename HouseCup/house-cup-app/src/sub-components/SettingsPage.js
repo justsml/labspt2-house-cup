@@ -5,9 +5,9 @@ class Settings extends Component {
   constructor(props) {
 		 super(props);
 		 this.state ={
-				email: null,
-				password: null,
-				newPassword:null,
+				email:'',
+				password: '',
+				newPassword:'',
 
 		 };
 	}

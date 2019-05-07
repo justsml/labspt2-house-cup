@@ -13,10 +13,11 @@ const {
   getTokenFromAuth0,
 } = require("../../middleware/user_middleware");
 const {jwtCheck} = require('../../auth/Express-jwt');
-const  request = require("request");
+
 
 
 router.get("/", (req, res, next) => {
+  getTokenFromAuth0();
   User.findAll({
     include: [{ model: School, include: [House]}],
     attributes: ["name", "email"]
