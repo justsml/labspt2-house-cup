@@ -22,9 +22,9 @@ class Callback extends Component {
       console.log(`Callback.js line 22`, headers);
       axios.post('http://localhost:5000/users/register', {}, {headers})
           .then( user => {
-              console.log(user);
+              console.log(user, 'User creation success');
           }).catch(err => {
-              console.log(err);
+              console.log(err, 'User creation failure');
           })
     }
 

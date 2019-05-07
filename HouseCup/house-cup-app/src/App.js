@@ -101,6 +101,7 @@ class App extends Component {
        <Route   exact 
                 path = '/admin/schools/:id'
                 render={(props) => <Houses {...props} /> }/>
+        <Route exact path = '/admin/schools/:id/update' render = {(props) => <ModifySchoolPage {...props}/>} />
         <SecuredRoute exact 
                       path = '/admin/billing'
                       component={BillingPage}/>
