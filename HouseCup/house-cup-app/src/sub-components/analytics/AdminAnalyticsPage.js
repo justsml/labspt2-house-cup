@@ -7,19 +7,47 @@ import auth from '../../utils/Auth.js';
 import dummyData from './dummy.js';
 import axios from 'axios';
 
+const options = [
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' }
+];
+
 export default class AdminAnalyticsPage extends Component {
   constructor(props) {
     super(props);
-     this.state = dummyData
+     this.state = {
+        graphData: dummyData,
+        selectedOption: null,
+        data: null     
+                    
+      }
   }
-  
-  renderGraphs = () => {
+
+handleChange = (selectedOption) => {
+    const year = selectedOption["label"]
+    const yearData = this.state.graphData.data[year]
+    this.setState({ 
+        selectedOption: selectedOption,
+        data: yearData
+       });
+    console.log(`Option selected:`, selectedOption["label"]);
+}
+
+renderGraphs = () => {
     this.setState({
       options: this.state.options,
-      date: [...this.state.data]
+      data: [...this.state.data]
     })
-  }
+}
+
 componentDidMount() {
+  const length = this.state.graphData.years.length;
+  const year = this.state.graphData.years[length-1]
+  this.setState({
+     selectedOption: this.state.graphData.years[length-1],
+     data: this.state.graphData.data[year.label]
+  })
   window.addEventListener('resize', this.renderGraphs);
   const {getAccessToken} = auth;
   const headers = {Authorization : `Bearer ${getAccessToken()}`}
@@ -37,21 +65,26 @@ componentDidMount() {
    window.addEventListener('resize', this.renderGraphs);
  }
   render() {
-    
+      const { selectedOption } = this.state;
+      const length = this.state.graphData.years.length;
     return (
       <div className="analytics">
         <SideMenu />
         <div className="graphs">
            <form className="select" onSubmit={this.handleSubmit}>
-             <Select options={this.state.years} />      
+                <Select value={selectedOption}
+                        name= "selectedOption"
+                        defaultValue={this.state.graphData.years[length-1]}
+                        onChange={(value) => this.handleChange(value)}
+                        options={this.state.graphData.years} />     
             </form>
            
           <Graph>
             <Chart 
                 chartType="LineChart"
                 data={this.state.data}
-                options={this.state.options}
-                loader={<div>Loading Chart</div>}
+                options={this.state.graphData.options}
+                loader={<div className='loading'>...Loading Chart</div>}
                 className="chart"
                 max-width={"100%"}
                 height={"480px"}
