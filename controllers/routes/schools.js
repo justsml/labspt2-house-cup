@@ -102,38 +102,43 @@ router.post('/', jwtCheck, async function(req, res) {
 // the ensureOwner middleware gives us the school and user object from the db so we
 // don't have to make the queries in this function
 // async function for await usage
-router.put('/:id', jwtCheck, ensureOwner, async (req, res, next) => {
+router.put('/:id', jwtCheck, async (req, res, next) => {
          // wrap the code in try..catch block to catch any errors
-  try {
-       // every sequelize model has a handy update method which accepts an object
-      // we can directly pass the body to the update method, sequelize automatically strips off unwanted properties
-     // and updates the right values in the db
-    const updatedSchool = await req.school.update(req.body)
+  // try {
+  //      // every sequelize model has a handy update method which accepts an object
+  //     // we can directly pass the body to the update method, sequelize automatically strips off unwanted properties
+  //    // and updates the right values in the db
+  //   const updatedSchool = await req.school.update(req.body)
 
-  // just send back the updated object back to user
-    res.status(200).json(updatedSchool)
-  } catch (err) {
-    next({ ...err, code: 500 })
-  }
+  // // just send back the updated object back to user
+  //   res.status(200).json(updatedSchool)
+  // } catch (err) {
+  //   next({ ...err, code: 500 })
+  // }
+  School.update(
+    {
+      name: req.body.name,
+      city: req.body.city,
+      userId: req.body.userId
+    },
+    { where: { id: req.params.id} }
+  )
+    .then(response => {
+      console.log(response, 'Success! back end update route: School.update')
+      res.json(response)
+    })
+    .catch(err => {
+      console.log(err, 'failre! back end update route: School.update')
+      next({...err, code: 500 })
+    })
+
 })
 
 // Delete a particular school
 // middleware setup same as above - protectEndPoint and then ensureOwner
 
 router.delete('/:id', jwtCheck, (req, res, next) => {
-  // School.findOne({
-  //   where: {id: req.params.id},
-  //   include: [{model: House}]
-  // })
-  //   .then(response => {
-  //     console.log(response, 'Success! back end delete route: School.findByPk')
-  //     res.json(response)
-  //   })
-  //   .catch(err => {
-  //     console.log(err, 'Error! back end delete route: School.findByPk')
-  //     next({...err, code: 500 })
-  //   });
-
+  
   School.destroy({
     where: { id: req.params.id }
   })
@@ -144,7 +149,7 @@ router.delete('/:id', jwtCheck, (req, res, next) => {
     .catch(err => {
       console.log(err, 'Error! back end delete route: School.destroy')
       next({...err, code: 500 })
-    })
+    });
 
 })
 

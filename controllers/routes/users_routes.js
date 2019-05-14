@@ -17,7 +17,7 @@ const {jwtCheck} = require('../../auth/Express-jwt');
 
 
 router.get("/", (req, res, next) => {
-  getTokenFromAuth0();
+  // getTokenFromAuth0();
   User.findAll({
     include: [{ model: School, include: [House]}],
     attributes: ["name", "email"]
@@ -31,6 +31,7 @@ router.get("/", (req, res, next) => {
           }
         });
       } else {
+        console.log()
         next({ code: 404 });
       }
     })

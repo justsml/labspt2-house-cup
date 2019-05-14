@@ -8,20 +8,24 @@ const sequelize = require('../sequelize');
 
 School.belongsTo(User, {
   foreignKey: 'userId',
-  onDelete: 'CASCADE'
+  onDelete: 'CASCADE',
+  onUpdate: 'CASCADE'
 });
 User.hasMany(School, {
   foreignKey: 'userId',
-  onDelete: 'CASCADE'
+  onDelete: 'CASCADE',
+  onUpdate: 'CASCADE'
 });
 
 House.belongsTo(School, {
   foreignKey: 'schoolId',
-  onDelete: 'CASCADE'
+  onDelete: 'CASCADE',
+  onUpdate: 'CASCADE'
 });
 School.hasMany(House, {
   foreignKey: 'schoolId',
-  onDelete: 'CASCADE'
+  onDelete: 'CASCADE',
+  onUpdate: 'CASCADE'
 });
 
 // user.getSchools()
@@ -58,7 +62,7 @@ server.use(cors());
 server.use('/users', userRouter);
 server.use('/schools', schoolsRouter);
 // Get the id from req.params -- > houses.js
-server.use('/houses', housesRouter);
+server.use('/', housesRouter);
 
 server.get('/', (req, res) => {
   res.send(`Server is up and running now.`);
