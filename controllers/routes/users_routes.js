@@ -19,8 +19,8 @@ const {jwtCheck} = require('../../auth/Express-jwt');
 router.get("/", (req, res, next) => {
   // getTokenFromAuth0();
   User.findAll({
-    include: [{ model: School, include: [House]}],
-    attributes: ["name", "email"]
+    // include: [{ model: School, include: [House]}],
+    // attributes: ["name", "email"]
   })
     .then(allUsers => {
       if (allUsers) {
