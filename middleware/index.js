@@ -1,5 +1,6 @@
 module.exports = {
   errorHandler: (err, req, res, next) => {
+    console.log('Error:', err);
     switch (err.code) {
       case 400:
         res.status(400).json({
